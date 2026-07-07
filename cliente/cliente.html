@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Minhas Fotos · Studio Rassi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Brittany+Signature&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #2C0714;
+      color: #f5edea;
+      font-family: 'Montserrat', sans-serif;
+      min-height: 100vh;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    /* ===== NAVBAR ===== */
+    .navbar {
+      padding: 20px 0;
+      border-bottom: 1px solid rgba(212, 163, 179, 0.08);
+      background: #2C0714;
+    }
+    .navbar-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #f5edea;
+      text-decoration: none;
+    }
+    .logo span { color: #D4A3B3; }
+    .nav-info {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .nav-info .user {
+      color: #d4c5c0;
+      font-size: 0.85rem;
+    }
+    .nav-info .user i { color: #D4A3B3; margin-right: 6px; }
+    .btn-logout {
+      background: transparent;
+      border: 1px solid rgba(212, 163, 179, 0.2);
+      color: #d4c5c0;
+      padding: 8px 20px;
+      border-radius: 40px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      transition: 0.3s;
+    }
+    .btn-logout:hover {
+      border-color: #D4A3B3;
+      color: #D4A3B3;
+    }
+
+    /* ===== TIMER ===== */
+    .timer-section {
+      background: #1f0510;
+      border-radius: 28px;
+      padding: 24px 32px;
+      margin: 24px 0 32px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      border: 1px solid rgba(212, 163, 179, 0.06);
+    }
+    .timer-box {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .timer-box .timer-icon {
+      font-size: 2rem;
+      color: #D4A3B3;
+    }
+    .timer-box .time {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      color: #D4A3B3;
+    }
+    .timer-box .label {
+      font-weight: 300;
+      font-size: 0.8rem;
+      color: #d4c5c0;
+    }
+    .credits-box {
+      background: #2C0714;
+      padding: 8px 24px;
+      border-radius: 40px;
+      border: 1px solid rgba(212, 163, 179, 0.1);
+    }
+    .credits-box strong { color: #D4A3B3; font-size: 1.4rem; }
+
+    /* ===== GALERIA COM MARCA D'ÁGUA ===== */
+    .gallery-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin: 24px 0 20px;
+    }
+    .gallery-header h2 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 400;
+    }
+    .gallery-header h2 span { color: #D4A3B3; }
+    .watermark-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 20px;
+    }
+    .watermark-item {
+      background: #1f0510;
+      border-radius: 20px;
+      padding: 24px 12px;
+      text-align: center;
+      border: 1px solid rgba(212, 163, 179, 0.06);
+      position: relative;
+      user-select: none;
+      pointer-events: none;
+      transition: 0.3s;
+    }
+    .watermark-item .icon {
+      font-size: 2.8rem;
+      color: #D4A3B3;
+      opacity: 0.7;
+    }
+    .watermark-item .name {
+      font-size: 0.7rem;
+      color: #b09a94;
+      margin-top: 8px;
+    }
+    .watermark-item .watermark-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(-25deg);
+      color: rgba(212, 163, 179, 0.15);
+      font-family: 'Brittany Signature', cursive;
+      font-size: 1.6rem;
+      letter-spacing: 2px;
+      pointer-events: none;
+      white-space: nowrap;
+    }
+    .watermark-item .badge-lock {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      font-size: 0.7rem;
+      color: #D4A3B3;
+      opacity: 0.5;
+    }
+    .watermark-item .btn-download {
+      margin-top: 12px;
+      background: transparent;
+      border: 1px solid rgba(212, 163, 179, 0.2);
+      color: #D4A3B3;
+      padding: 6px 16px;
+      border-radius: 30px;
+      font-size: 0.7rem;
+      cursor: pointer;
+      pointer-events: auto;
+      transition: 0.3s;
+    }
+    .watermark-item .btn-download:hover {
+      background: #D4A3B3;
+      color: #2C0714;
+    }
+
+    /* ===== UPSELl ===== */
+    .upsell-section {
+      background: #1f0510;
+      border-radius: 28px;
+      padding: 28px 32px;
+      margin: 32px 0;
+      border: 1px solid rgba(212, 163, 179, 0.06);
+    }
+    .upsell-section h3 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 400;
+      color: #D4A3B3;
+      margin-bottom: 12px;
+    }
+    .upsell-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .upsell-item {
+      background: #2C0714;
+      padding: 12px 20px;
+      border-radius: 40px;
+      border: 1px solid rgba(212, 163, 179, 0.08);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .upsell-item:hover {
+      border-color: #D4A3B3;
+      background: rgba(212, 163, 179, 0.05);
+    }
+    .upsell-item .price {
+      color: #D4A3B3;
+      font-weight: 600;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      text-align: center;
+      padding: 32px 0 20px;
+      border-top: 1px solid rgba(212, 163, 179, 0.04);
+      margin-top: 40px;
+    }
+    footer p {
+      font-weight: 300;
+      font-size: 0.8rem;
+      color: #7a5f5a;
+    }
+
+    @media (max-width: 768px) {
+      .container { padding: 0 20px; }
+      .timer-section { flex-direction: column; gap: 16px; align-items: stretch; }
+      .watermark-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar">
+  <div class="container navbar-content">
+    <a href="index.html" class="logo">Studio <span>Rassi</span></a>
+    <div class="nav-info">
+      <span class="user"><i class="fas fa-user-circle"></i> Olá, Cliente</span>
+      <button class="btn-logout" onclick="window.location.href='index.html'">
+        <i class="fas fa-sign-out-alt"></i> Sair
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== TIMER E CRÉDITOS ===== -->
+<div class="container timer-section">
+  <div class="timer-box">
+    <div class="timer-icon"><i class="far fa-clock"></i></div>
+    <div>
+      <div class="time" id="timerDisplay">72:00:00</div>
+      <div class="label">tempo restante para baixar suas fotos</div>
+    </div>
+  </div>
+  <div class="credits-box">
+    <i class="fas fa-coins" style="color:#D4A3B3; margin-right:8px;"></i>
+    Créditos disponíveis: <strong id="creditsDisplay">30</strong>
+  </div>
+</div>
+
+<!-- ===== GALERIA ===== -->
+<div class="container">
+  <div class="gallery-header">
+    <h2>📸 <span>Suas memórias</span></h2>
+    <span style="font-weight:300; color:#d4c5c0; font-size:0.85rem;">
+      <i class="fas fa-shield-alt" style="color:#D4A3B3;"></i> Protegido com marca d'água
+    </span>
+  </div>
+
+  <div class="watermark-grid" id="galleryGrid">
+    <!-- Itens gerados via JS -->
+  </div>
+
+  <!-- ===== UPSELL ===== -->
+  <div class="upsell-section">
+    <h3><i class="fas fa-plus-circle" style="color:#D4A3B3;"></i> Quer mais fotos?</h3>
+    <div class="upsell-grid">
+      <div class="upsell-item" onclick="buyCredits(5, 18)">
+        <span>📷 +5 fotos</span>
+        <span class="price">R$ 90</span>
+      </div>
+      <div class="upsell-item" onclick="buyCredits(10, 18)">
+        <span>📷 +10 fotos</span>
+        <span class="price">R$ 180</span>
+      </div>
+      <div class="upsell-item" onclick="buyCredits(1, 50)">
+        <span>🎥 +1 vídeo avulso</span>
+        <span class="price">R$ 50</span>
+      </div>
+      <div class="upsell-item" onclick="buyCredits(3, 50)">
+        <span>🎥 +3 vídeos</span>
+        <span class="price">R$ 150</span>
+      </div>
+    </div>
+    <p style="font-size:0.7rem; color:#7a5f5a; margin-top:12px;">
+      <i class="fas fa-info-circle"></i> Os créditos adicionais são adicionados instantaneamente à sua conta.
+    </p>
+  </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="container">
+    <p>Studio Rassi · Photo & Video · © 2026 · Suas memórias são nosso legado</p>
+  </div>
+</footer>
+
+<script>
+  // ===== SIMULAÇÃO DE DADOS =====
+  const mockPhotos = [
+    'ensaio_01.jpg', 'ensaio_02.jpg', 'familia_01.jpg', 
+    'gestante_01.jpg', 'casal_01.jpg', 'festas_01.jpg',
+    'newborn_01.jpg', 'estudio_01.jpg', 'ensaio_03.jpg',
+    'familia_02.jpg', 'casal_02.jpg', 'detalhe_01.jpg'
+  ];
+
+  let credits = 30;
+  let timerSeconds = 72 * 3600; // 72 horas
+
+  // ===== RENDER GALERIA =====
+  function renderGallery() {
+    const grid = document.getElementById('galleryGrid');
+    grid.innerHTML = '';
+    mockPhotos.forEach((name, index) => {
+      const div = document.createElement('div');
+      div.className = 'watermark-item';
+      div.innerHTML = `
+        <div class="badge-lock"><i class="fas fa-lock"></i></div>
+        <div class="icon">${index % 3 === 0 ? '📷' : index % 3 === 1 ? '📸' : '🎥'}</div>
+        <div class="watermark-text">© Studio Rassi</div>
+        <div class="name">${name}</div>
+        <button class="btn-download" onclick="downloadPhoto('${name}', ${index})">
+          <i class="fas fa-download"></i> Baixar (${credits > 0 ? '1 crédito' : 'sem créditos'})
+        </button>
+      `;
+      grid.appendChild(div);
+    });
+    updateCreditsDisplay();
+  }
+
+  // ===== BAIXAR FOTO (SIMULAÇÃO) =====
+  function downloadPhoto(name, index) {
+    if (credits <= 0) {
+      alert('❌ Você não tem créditos suficientes. Adquira mais clicando nas opções acima.');
+      return;
+    }
+    // Simula o download com watermark
+    credits--;
+    updateCreditsDisplay();
+    alert(`✅ Foto "${name}" baixada com sucesso!\nCréditos restantes: ${credits}`);
+    renderGallery(); // Re-render para atualizar botões
+  }
+
+  // ===== COMPRAR CRÉDITOS (UPSELL) =====
+  function buyCredits(amount, price) {
+    const total = amount * price;
+    if (confirm(`🛒 Adicionar ${amount} crédito(s) por R$ ${total}?`)) {
+      credits += amount;
+      updateCreditsDisplay();
+      renderGallery();
+      alert(`✅ ${amount} crédito(s) adicionado(s)! Total: ${credits}`);
+    }
+  }
+
+  // ===== ATUALIZAR DISPLAY =====
+  function updateCreditsDisplay() {
+    document.getElementById('creditsDisplay').textContent = credits;
+  }
+
+  // ===== TIMER REGRESSIVO =====
+  function updateTimer() {
+    if (timerSeconds <= 0) {
+      document.getElementById('timerDisplay').textContent = '00:00:00';
+      alert('⏰ Seu tempo expirou! Entre em contato para renovar seu acesso.');
+      return;
+    }
+    timerSeconds--;
+    const hrs = Math.floor(timerSeconds / 3600);
+    const mins = Math.floor((timerSeconds % 3600) / 60);
+    const secs = timerSeconds % 60;
+    document.getElementById('timerDisplay').textContent = 
+      `${String(hrs).padStart(2, '0')}:${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+  }
+
+  // ===== BLOQUEIO DE PRINT/DOWNLOAD =====
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'PrintScreen' || (e.ctrlKey && e.key === 'p')) {
+      e.preventDefault();
+      alert('🔒 A proteção de imagens está ativa. Prints não são permitidos.');
+    }
+  });
+
+  document.addEventListener('contextmenu', function(e) {
+    if (e.target.closest('.watermark-item')) {
+      e.preventDefault();
+      alert('🔒 Clique direito bloqueado. As imagens são protegidas.');
+    }
+  });
+
+  // ===== INICIALIZAR =====
+  renderGallery();
+  updateTimer();
+  setInterval(updateTimer, 1000);
+</script>
+
+</body>
+</html>
