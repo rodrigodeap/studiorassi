@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Studio Rassi · Photo & Video</title>
+  <!-- Fontes: Serifada, Script e Sans-serif -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Brittany+Signature&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* ===== RESET & BASE ===== */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background-color: #2C0714; /* Vinho/Burgundy */
+      color: #f5edea; /* Off-white */
+      font-family: 'Montserrat', sans-serif;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    /* ===== TIPOGRAFIA ===== */
+    .font-serif { font-family: 'Playfair Display', serif; }
+    .font-script { font-family: 'Brittany Signature', cursive; }
+    .font-sans { font-family: 'Montserrat', sans-serif; }
+    .text-rose { color: #D4A3B3; } /* Rosé queimado */
+    .text-offwhite { color: #f5edea; }
+    .text-burgundy { color: #2C0714; }
+
+    /* ===== BOTÕES ===== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 32px;
+      border-radius: 50px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      font-size: 0.9rem;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      background: transparent;
+    }
+    .btn-primary {
+      background: #D4A3B3;
+      color: #2C0714;
+      box-shadow: 0 4px 15px rgba(212, 163, 179, 0.3);
+    }
+    .btn-primary:hover {
+      background: #c08b9e;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(212, 163, 179, 0.4);
+    }
+    .btn-outline {
+      border: 2px solid #D4A3B3;
+      color: #f5edea;
+      background: transparent;
+    }
+    .btn-outline:hover {
+      background: rgba(212, 163, 179, 0.15);
+      border-color: #c08b9e;
+    }
+    .btn-ghost {
+      color: #D4A3B3;
+      background: transparent;
+      padding: 10px 20px;
+    }
+    .btn-ghost:hover { color: #f5edea; }
+
+    /* ===== HEADER / HERO ===== */
+    .hero {
+      padding: 40px 0 60px;
+      background: linear-gradient(180deg, #2C0714 0%, #1f0510 100%);
+      border-bottom: 1px solid rgba(212, 163, 179, 0.15);
+    }
+    .hero-content {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+    }
+    .hero-gif {
+      flex: 1 1 340px;
+      min-height: 200px;
+      background: #1f0510;
+      border-radius: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(212, 163, 179, 0.2);
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 120" width="200" height="120"><circle cx="60" cy="50" r="18" fill="%23D4A3B3" opacity="0.3"/><circle cx="140" cy="50" r="18" fill="%23D4A3B3" opacity="0.3"/><path d="M40 70 Q100 100 160 70" stroke="%23D4A3B3" stroke-width="3" fill="none" opacity="0.5"/><circle cx="100" cy="30" r="8" fill="%23D4A3B3" opacity="0.6"/><circle cx="70" cy="25" r="4" fill="%23D4A3B3" opacity="0.5"/><circle cx="130" cy="25" r="4" fill="%23D4A3B3" opacity="0.5"/></svg>');
+      background-size: 200px;
+      background-repeat: no-repeat;
+      background-position: center;
+      transition: 0.3s;
+    }
+    .hero-gif:hover {
+      background-color: #2C0714;
+      border-color: #D4A3B3;
+    }
+    .hero-gif span {
+      background: rgba(44, 7, 20, 0.7);
+      backdrop-filter: blur(6px);
+      padding: 12px 28px;
+      border-radius: 60px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 300;
+      font-size: 0.9rem;
+      letter-spacing: 2px;
+      color: #D4A3B3;
+      border: 1px solid rgba(212, 163, 179, 0.2);
+    }
+    .hero-buttons {
+      flex: 1 1 400px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      justify-content: flex-end;
+    }
+
+    /* ===== SEÇÕES ===== */
+    .section {
+      padding: 70px 0;
+      border-bottom: 1px solid rgba(212, 163, 179, 0.08);
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-weight: 600;
+      font-size: 2.8rem;
+      line-height: 1.2;
+      margin-bottom: 24px;
+      letter-spacing: -0.5px;
+    }
+    .section-title .script {
+      font-family: 'Brittany Signature', cursive;
+      color: #D4A3B3;
+      font-weight: 400;
+      font-size: 3.2rem;
+    }
+    .section-sub {
+      font-size: 1.1rem;
+      font-weight: 300;
+      color: #d4c5c0;
+      max-width: 640px;
+    }
+
+    /* ===== PORTFOLIO ===== */
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+    }
+    .portfolio-item {
+      background: #1f0510;
+      border-radius: 24px;
+      min-height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(212, 163, 179, 0.1);
+      font-weight: 300;
+      color: #D4A3B3;
+      font-size: 0.95rem;
+      transition: 0.3s;
+      padding: 20px;
+      text-align: center;
+    }
+    .portfolio-item:hover {
+      border-color: #D4A3B3;
+      transform: scale(1.01);
+      background: #2C0714;
+    }
+
+    /* ===== BENEFÍCIOS ===== */
+    .benefit-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
+      margin-top: 16px;
+    }
+    .benefit-card {
+      background: rgba(31, 5, 16, 0.6);
+      padding: 28px 20px;
+      border-radius: 24px;
+      border: 1px solid rgba(212, 163, 179, 0.08);
+      text-align: center;
+      transition: 0.3s;
+    }
+    .benefit-card:hover {
+      border-color: rgba(212, 163, 179, 0.3);
+      background: rgba(44, 7, 20, 0.8);
+    }
+    .benefit-card i {
+      font-size: 2.4rem;
+      color: #D4A3B3;
+      margin-bottom: 12px;
+    }
+    .benefit-card h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      margin-bottom: 6px;
+    }
+    .benefit-card p {
+      font-weight: 300;
+      font-size: 0.9rem;
+      color: #d4c5c0;
+    }
+
+    /* ===== PACOTES ===== */
+    .package-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 24px;
+      margin: 20px 0;
+    }
+    .package-card {
+      background: #1f0510;
+      border-radius: 28px;
+      padding: 28px 20px;
+      text-align: center;
+      border: 1px solid rgba(212, 163, 179, 0.1);
+      transition: 0.3s;
+    }
+    .package-card:hover {
+      border-color: #D4A3B3;
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+    }
+    .package-card .price {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: #D4A3B3;
+    }
+    .package-card .price small {
+      font-size: 1rem;
+      font-weight: 300;
+      color: #d4c5c0;
+    }
+    .package-card .badge {
+      display: inline-block;
+      background: #D4A3B3;
+      color: #2C0714;
+      padding: 4px 14px;
+      border-radius: 40px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    /* ===== ORDER BUMP ===== */
+    .orderbump-box {
+      background: #1f0510;
+      border-radius: 28px;
+      padding: 28px 24px;
+      margin: 24px 0;
+      border: 1px solid rgba(212, 163, 179, 0.15);
+    }
+    .orderbump-box label {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(212, 163, 179, 0.05);
+      font-weight: 300;
+      cursor: pointer;
+    }
+    .orderbump-box label:last-child { border-bottom: none; }
+    .orderbump-box input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+      accent-color: #D4A3B3;
+    }
+    .orderbump-box .bump-price {
+      margin-left: auto;
+      color: #D4A3B3;
+      font-weight: 600;
+    }
+
+    /* ===== ÁREA RESTRITA (PORTAL) ===== */
+    .portal-area {
+      background: #1f0510;
+      border-radius: 48px;
+      padding: 40px 32px;
+      margin: 40px 0 20px;
+      border: 1px solid rgba(212, 163, 179, 0.1);
+    }
+    .portal-area .timer {
+      background: #2C0714;
+      padding: 8px 24px;
+      border-radius: 60px;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 500;
+      border: 1px solid rgba(212, 163, 179, 0.2);
+      color: #D4A3B3;
+    }
+    .watermark-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 16px;
+      margin: 20px 0;
+    }
+    .watermark-item {
+      background: #2C0714;
+      border-radius: 20px;
+      padding: 20px 8px;
+      text-align: center;
+      border: 1px solid rgba(212, 163, 179, 0.1);
+      color: #b09a94;
+      font-size: 0.75rem;
+      position: relative;
+      user-select: none;
+      pointer-events: none;
+    }
+    .watermark-item::after {
+      content: "🔒 © Studio Rassi";
+      display: block;
+      margin-top: 10px;
+      font-size: 0.55rem;
+      letter-spacing: 0.5px;
+      color: #D4A3B3;
+      opacity: 0.6;
+    }
+    .input-dark {
+      background: #2C0714;
+      border: 1px solid rgba(212, 163, 179, 0.2);
+      padding: 14px 20px;
+      border-radius: 40px;
+      color: #f5edea;
+      font-family: 'Montserrat', sans-serif;
+      width: 100%;
+    }
+    .input-dark::placeholder { color: #7a5f5a; }
+
+    /* ===== SHARE FINAL ===== */
+    .share-section {
+      text-align: center;
+      padding: 40px 0;
+    }
+    .share-box {
+      background: #1f0510;
+      border-radius: 60px;
+      padding: 40px 24px;
+      border: 1px solid rgba(212, 163, 179, 0.08);
+    }
+    .share-box .img-placeholder {
+      background: #2C0714;
+      border-radius: 40px;
+      min-height: 140px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #D4A3B3;
+      font-weight: 300;
+      border: 1px solid rgba(212, 163, 179, 0.1);
+      max-width: 600px;
+      margin: 0 auto 20px;
+    }
+
+    /* ===== RESPONSIVO ===== */
+    @media (max-width: 768px) {
+      .hero-buttons { justify-content: center; }
+      .section-title { font-size: 2.2rem; }
+      .section-title .script { font-size: 2.6rem; }
+    }
+    @media (max-width: 480px) {
+      .btn { padding: 10px 20px; font-size: 0.75rem; }
+      .package-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ===== SCROLL ===== */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #1f0510; }
+    ::-webkit-scrollbar-thumb { background: #D4A3B3; border-radius: 10px; }
+  </style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="hero">
+  <div class="container hero-content">
+    <div class="hero-gif">
+      <span>✨ movimento · luz · emoção</span>
+    </div>
+    <div class="hero-buttons">
+      <a href="#pacotes" class="btn btn-primary"><i class="fas fa-crown"></i> Pacotes</a>
+      <a href="#personalizado" class="btn btn-outline"><i class="fas fa-sliders-h"></i> Personalizado</a>
+      <a href="#portfolio" class="btn btn-outline"><i class="fas fa-images"></i> Conheça</a>
+    </div>
+  </div>
+</header>
+
+<!-- ===== PORTFÓLIO ===== -->
+<section class="container section" id="portfolio">
+  <h2 class="section-title"><span class="script">Memórias</span> que começam<br>antes do primeiro abraço</h2>
+  <p class="section-sub">Cada clique guarda um pedaço da sua história. Veja alguns dos nossos trabalhos.</p>
+  <div class="portfolio-grid" style="margin-top: 28px;">
+    <div class="portfolio-item">🌿 Ensaio externo · natureza</div>
+    <div class="portfolio-item">🤰 Gestante · luz suave</div>
+    <div class="portfolio-item">🎉 Festa · 30 fotos</div>
+    <div class="portfolio-item">💍 Casal · elegância</div>
+    <div class="portfolio-item">👶 Newborn · ternura</div>
+    <div class="portfolio-item">🏠 Estúdio · bolo 1kg</div>
+  </div>
+</section>
+
+<!-- ===== INSTITUCIONAL + BENEFÍCIOS ===== -->
+<section class="container section">
+  <div style="max-width: 720px;">
+    <h2 class="section-title"><span class="script">Paixão</span> em cada detalhe</h2>
+    <p style="font-size: 1.2rem; font-weight: 300; color: #d4c5c0; line-height: 1.8;">
+      Mais do que registrar, eternizamos emoções. Nossa equipe transforma instantes em memórias 
+      que aquecem o coração. <span style="color: #D4A3B3; font-style: italic;">“Fotografar é sentir. Não é só registrar.”</span>
+    </p>
+  </div>
+  <div class="benefit-grid" style="margin-top: 40px;">
+    <div class="benefit-card">
+      <i class="fas fa-crown"></i>
+      <h4>Posicionamento exclusivo</h4>
+      <p>Conteúdo que eleva sua marca e alimenta seu ego com qualidade premium.</p>
+    </div>
+    <div class="benefit-card">
+      <i class="fas fa-heart"></i>
+      <h4>Emoção eternizada</h4>
+      <p>Registros com significado, intenção e autenticidade.</p>
+    </div>
+    <div class="benefit-card">
+      <i class="fas fa-share-alt"></i>
+      <h4>Conteúdo para redes</h4>
+      <p>Imagens prontas para impactar e engajar seu público.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PACOTES PROMOCIONAIS ===== -->
+<section class="container section" id="pacotes">
+  <h2 class="section-title"><span class="script">Escolha</span> seu pacote</h2>
+  <div class="package-grid">
+    <div class="package-card">
+      <span class="badge">mais pedido</span>
+      <div class="price">R$ 350</div>
+      <p style="font-weight:300;">30 fotos<br><span style="font-size:0.8rem; color:#b09a94;">+ R$ 15/foto extra</span></p>
+      <button class="btn btn-primary" style="margin-top:16px; width:100%; justify-content:center;">Quero esse</button>
+    </div>
+    <div class="package-card">
+      <div class="price">R$ 400</div>
+      <p style="font-weight:300;">40 fotos<br><span style="font-size:0.8rem; color:#b09a94;">ideal para festas</span></p>
+      <button class="btn btn-primary" style="margin-top:16px; width:100%; justify-content:center;">Quero esse</button>
+    </div>
+    <div class="package-card">
+      <div class="price">R$ 500</div>
+      <p style="font-weight:300;">50 fotos<br><span style="font-size:0.8rem; color:#b09a94;">completo</span></p>
+      <button class="btn btn-primary" style="margin-top:16px; width:100%; justify-content:center;">Quero esse</button>
+    </div>
+  </div>
+  <div style="text-align:center; margin-top: 16px;">
+    <a href="#personalizado" class="btn btn-ghost"><i class="fas fa-arrow-right"></i> Quero montar meu pacote personalizado</a>
+  </div>
+</section>
+
+<!-- ===== PERSONALIZADO + ORDER BUMP ===== -->
+<section class="container section" id="personalizado">
+  <h2 class="section-title"><span class="script">Sob medida</span> para você</h2>
+  <div style="background: #1f0510; border-radius: 40px; padding: 32px 28px; border: 1px solid rgba(212,163,179,0.1);">
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-end;">
+      <div style="flex: 2; min-width: 180px;">
+        <label style="font-weight:300; color:#d4c5c0;">Número de fotos (mín. 20) · R$ 18 cada</label>
+        <input type="number" id="fotoQty" value="30" min="20" step="1" class="input-dark" style="max-width:140px;">
+      </div>
+      <div style="flex:1; background:#2C0714; border-radius:40px; padding:10px 24px; text-align:center; border:1px solid rgba(212,163,179,0.1);">
+        <span style="font-weight:300;">Total</span><br>
+        <span style="font-family:'Playfair Display',serif; font-size:2rem; color:#D4A3B3;">R$ <span id="fotoTotal">540</span></span>
+      </div>
+    </div>
+
+    <!-- ORDER BUMP -->
+    <div class="orderbump-box">
+      <p style="font-weight:600; color:#D4A3B3; margin-bottom:8px;"><i class="fas fa-plus-circle"></i> Turbine seu ensaio</p>
+      <label><input type="checkbox" class="bump-check"> Storymaker em tempo real <span class="bump-price">R$ 250</span></label>
+      <label><input type="checkbox" class="bump-check"> Imagens com Drone (30s) <span class="bump-price">R$ 550</span></label>
+      <label><input type="checkbox" class="bump-check"> Video maker (até 3min) <span class="bump-price">R$ 500</span></label>
+      <label><input type="checkbox" class="bump-check"> Estúdio + bolo 1kg <span class="bump-price">R$ 300</span></label>
+    </div>
+
+    <button class="btn btn-primary" style="width:100%; justify-content:center; padding:16px;" id="simularCarrinho">
+      <i class="fas fa-shopping-cart"></i> Adicionar ao carrinho · simular
+    </button>
+    <p style="font-size:0.75rem; color:#7a5f5a; margin-top:10px;">* após seleção, encaminhamos link de pagamento seguro</p>
+  </div>
+</section>
+
+<!-- ===== ÁREA RESTRITA (PORTAL) ===== -->
+<section class="container" id="portal" style="padding: 40px 0;">
+  <div class="portal-area">
+    <div style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:16px;">
+      <h3 style="font-family:'Playfair Display',serif; font-weight:400;"><i class="fas fa-lock" style="color:#D4A3B3; margin-right:10px;"></i> Área do cliente</h3>
+      <div class="timer"><i class="far fa-clock"></i> 72:00:00 <span style="font-weight:300; font-size:0.8rem; margin-left:6px;">restante</span></div>
+    </div>
+    <div style="display:flex; flex-wrap:wrap; gap:16px; margin:20px 0;">
+      <div style="flex:1; min-width:180px;"><input type="email" placeholder="seu@email.com" value="cliente@studio.com" class="input-dark"></div>
+      <div style="flex:1; min-width:120px;"><input type="password" placeholder="senha" value="••••••••" class="input-dark"></div>
+      <button class="btn btn-primary">Entrar</button>
+    </div>
+    <div><span style="background:#2C0714; padding:4px 16px; border-radius:40px; font-size:0.7rem; border:1px solid rgba(212,163,179,0.2);">Créditos disponíveis: <strong style="color:#D4A3B3;">30</strong> · fotos/vídeos</span></div>
+
+    <div class="watermark-grid">
+      <div class="watermark-item">📷 <br>ensaio_01.jpg</div>
+      <div class="watermark-item">📷 <br>ensaio_02.jpg</div>
+      <div class="watermark-item">🎥 <br>video_01.mp4</div>
+      <div class="watermark-item">📷 <br>ensaio_03.jpg</div>
+      <div class="watermark-item">📷 <br>familia_01.jpg</div>
+    </div>
+
+    <div style="display:flex; flex-wrap:wrap; gap:12px; margin:12px 0;">
+      <button class="btn btn-outline" style="border-color:#D4A3B3;"><i class="fas fa-plus-circle"></i> Comprar créditos</button>
+      <button class="btn btn-outline" style="border-color:#D4A3B3;"><i class="fas fa-file-image"></i> Foto avulsa R$ 18</button>
+      <button class="btn btn-outline" style="border-color:#D4A3B3;"><i class="fas fa-video"></i> Vídeo avulso R$ 50</button>
+    </div>
+    <p style="font-size:0.7rem; color:#7a5f5a; margin-top:8px;"><i class="fas fa-shield-alt"></i> Imagens com marca d’água · proteção contra download/print</p>
+  </div>
+</section>
+
+<!-- ===== COMPARTILHAMENTO FINAL ===== -->
+<section class="container share-section">
+  <div class="share-box">
+    <div class="img-placeholder">
+      📸 <span style="font-family:'Brittany Signature', cursive; font-size:1.6rem; color:#D4A3B3;">Equipe Rassi + você</span>
+    </div>
+    <p style="font-family:'Playfair Display', serif; font-size:1.6rem; color:#D4A3B3;">“Memórias que ficam para sempre”</p>
+    <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap; margin-top:16px;">
+      <button class="btn btn-primary"><i class="fab fa-instagram"></i> Compartilhar</button>
+      <button class="btn btn-outline"><i class="fab fa-facebook"></i> Facebook</button>
+      <button class="btn btn-outline"><i class="fab fa-whatsapp"></i> WhatsApp</button>
+    </div>
+    <p style="margin-top:12px; font-size:0.7rem; color:#7a5f5a;">💛 compartilhe grátis · sua história merece ser vista</p>
+  </div>
+</section>
+
+<footer style="text-align:center; padding:30px 0 16px; border-top:1px solid rgba(212,163,179,0.05);">
+  <p style="font-weight:300; font-size:0.8rem; color:#7a5f5a;">Studio Rassi · Photo & Video · © 2026 · Eternizando emoções</p>
+</footer>
+
+<!-- ===== SCRIPT INTERATIVO ===== -->
+<script>
+  // Atualiza preço das fotos
+  const qtyInput = document.getElementById('fotoQty');
+  const fotoTotal = document.getElementById('fotoTotal');
+  qtyInput?.addEventListener('input', function() {
+    const val = parseInt(this.value) || 20;
+    const total = val * 18;
+    fotoTotal.textContent = total;
+  });
+
+  // Simulação do carrinho com order bump
+  document.getElementById('simularCarrinho')?.addEventListener('click', function() {
+    const qty = parseInt(qtyInput.value) || 20;
+    let total = qty * 18;
+    const bumps = document.querySelectorAll('.bump-check:checked');
+    bumps.forEach(cb => {
+      const priceText = cb.parentElement.querySelector('.bump-price')?.textContent || '0';
+      const price = parseInt(priceText.replace('R$ ', '').replace('.', '')) || 0;
+      total += price;
+    });
+    alert(`🛒 Simulação de carrinho:\nFotos: ${qty} (R$ ${qty*18})\nOrder bumps: ${bumps.length} itens\nTotal: R$ ${total}\n\n(Em produção: integração com pagamento)`);
+  });
+
+  // Bloqueio de contexto (print / download) - simbólico
+  document.querySelectorAll('.watermark-item').forEach(el => {
+    el.addEventListener('contextmenu', e => e.preventDefault());
+  });
+</script>
+
+</body>
+</html>
