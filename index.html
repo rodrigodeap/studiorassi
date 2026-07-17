@@ -313,7 +313,7 @@
       line-height: 1.8;
     }
 
-    /* ===== CARROSSEL DO INSTAGRAM (SEGUNDA DOBRA) ===== */
+    /* ===== CARROSSEL CONTÍNUO (SEGUNDA DOBRA) ===== */
     .instagram-section {
       padding: 80px 0 100px;
       background: #1f0510;
@@ -385,7 +385,7 @@
       color: #f5edea;
     }
 
-    /* ===== CARROSSEL ===== */
+    /* ===== CARROSSEL CONTÍNUO ===== */
     .carousel-wrapper {
       position: relative;
       max-width: 920px;
@@ -398,21 +398,21 @@
     
     .carousel-track {
       display: flex;
-      transition: transform 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      transition: transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
       will-change: transform;
+      gap: 16px;
     }
     
     .carousel-slide {
-      min-width: 100%;
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
+      min-width: calc(20% - 13px); /* 5 colunas com gap */
+      display: flex;
       gap: 16px;
-      padding: 4px;
     }
     
     /* ===== ITEM DO CARROSSEL (9:16) COM EFEITO NEON FLUTUANTE ===== */
     .carousel-item {
       position: relative;
+      flex: 0 0 calc(20% - 13px);
       aspect-ratio: 9 / 16;
       border-radius: 18px;
       overflow: hidden;
@@ -847,9 +847,12 @@
     @media (max-width: 1024px) {
       .hero-text h1 { font-size: 3.2rem; }
       .hero-text h1 .script { font-size: 5rem; }
+      
+      .carousel-item {
+        flex: 0 0 calc(25% - 12px);
+      }
       .carousel-slide {
-        grid-template-columns: repeat(4, 1fr);
-        gap: 12px;
+        min-width: calc(25% - 12px);
       }
     }
     
@@ -897,10 +900,12 @@
         font-size: 3.2rem;
       }
       
+      /* ===== MOBILE: 1 FOTO POR VEZ ===== */
+      .carousel-item {
+        flex: 0 0 calc(50% - 8px);
+      }
       .carousel-slide {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 10px;
-        padding: 4px;
+        min-width: calc(50% - 8px);
       }
       
       .carousel-arrows button {
@@ -950,10 +955,12 @@
         height: 40px;
       }
       
+      /* ===== MOBILE PEQUENO: 1 FOTO POR VEZ ===== */
+      .carousel-item {
+        flex: 0 0 100%;
+      }
       .carousel-slide {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 8px;
-        padding: 4px;
+        min-width: 100%;
       }
       
       .carousel-wrapper {
@@ -1059,7 +1066,7 @@
   </div>
 </header>
 
-<!-- ===== SEGUNDA DOBRA: CARROSSEL DO INSTAGRAM ===== -->
+<!-- ===== SEGUNDA DOBRA: CARROSSEL CONTÍNUO ===== -->
 <section class="instagram-section" id="instagram">
   <div class="container">
     <div class="instagram-header">
@@ -1207,156 +1214,101 @@
 <script>
   // ============================================================
   // 1. DADOS DAS IMAGENS (13 imagens em JPG)
-  //    Nomenclatura: instagram-01.jpg a instagram-13.jpg
   // ============================================================
   const instagramPosts = [
-    {
-      id: 'post_01',
-      image: 'assets/images/instagram/instagram-01.jpg',
-      alt: 'Ensaio externo com luz dourada',
-      caption: '✨ Ensaio externo com luz dourada'
-    },
-    {
-      id: 'post_02',
-      image: 'assets/images/instagram/instagram-02.jpg',
-      alt: 'Gestante - momentos de ternura',
-      caption: '🌸 Gestante - momentos de ternura'
-    },
-    {
-      id: 'post_03',
-      image: 'assets/images/instagram/instagram-03.jpg',
-      alt: 'Festa infantil - sorrisos eternizados',
-      caption: '🎉 Festa infantil - sorrisos eternizados'
-    },
-    {
-      id: 'post_04',
-      image: 'assets/images/instagram/instagram-04.jpg',
-      alt: 'Ensaio de casal - amor em detalhes',
-      caption: '💍 Ensaio de casal - amor em detalhes'
-    },
-    {
-      id: 'post_05',
-      image: 'assets/images/instagram/instagram-05.jpg',
-      alt: 'Newborn - delicadeza e ternura',
-      caption: '👶 Newborn - delicadeza e ternura'
-    },
-    {
-      id: 'post_06',
-      image: 'assets/images/instagram/instagram-06.jpg',
-      alt: 'Ensaio externo - natureza e luz',
-      caption: '🌿 Ensaio externo - natureza e luz'
-    },
-    {
-      id: 'post_07',
-      image: 'assets/images/instagram/instagram-07.jpg',
-      alt: 'Gestante - silhueta e emoção',
-      caption: '🤰 Gestante - silhueta e emoção'
-    },
-    {
-      id: 'post_08',
-      image: 'assets/images/instagram/instagram-08.jpg',
-      alt: 'Festa - decoração elegante',
-      caption: '🎈 Festa - decoração elegante'
-    },
-    {
-      id: 'post_09',
-      image: 'assets/images/instagram/instagram-09.jpg',
-      alt: 'Casal - ensaio romântico',
-      caption: '💑 Casal - ensaio romântico'
-    },
-    {
-      id: 'post_10',
-      image: 'assets/images/instagram/instagram-10.jpg',
-      alt: 'Estúdio - bolo de aniversário',
-      caption: '🎂 Estúdio - bolo de aniversário 1kg'
-    },
-    {
-      id: 'post_11',
-      image: 'assets/images/instagram/instagram-11.jpg',
-      alt: 'Ensaio externo - luz da tarde',
-      caption: '🌅 Ensaio externo - luz da tarde'
-    },
-    {
-      id: 'post_12',
-      image: 'assets/images/instagram/instagram-12.jpg',
-      alt: 'Detalhes - amor em cada foto',
-      caption: '💕 Detalhes - amor em cada foto'
-    },
-    {
-      id: 'post_13',
-      image: 'assets/images/instagram/instagram-13.jpg',
-      alt: 'Família - momentos eternizados',
-      caption: '👨‍👩‍👧‍👦 Família - momentos eternizados'
-    }
+    { id: 'post_01', image: 'assets/images/instagram/instagram-01.jpg', alt: 'Ensaio externo com luz dourada', caption: '✨ Ensaio externo com luz dourada' },
+    { id: 'post_02', image: 'assets/images/instagram/instagram-02.jpg', alt: 'Gestante - momentos de ternura', caption: '🌸 Gestante - momentos de ternura' },
+    { id: 'post_03', image: 'assets/images/instagram/instagram-03.jpg', alt: 'Festa infantil - sorrisos eternizados', caption: '🎉 Festa infantil - sorrisos eternizados' },
+    { id: 'post_04', image: 'assets/images/instagram/instagram-04.jpg', alt: 'Ensaio de casal - amor em detalhes', caption: '💍 Ensaio de casal - amor em detalhes' },
+    { id: 'post_05', image: 'assets/images/instagram/instagram-05.jpg', alt: 'Newborn - delicadeza e ternura', caption: '👶 Newborn - delicadeza e ternura' },
+    { id: 'post_06', image: 'assets/images/instagram/instagram-06.jpg', alt: 'Ensaio externo - natureza e luz', caption: '🌿 Ensaio externo - natureza e luz' },
+    { id: 'post_07', image: 'assets/images/instagram/instagram-07.jpg', alt: 'Gestante - silhueta e emoção', caption: '🤰 Gestante - silhueta e emoção' },
+    { id: 'post_08', image: 'assets/images/instagram/instagram-08.jpg', alt: 'Festa - decoração elegante', caption: '🎈 Festa - decoração elegante' },
+    { id: 'post_09', image: 'assets/images/instagram/instagram-09.jpg', alt: 'Casal - ensaio romântico', caption: '💑 Casal - ensaio romântico' },
+    { id: 'post_10', image: 'assets/images/instagram/instagram-10.jpg', alt: 'Estúdio - bolo de aniversário', caption: '🎂 Estúdio - bolo de aniversário 1kg' },
+    { id: 'post_11', image: 'assets/images/instagram/instagram-11.jpg', alt: 'Ensaio externo - luz da tarde', caption: '🌅 Ensaio externo - luz da tarde' },
+    { id: 'post_12', image: 'assets/images/instagram/instagram-12.jpg', alt: 'Detalhes - amor em cada foto', caption: '💕 Detalhes - amor em cada foto' },
+    { id: 'post_13', image: 'assets/images/instagram/instagram-13.jpg', alt: 'Família - momentos eternizados', caption: '👨‍👩‍👧‍👦 Família - momentos eternizados' }
   ];
 
   // ============================================================
-  // 2. CONFIGURAÇÕES DO CARROSSEL
+  // 2. CONFIGURAÇÕES
   // ============================================================
   const ITEMS_PER_SLIDE = 5;
   const TOTAL_SLIDES = Math.ceil(instagramPosts.length / ITEMS_PER_SLIDE);
   let currentIndex = 0;
   let autoSlideInterval = null;
-  const SLIDE_INTERVAL = 5000;
+  const SLIDE_INTERVAL = 4000;
 
   const track = document.getElementById('carouselTrack');
   const indicators = document.getElementById('carouselIndicators');
 
   // ============================================================
-  // 3. RENDERIZAR
+  // 3. RENDERIZAR (UMA LINHA CONTÍNUA)
   // ============================================================
   function renderCarousel() {
     track.innerHTML = '';
     indicators.innerHTML = '';
 
+    // Duplica os posts para criar efeito de loop infinito
+    const allPosts = [...instagramPosts, ...instagramPosts];
+    
+    // Cria os items em uma única linha
+    allPosts.forEach((post, index) => {
+      const item = document.createElement('div');
+      item.className = 'carousel-item';
+      item.innerHTML = `
+        <img src="${post.image}" alt="${post.alt}" loading="${index < 13 ? 'lazy' : 'eager'}">
+        <div class="overlay">
+          <span class="instagram-icon"><i class="fab fa-instagram"></i> @studio.rassi</span>
+          <span class="caption">${post.caption}</span>
+        </div>
+      `;
+      track.appendChild(item);
+    });
+
+    // Indicadores (baseados no número real de posts)
     for (let s = 0; s < TOTAL_SLIDES; s++) {
-      const slide = document.createElement('div');
-      slide.className = 'carousel-slide';
-      
-      const start = s * ITEMS_PER_SLIDE;
-      const end = Math.min(start + ITEMS_PER_SLIDE, instagramPosts.length);
-      
-      for (let i = start; i < end; i++) {
-        const post = instagramPosts[i];
-        const item = document.createElement('div');
-        item.className = 'carousel-item';
-        item.innerHTML = `
-          <img src="${post.image}" alt="${post.alt}" loading="lazy">
-          <div class="overlay">
-            <span class="instagram-icon"><i class="fab fa-instagram"></i> @studio.rassi</span>
-            <span class="caption">${post.caption}</span>
-          </div>
-        `;
-        slide.appendChild(item);
-      }
-      
-      track.appendChild(slide);
-      
       const dot = document.createElement('div');
       dot.className = `dot ${s === 0 ? 'active' : ''}`;
       dot.dataset.index = s;
       dot.addEventListener('click', () => goToSlide(s));
       indicators.appendChild(dot);
     }
+
+    // Ajusta a largura do track para mostrar todos os itens
+    const itemWidth = track.children[0]?.offsetWidth || 0;
+    const gap = 16;
+    const totalWidth = (itemWidth + gap) * allPosts.length;
+    track.style.width = `${totalWidth}px`;
   }
 
   // ============================================================
-  // 4. NAVEGAÇÃO
+  // 4. NAVEGAÇÃO CONTÍNUA (DESLIZA 1 ITEM POR VEZ)
   // ============================================================
   function goToSlide(index) {
     if (index < 0) index = TOTAL_SLIDES - 1;
     if (index >= TOTAL_SLIDES) index = 0;
     
     currentIndex = index;
-    track.style.transform = `translateX(-${index * 100}%)`;
+    const itemWidth = track.children[0]?.offsetWidth || 0;
+    const gap = 16;
+    const offset = index * (itemWidth + gap);
+    
+    track.style.transform = `translateX(-${offset}px)`;
     
     document.querySelectorAll('.dot').forEach((dot, i) => {
       dot.classList.toggle('active', i === index);
     });
   }
 
-  function nextSlide() { goToSlide(currentIndex + 1); }
-  function prevSlide() { goToSlide(currentIndex - 1); }
+  function nextSlide() { 
+    goToSlide(currentIndex + 1); 
+  }
+  
+  function prevSlide() { 
+    goToSlide(currentIndex - 1); 
+  }
 
   // ============================================================
   // 5. AUTOPLAY
@@ -1420,7 +1372,21 @@
   // 7. INICIALIZAR
   // ============================================================
   renderCarousel();
-  setTimeout(startAutoSlide, 1500);
+  
+  // Ajusta o slide inicial após o render
+  setTimeout(() => {
+    goToSlide(0);
+    startAutoSlide();
+  }, 300);
+
+  // Recalcula ao redimensionar
+  let resizeTimeout;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+      goToSlide(currentIndex);
+    }, 200);
+  });
 
   // ============================================================
   // 8. SIMULAÇÃO DO CARRINHO
@@ -1455,8 +1421,8 @@
     });
   });
 
-  console.log('📸 Carrossel Instagram carregado!');
-  console.log(`📊 ${instagramPosts.length} imagens em ${TOTAL_SLIDES} slides (${ITEMS_PER_SLIDE} colunas)`);
+  console.log('📸 Carrossel contínuo carregado!');
+  console.log(`📊 ${instagramPosts.length} imagens em rotação contínua`);
   console.log('✨ Efeito neon flutuante ativado!');
 </script>
 
