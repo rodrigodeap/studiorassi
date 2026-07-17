@@ -18,14 +18,10 @@
   <meta property="og:url" content="https://seudominio.com">
   <meta property="og:type" content="website">
   
-  <!-- ===== FONTES BALANCEADAS ===== -->
-  <!-- Manuscrita em destaque: Great Vibes (mais detalhada e elegante) -->
-  <!-- Condensada sutil: Montserrat (versão padrão, mais clean) -->
-  <!-- Corpo: Inter (limpa e moderna) -->
+  <!-- Fontes -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   
   <style>
@@ -43,27 +39,12 @@
       padding: 0 32px;
     }
 
-    /* ===== TIPOGRAFIA BALANCEADA ===== */
-    /* Manuscrita em DESTAQUE (mais detalhada) */
-    .font-script { 
-      font-family: 'Great Vibes', cursive;
-      font-weight: 400;
-    }
-    
-    /* Condensada SUTIL (mais clean, menos detalhe) */
-    .font-title { 
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 700;
-      letter-spacing: -0.3px;
-    }
-    
-    .font-body { 
-      font-family: 'Inter', sans-serif;
-    }
-    
+    /* ===== TIPOGRAFIA ===== */
+    .font-script { font-family: 'Great Vibes', cursive; font-weight: 400; }
+    .font-title { font-family: 'Montserrat', sans-serif; font-weight: 700; letter-spacing: -0.3px; }
+    .font-body { font-family: 'Inter', sans-serif; }
     .text-rose { color: #D4A3B3; }
     .text-offwhite { color: #f5edea; }
-    .text-burgundy { color: #2C0714; }
 
     /* ===== BOTÕES ===== */
     .btn {
@@ -230,7 +211,6 @@
       flex: 1 1 400px;
     }
     
-    /* ===== TÍTULO COM MANUSCRITA EM DESTAQUE ===== */
     .hero-text h1 {
       font-family: 'Montserrat', sans-serif;
       font-weight: 700;
@@ -242,7 +222,6 @@
       text-transform: uppercase;
     }
     
-    /* Manuscrita em DESTAQUE - maior e mais detalhada */
     .hero-text h1 .script {
       font-family: 'Great Vibes', cursive;
       font-weight: 400;
@@ -312,7 +291,6 @@
       text-transform: uppercase;
     }
     
-    /* Manuscrita em DESTAQUE nos títulos das seções */
     .section-title .script {
       font-family: 'Great Vibes', cursive;
       font-weight: 400;
@@ -335,34 +313,363 @@
       line-height: 1.8;
     }
 
-    /* ===== PORTFOLIO ===== */
-    .portfolio-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 24px;
-      margin-top: 32px;
-    }
-    .portfolio-item {
+    /* ===== CARROSSEL DO INSTAGRAM (SEGUNDA DOBRA) ===== */
+    .instagram-section {
+      padding: 80px 0 100px;
       background: #1f0510;
-      border-radius: 24px;
-      min-height: 180px;
+      border-bottom: 1px solid rgba(212, 163, 179, 0.06);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .instagram-section::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(ellipse at 50% 50%, rgba(212, 163, 179, 0.03) 0%, transparent 60%);
+      animation: rotateGlow 60s linear infinite;
+      pointer-events: none;
+    }
+    
+    @keyframes rotateGlow {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    .instagram-header {
+      text-align: center;
+      margin-bottom: 48px;
+      position: relative;
+      z-index: 2;
+    }
+    
+    .instagram-header h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 2.8rem;
+      letter-spacing: -0.5px;
+      text-transform: uppercase;
+      color: #f5edea;
+    }
+    
+    .instagram-header h2 .script {
+      font-family: 'Great Vibes', cursive;
+      font-weight: 400;
+      color: #D4A3B3;
+      font-size: 4.5rem;
+      display: block;
+      text-transform: none;
+      line-height: 1;
+      margin-bottom: -0.05em;
+    }
+    
+    .instagram-header .subtitle {
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      font-weight: 300;
+      color: #d4c5c0;
+      margin-top: 8px;
+    }
+    
+    .instagram-header .subtitle a {
+      color: #D4A3B3;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+    
+    .instagram-header .subtitle a:hover {
+      color: #f5edea;
+    }
+
+    /* ===== CARROSSEL ===== */
+    .carousel-wrapper {
+      position: relative;
+      max-width: 920px;
+      margin: 0 auto;
+      overflow: hidden;
+      border-radius: 28px;
+      padding: 12px 0;
+      z-index: 2;
+    }
+    
+    .carousel-track {
+      display: flex;
+      transition: transform 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      will-change: transform;
+    }
+    
+    .carousel-slide {
+      min-width: 100%;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+      padding: 4px;
+    }
+    
+    /* ===== ITEM DO CARROSSEL (9:16) COM EFEITO NEON FLUTUANTE ===== */
+    .carousel-item {
+      position: relative;
+      aspect-ratio: 9 / 16;
+      border-radius: 18px;
+      overflow: hidden;
+      background: #1a0510;
+      transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      cursor: pointer;
+      
+      transform: translateY(0px);
+      box-shadow: 
+        0 0 20px rgba(212, 163, 179, 0.05),
+        inset 0 0 30px rgba(212, 163, 179, 0.02);
+      
+      border: 1px solid rgba(212, 163, 179, 0.08);
+    }
+    
+    .carousel-item:nth-child(1) { animation-delay: 0s; }
+    .carousel-item:nth-child(2) { animation-delay: 0.4s; }
+    .carousel-item:nth-child(3) { animation-delay: 0.8s; }
+    .carousel-item:nth-child(4) { animation-delay: 1.2s; }
+    .carousel-item:nth-child(5) { animation-delay: 1.6s; }
+    
+    .carousel-item {
+      animation: floatGlow 4s ease-in-out infinite;
+    }
+    
+    @keyframes floatGlow {
+      0%, 100% {
+        transform: translateY(0px);
+        box-shadow: 
+          0 0 20px rgba(212, 163, 179, 0.05),
+          0 8px 30px rgba(0, 0, 0, 0.3),
+          inset 0 0 30px rgba(212, 163, 179, 0.02);
+      }
+      50% {
+        transform: translateY(-6px);
+        box-shadow: 
+          0 0 40px rgba(212, 163, 179, 0.12),
+          0 16px 50px rgba(212, 163, 179, 0.08),
+          0 8px 30px rgba(0, 0, 0, 0.4),
+          inset 0 0 40px rgba(212, 163, 179, 0.04);
+      }
+    }
+    
+    .carousel-item::before {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      border-radius: 20px;
+      padding: 2px;
+      background: linear-gradient(
+        135deg,
+        rgba(212, 163, 179, 0.15),
+        rgba(212, 163, 179, 0.02),
+        rgba(212, 163, 179, 0.15)
+      );
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.6s ease;
+    }
+    
+    .carousel-item:hover::before {
+      opacity: 1;
+    }
+    
+    .carousel-item::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(
+        ellipse at center,
+        rgba(212, 163, 179, 0.06) 0%,
+        transparent 60%
+      );
+      opacity: 0;
+      transition: opacity 0.6s ease;
+      pointer-events: none;
+    }
+    
+    .carousel-item:hover::after {
+      opacity: 1;
+    }
+    
+    .carousel-item:hover {
+      transform: translateY(-10px) scale(1.02);
+      border-color: rgba(212, 163, 179, 0.2);
+      box-shadow: 
+        0 0 60px rgba(212, 163, 179, 0.15),
+        0 20px 60px rgba(0, 0, 0, 0.5),
+        inset 0 0 60px rgba(212, 163, 179, 0.05);
+      z-index: 3;
+    }
+    
+    .carousel-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    
+    .carousel-item:hover img {
+      transform: scale(1.06);
+    }
+    
+    .carousel-item .overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 20px 14px 14px;
+      background: linear-gradient(transparent, rgba(44, 7, 20, 0.9) 40%, rgba(44, 7, 20, 0.95));
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    
+    .carousel-item:hover .overlay {
+      opacity: 1;
+    }
+    
+    .carousel-item .overlay .instagram-icon {
+      color: #D4A3B3;
+      font-size: 0.65rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 400;
+    }
+    
+    .carousel-item .overlay .instagram-icon i {
+      font-size: 0.9rem;
+    }
+    
+    .carousel-item .overlay .caption {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.6rem;
+      font-weight: 300;
+      color: #f5edea;
+      line-height: 1.4;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      letter-spacing: 0.3px;
+    }
+
+    /* ===== INDICADORES ===== */
+    .carousel-indicators {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 32px;
+      position: relative;
+      z-index: 2;
+    }
+    
+    .carousel-indicators .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(212, 163, 179, 0.12);
+      border: 1px solid rgba(212, 163, 179, 0.08);
+      cursor: pointer;
+      transition: all 0.5s ease;
+      position: relative;
+    }
+    
+    .carousel-indicators .dot.active {
+      background: #D4A3B3;
+      border-color: #D4A3B3;
+      transform: scale(1.4);
+      box-shadow: 0 0 30px rgba(212, 163, 179, 0.25);
+    }
+    
+    .carousel-indicators .dot:hover {
+      background: rgba(212, 163, 179, 0.4);
+      transform: scale(1.2);
+    }
+
+    /* ===== SETAS ===== */
+    .carousel-arrows {
+      position: absolute;
+      top: 50%;
+      width: 100%;
+      transform: translateY(-50%);
+      display: flex;
+      justify-content: space-between;
+      padding: 0 4px;
+      pointer-events: none;
+      z-index: 10;
+    }
+    
+    .carousel-arrows button {
+      pointer-events: auto;
+      background: rgba(44, 7, 20, 0.6);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(212, 163, 179, 0.1);
+      color: #D4A3B3;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: all 0.4s ease;
       display: flex;
       align-items: center;
       justify-content: center;
-      border: 1px solid rgba(212, 163, 179, 0.08);
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 500;
-      color: #D4A3B3;
-      font-size: 0.9rem;
-      transition: 0.3s;
-      padding: 20px;
-      text-align: center;
-      letter-spacing: 0.5px;
+      font-size: 1.2rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
     }
-    .portfolio-item:hover {
+    
+    .carousel-arrows button:hover {
+      background: #D4A3B3;
+      color: #2C0714;
+      transform: scale(1.1);
+      box-shadow: 0 0 40px rgba(212, 163, 179, 0.2);
+    }
+
+    /* ===== BADGE INSTAGRAM ===== */
+    .instagram-badge {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      z-index: 8;
+      background: rgba(44, 7, 20, 0.7);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(212, 163, 179, 0.1);
+      border-radius: 40px;
+      padding: 6px 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.7rem;
+      color: #D4A3B3;
+      text-decoration: none;
+      transition: all 0.4s ease;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    }
+    
+    .instagram-badge:hover {
+      background: #D4A3B3;
+      color: #2C0714;
       border-color: #D4A3B3;
-      transform: scale(1.02);
-      background: #2C0714;
+      box-shadow: 0 0 40px rgba(212, 163, 179, 0.15);
+      transform: scale(1.05);
+    }
+    
+    .instagram-badge i {
+      font-size: 0.9rem;
     }
 
     /* ===== BENEFÍCIOS ===== */
@@ -540,8 +847,12 @@
     @media (max-width: 1024px) {
       .hero-text h1 { font-size: 3.2rem; }
       .hero-text h1 .script { font-size: 5rem; }
+      .carousel-slide {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 12px;
+      }
     }
-
+    
     @media (max-width: 768px) {
       .container { padding: 0 20px; }
       
@@ -574,6 +885,41 @@
       .navbar-content { flex-wrap: wrap; gap: 12px; }
       .btn { padding: 10px 20px; font-size: 0.75rem; }
       
+      .instagram-section {
+        padding: 60px 0 80px;
+      }
+      
+      .instagram-header h2 {
+        font-size: 2rem;
+      }
+      
+      .instagram-header h2 .script {
+        font-size: 3.2rem;
+      }
+      
+      .carousel-slide {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        padding: 4px;
+      }
+      
+      .carousel-arrows button {
+        width: 38px;
+        height: 38px;
+        font-size: 1rem;
+      }
+      
+      .instagram-badge {
+        font-size: 0.6rem;
+        padding: 4px 12px;
+        top: 10px;
+        right: 10px;
+      }
+      
+      .carousel-item .overlay .caption {
+        font-size: 0.55rem;
+      }
+      
       .hero-video-desktop {
         display: none !important;
       }
@@ -581,10 +927,9 @@
         display: block !important;
       }
     }
-
+    
     @media (max-width: 480px) {
       .package-grid { grid-template-columns: 1fr; }
-      .portfolio-grid { grid-template-columns: 1fr 1fr; }
       
       .hero-text h1 { 
         font-size: 2rem; 
@@ -603,6 +948,38 @@
       }
       footer .footer-logo img {
         height: 40px;
+      }
+      
+      .carousel-slide {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+        padding: 4px;
+      }
+      
+      .carousel-wrapper {
+        padding: 8px 0;
+      }
+      
+      .carousel-arrows button {
+        width: 32px;
+        height: 32px;
+        font-size: 0.8rem;
+      }
+      
+      .carousel-item .overlay {
+        padding: 12px 10px 10px;
+      }
+      
+      .carousel-item .overlay .caption {
+        font-size: 0.5rem;
+      }
+      
+      .instagram-header h2 {
+        font-size: 1.6rem;
+      }
+      
+      .instagram-header h2 .script {
+        font-size: 2.6rem;
       }
     }
 
@@ -623,7 +1000,7 @@
 </head>
 <body>
 
-<!-- ===== NAVBAR COM LOGO ===== -->
+<!-- ===== NAVBAR ===== -->
 <nav class="navbar">
   <div class="container navbar-content">
     <a href="index.html" class="logo">
@@ -636,7 +1013,7 @@
     <div class="nav-menu">
       <a href="#pacotes">Pacotes</a>
       <a href="#personalizado">Personalizado</a>
-      <a href="#portfolio">Portfólio</a>
+      <a href="#instagram">Portfólio</a>
       <button class="btn-minhas-fotos" onclick="window.location.href='login.html'">
         <i class="fas fa-images"></i> Minhas Fotos
       </button>
@@ -646,24 +1023,20 @@
 
 <!-- ===== HERO COM VÍDEO ===== -->
 <header class="hero">
-  <!-- Vídeo Desktop -->
   <video class="hero-video hero-video-desktop" autoplay loop muted playsinline preload="auto" poster="assets/images/hero-fallback.jpg">
     <source src="assets/videos/header-desktop.mp4" type="video/mp4">
     <source src="assets/videos/header-desktop.webm" type="video/webm">
     <img src="assets/images/hero-fallback.jpg" alt="Studio Rassi" style="width:100%; height:100%; object-fit:cover;">
   </video>
   
-  <!-- Vídeo Mobile -->
   <video class="hero-video hero-video-mobile" autoplay loop muted playsinline preload="auto" poster="assets/images/hero-fallback-mobile.jpg">
     <source src="assets/videos/header-mobile.mp4" type="video/mp4">
     <source src="assets/videos/header-mobile.webm" type="video/webm">
     <img src="assets/images/hero-fallback-mobile.jpg" alt="Studio Rassi" style="width:100%; height:100%; object-fit:cover;">
   </video>
   
-  <!-- Overlay -->
   <div class="hero-overlay"></div>
   
-  <!-- Conteúdo -->
   <div class="container hero-content">
     <div class="hero-text">
       <div class="hero-badge">
@@ -680,26 +1053,46 @@
       <div class="hero-buttons">
         <a href="#pacotes" class="btn btn-primary"><i class="fas fa-crown"></i> Pacotes</a>
         <a href="#personalizado" class="btn btn-outline"><i class="fas fa-sliders-h"></i> Personalizado</a>
-        <a href="#portfolio" class="btn btn-outline"><i class="fas fa-images"></i> Conheça</a>
+        <a href="#instagram" class="btn btn-outline"><i class="fas fa-images"></i> Conheça</a>
       </div>
     </div>
   </div>
 </header>
 
-<!-- ===== PORTFÓLIO ===== -->
-<section class="container section" id="portfolio">
-  <h2 class="section-title">
-    <span class="script">Memórias</span>
-    que começam antes do primeiro abraço
-  </h2>
-  <p class="section-sub">Cada clique guarda um pedaço da sua história. Veja alguns dos nossos trabalhos.</p>
-  <div class="portfolio-grid">
-    <div class="portfolio-item">🌿 Ensaio externo</div>
-    <div class="portfolio-item">🤰 Gestante · luz</div>
-    <div class="portfolio-item">🎉 Festa · 30 fotos</div>
-    <div class="portfolio-item">💍 Casal · elegância</div>
-    <div class="portfolio-item">👶 Newborn · ternura</div>
-    <div class="portfolio-item">🏠 Estúdio · bolo 1kg</div>
+<!-- ===== SEGUNDA DOBRA: CARROSSEL DO INSTAGRAM ===== -->
+<section class="instagram-section" id="instagram">
+  <div class="container">
+    <div class="instagram-header">
+      <h2>
+        <span class="script">Memórias</span>
+        que começam antes do primeiro abraço
+      </h2>
+      <p class="subtitle">
+        Acompanhe nosso dia a dia · 
+        <a href="https://www.instagram.com/studio.rassi/" target="_blank" rel="noopener noreferrer">
+          @studio.rassi <i class="fas fa-external-link-alt" style="font-size:0.7rem;"></i>
+        </a>
+      </p>
+    </div>
+    
+    <div class="carousel-wrapper">
+      <div class="carousel-track" id="carouselTrack"></div>
+      
+      <div class="carousel-arrows">
+        <button id="prevSlide" aria-label="Anterior">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+        <button id="nextSlide" aria-label="Próximo">
+          <i class="fas fa-chevron-right"></i>
+        </button>
+      </div>
+      
+      <a href="https://www.instagram.com/studio.rassi/" target="_blank" rel="noopener noreferrer" class="instagram-badge">
+        <i class="fab fa-instagram"></i> @studio.rassi
+      </a>
+    </div>
+    
+    <div class="carousel-indicators" id="carouselIndicators"></div>
   </div>
 </section>
 
@@ -781,7 +1174,6 @@
       </div>
     </div>
 
-    <!-- ORDER BUMP -->
     <div class="orderbump-box">
       <p><i class="fas fa-plus-circle"></i> Turbine seu ensaio</p>
       <label><input type="checkbox" class="bump-check"> Storymaker em tempo real <span class="bump-price">R$ 250</span></label>
@@ -811,9 +1203,228 @@
   </div>
 </footer>
 
-<!-- ===== SCRIPT ===== -->
+<!-- ===== SCRIPT COMPLETO ===== -->
 <script>
-  // Atualiza preço das fotos
+  // ============================================================
+  // 1. DADOS DAS IMAGENS (13 imagens em JPG)
+  //    Nomenclatura: instagram-01.jpg a instagram-13.jpg
+  // ============================================================
+  const instagramPosts = [
+    {
+      id: 'post_01',
+      image: 'assets/images/instagram/instagram-01.jpg',
+      alt: 'Ensaio externo com luz dourada',
+      caption: '✨ Ensaio externo com luz dourada'
+    },
+    {
+      id: 'post_02',
+      image: 'assets/images/instagram/instagram-02.jpg',
+      alt: 'Gestante - momentos de ternura',
+      caption: '🌸 Gestante - momentos de ternura'
+    },
+    {
+      id: 'post_03',
+      image: 'assets/images/instagram/instagram-03.jpg',
+      alt: 'Festa infantil - sorrisos eternizados',
+      caption: '🎉 Festa infantil - sorrisos eternizados'
+    },
+    {
+      id: 'post_04',
+      image: 'assets/images/instagram/instagram-04.jpg',
+      alt: 'Ensaio de casal - amor em detalhes',
+      caption: '💍 Ensaio de casal - amor em detalhes'
+    },
+    {
+      id: 'post_05',
+      image: 'assets/images/instagram/instagram-05.jpg',
+      alt: 'Newborn - delicadeza e ternura',
+      caption: '👶 Newborn - delicadeza e ternura'
+    },
+    {
+      id: 'post_06',
+      image: 'assets/images/instagram/instagram-06.jpg',
+      alt: 'Ensaio externo - natureza e luz',
+      caption: '🌿 Ensaio externo - natureza e luz'
+    },
+    {
+      id: 'post_07',
+      image: 'assets/images/instagram/instagram-07.jpg',
+      alt: 'Gestante - silhueta e emoção',
+      caption: '🤰 Gestante - silhueta e emoção'
+    },
+    {
+      id: 'post_08',
+      image: 'assets/images/instagram/instagram-08.jpg',
+      alt: 'Festa - decoração elegante',
+      caption: '🎈 Festa - decoração elegante'
+    },
+    {
+      id: 'post_09',
+      image: 'assets/images/instagram/instagram-09.jpg',
+      alt: 'Casal - ensaio romântico',
+      caption: '💑 Casal - ensaio romântico'
+    },
+    {
+      id: 'post_10',
+      image: 'assets/images/instagram/instagram-10.jpg',
+      alt: 'Estúdio - bolo de aniversário',
+      caption: '🎂 Estúdio - bolo de aniversário 1kg'
+    },
+    {
+      id: 'post_11',
+      image: 'assets/images/instagram/instagram-11.jpg',
+      alt: 'Ensaio externo - luz da tarde',
+      caption: '🌅 Ensaio externo - luz da tarde'
+    },
+    {
+      id: 'post_12',
+      image: 'assets/images/instagram/instagram-12.jpg',
+      alt: 'Detalhes - amor em cada foto',
+      caption: '💕 Detalhes - amor em cada foto'
+    },
+    {
+      id: 'post_13',
+      image: 'assets/images/instagram/instagram-13.jpg',
+      alt: 'Família - momentos eternizados',
+      caption: '👨‍👩‍👧‍👦 Família - momentos eternizados'
+    }
+  ];
+
+  // ============================================================
+  // 2. CONFIGURAÇÕES DO CARROSSEL
+  // ============================================================
+  const ITEMS_PER_SLIDE = 5;
+  const TOTAL_SLIDES = Math.ceil(instagramPosts.length / ITEMS_PER_SLIDE);
+  let currentIndex = 0;
+  let autoSlideInterval = null;
+  const SLIDE_INTERVAL = 5000;
+
+  const track = document.getElementById('carouselTrack');
+  const indicators = document.getElementById('carouselIndicators');
+
+  // ============================================================
+  // 3. RENDERIZAR
+  // ============================================================
+  function renderCarousel() {
+    track.innerHTML = '';
+    indicators.innerHTML = '';
+
+    for (let s = 0; s < TOTAL_SLIDES; s++) {
+      const slide = document.createElement('div');
+      slide.className = 'carousel-slide';
+      
+      const start = s * ITEMS_PER_SLIDE;
+      const end = Math.min(start + ITEMS_PER_SLIDE, instagramPosts.length);
+      
+      for (let i = start; i < end; i++) {
+        const post = instagramPosts[i];
+        const item = document.createElement('div');
+        item.className = 'carousel-item';
+        item.innerHTML = `
+          <img src="${post.image}" alt="${post.alt}" loading="lazy">
+          <div class="overlay">
+            <span class="instagram-icon"><i class="fab fa-instagram"></i> @studio.rassi</span>
+            <span class="caption">${post.caption}</span>
+          </div>
+        `;
+        slide.appendChild(item);
+      }
+      
+      track.appendChild(slide);
+      
+      const dot = document.createElement('div');
+      dot.className = `dot ${s === 0 ? 'active' : ''}`;
+      dot.dataset.index = s;
+      dot.addEventListener('click', () => goToSlide(s));
+      indicators.appendChild(dot);
+    }
+  }
+
+  // ============================================================
+  // 4. NAVEGAÇÃO
+  // ============================================================
+  function goToSlide(index) {
+    if (index < 0) index = TOTAL_SLIDES - 1;
+    if (index >= TOTAL_SLIDES) index = 0;
+    
+    currentIndex = index;
+    track.style.transform = `translateX(-${index * 100}%)`;
+    
+    document.querySelectorAll('.dot').forEach((dot, i) => {
+      dot.classList.toggle('active', i === index);
+    });
+  }
+
+  function nextSlide() { goToSlide(currentIndex + 1); }
+  function prevSlide() { goToSlide(currentIndex - 1); }
+
+  // ============================================================
+  // 5. AUTOPLAY
+  // ============================================================
+  function startAutoSlide() {
+    if (autoSlideInterval) clearInterval(autoSlideInterval);
+    autoSlideInterval = setInterval(nextSlide, SLIDE_INTERVAL);
+  }
+
+  function stopAutoSlide() {
+    if (autoSlideInterval) {
+      clearInterval(autoSlideInterval);
+      autoSlideInterval = null;
+    }
+  }
+
+  function pauseAutoplay() {
+    stopAutoSlide();
+    setTimeout(startAutoSlide, 5000);
+  }
+
+  // ============================================================
+  // 6. EVENT LISTENERS
+  // ============================================================
+  document.getElementById('prevSlide').addEventListener('click', () => {
+    prevSlide();
+    pauseAutoplay();
+  });
+
+  document.getElementById('nextSlide').addEventListener('click', () => {
+    nextSlide();
+    pauseAutoplay();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') { prevSlide(); pauseAutoplay(); }
+    if (e.key === 'ArrowRight') { nextSlide(); pauseAutoplay(); }
+  });
+
+  let touchStartX = 0;
+  let touchEndX = 0;
+  const wrapper = document.querySelector('.carousel-wrapper');
+  
+  wrapper.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+  }, { passive: true });
+  
+  wrapper.addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    const diff = touchStartX - touchEndX;
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) { nextSlide(); } else { prevSlide(); }
+      pauseAutoplay();
+    }
+  }, { passive: true });
+
+  wrapper.addEventListener('mouseenter', stopAutoSlide);
+  wrapper.addEventListener('mouseleave', startAutoSlide);
+
+  // ============================================================
+  // 7. INICIALIZAR
+  // ============================================================
+  renderCarousel();
+  setTimeout(startAutoSlide, 1500);
+
+  // ============================================================
+  // 8. SIMULAÇÃO DO CARRINHO
+  // ============================================================
   const qtyInput = document.getElementById('fotoQty');
   const fotoTotal = document.getElementById('fotoTotal');
   qtyInput?.addEventListener('input', function() {
@@ -822,7 +1433,6 @@
     fotoTotal.textContent = total;
   });
 
-  // Simulação do carrinho com order bump
   document.getElementById('simularCarrinho')?.addEventListener('click', function() {
     const qty = parseInt(qtyInput.value) || 20;
     let total = qty * 18;
@@ -844,6 +1454,10 @@
       });
     });
   });
+
+  console.log('📸 Carrossel Instagram carregado!');
+  console.log(`📊 ${instagramPosts.length} imagens em ${TOTAL_SLIDES} slides (${ITEMS_PER_SLIDE} colunas)`);
+  console.log('✨ Efeito neon flutuante ativado!');
 </script>
 
 </body>
