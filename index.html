@@ -9,7 +9,7 @@
   <link rel="icon" type="image/x-icon" href="assets/images/favicon/favicon.ico">
   <link rel="apple-touch-icon" href="assets/images/favicon/apple-touch-icon.png">
   
-  <!-- OG Image (para compartilhamento em redes sociais) -->
+  <!-- OG Image -->
   <meta property="og:title" content="Studio Rassi · Photo & Video">
   <meta property="og:description" content="Memórias que começam antes do primeiro abraço">
   <meta property="og:image" content="https://seudominio.com/assets/images/og-image.png">
@@ -18,10 +18,14 @@
   <meta property="og:url" content="https://seudominio.com">
   <meta property="og:type" content="website">
   
-  <!-- Fontes -->
+  <!-- ===== FONTES BALANCEADAS ===== -->
+  <!-- Manuscrita em destaque: Great Vibes (mais detalhada e elegante) -->
+  <!-- Condensada sutil: Montserrat (versão padrão, mais clean) -->
+  <!-- Corpo: Inter (limpa e moderna) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Brittany+Signature&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   
   <style>
@@ -30,7 +34,7 @@
     body {
       background-color: #2C0714;
       color: #f5edea;
-      font-family: 'Montserrat', sans-serif;
+      font-family: 'Inter', sans-serif;
       line-height: 1.6;
     }
     .container {
@@ -39,10 +43,24 @@
       padding: 0 32px;
     }
 
-    /* ===== TIPOGRAFIA ===== */
-    .font-serif { font-family: 'Playfair Display', serif; }
-    .font-script { font-family: 'Brittany Signature', cursive; }
-    .font-sans { font-family: 'Montserrat', sans-serif; }
+    /* ===== TIPOGRAFIA BALANCEADA ===== */
+    /* Manuscrita em DESTAQUE (mais detalhada) */
+    .font-script { 
+      font-family: 'Great Vibes', cursive;
+      font-weight: 400;
+    }
+    
+    /* Condensada SUTIL (mais clean, menos detalhe) */
+    .font-title { 
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+    }
+    
+    .font-body { 
+      font-family: 'Inter', sans-serif;
+    }
+    
     .text-rose { color: #D4A3B3; }
     .text-offwhite { color: #f5edea; }
     .text-burgundy { color: #2C0714; }
@@ -109,7 +127,7 @@
       align-items: center;
     }
     
-    /* ===== LOGO EM IMAGEM ===== */
+    /* ===== LOGO ===== */
     .logo {
       display: inline-block;
       line-height: 0;
@@ -135,6 +153,7 @@
     .nav-menu a {
       color: #f5edea;
       text-decoration: none;
+      font-family: 'Montserrat', sans-serif;
       font-size: 0.85rem;
       font-weight: 500;
       letter-spacing: 0.5px;
@@ -149,12 +168,12 @@
       color: #f5edea;
       padding: 8px 24px;
       border-radius: 50px;
+      font-family: 'Montserrat', sans-serif;
       font-weight: 600;
       font-size: 0.8rem;
       cursor: pointer;
       transition: 0.3s;
       text-shadow: 0 2px 10px rgba(0,0,0,0.5);
-      font-family: 'Montserrat', sans-serif;
     }
     .nav-menu .btn-minhas-fotos:hover {
       background: #D4A3B3;
@@ -210,27 +229,48 @@
     .hero-text {
       flex: 1 1 400px;
     }
+    
+    /* ===== TÍTULO COM MANUSCRITA EM DESTAQUE ===== */
     .hero-text h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 4rem;
+      font-family: 'Montserrat', sans-serif;
       font-weight: 700;
+      font-size: 4rem;
       line-height: 1.1;
       margin-bottom: 16px;
       text-shadow: 0 4px 30px rgba(0,0,0,0.6);
+      letter-spacing: -0.5px;
+      text-transform: uppercase;
     }
+    
+    /* Manuscrita em DESTAQUE - maior e mais detalhada */
     .hero-text h1 .script {
-      font-family: 'Brittany Signature', cursive;
-      color: #D4A3B3;
-      font-size: 4.5rem;
+      font-family: 'Great Vibes', cursive;
       font-weight: 400;
+      color: #D4A3B3;
+      font-size: 6.5rem;
+      letter-spacing: 2px;
+      text-transform: none;
+      text-shadow: 0 4px 40px rgba(212, 163, 179, 0.25);
+      display: block;
+      line-height: 1.1;
+      margin-bottom: -0.1em;
     }
+    
+    .hero-text h1 .highlight {
+      color: #D4A3B3;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+    
     .hero-text p {
+      font-family: 'Inter', sans-serif;
       font-size: 1.2rem;
       font-weight: 300;
       color: #d4c5c0;
       max-width: 480px;
       text-shadow: 0 2px 20px rgba(0,0,0,0.5);
       margin-bottom: 24px;
+      line-height: 1.8;
     }
     
     .hero-buttons {
@@ -246,10 +286,13 @@
       border: 1px solid rgba(212, 163, 179, 0.2);
       padding: 6px 20px;
       border-radius: 40px;
+      font-family: 'Inter', sans-serif;
       font-size: 0.75rem;
+      font-weight: 400;
       color: #D4A3B3;
       margin-bottom: 16px;
       text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+      letter-spacing: 0.5px;
     }
 
     /* ===== SEÇÕES ===== */
@@ -258,24 +301,38 @@
       border-bottom: 1px solid rgba(212, 163, 179, 0.06);
       background: #2C0714;
     }
+    
     .section-title {
-      font-family: 'Playfair Display', serif;
-      font-weight: 600;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
       font-size: 3rem;
-      line-height: 1.2;
+      line-height: 1.15;
       margin-bottom: 20px;
+      letter-spacing: -0.5px;
+      text-transform: uppercase;
     }
+    
+    /* Manuscrita em DESTAQUE nos títulos das seções */
     .section-title .script {
-      font-family: 'Brittany Signature', cursive;
-      color: #D4A3B3;
+      font-family: 'Great Vibes', cursive;
       font-weight: 400;
-      font-size: 3.4rem;
+      color: #D4A3B3;
+      font-size: 4.8rem;
+      letter-spacing: 2px;
+      text-transform: none;
+      display: block;
+      line-height: 1;
+      margin-bottom: -0.05em;
+      text-shadow: 0 2px 20px rgba(212, 163, 179, 0.15);
     }
+    
     .section-sub {
+      font-family: 'Inter', sans-serif;
       font-size: 1.1rem;
       font-weight: 300;
       color: #d4c5c0;
       max-width: 640px;
+      line-height: 1.8;
     }
 
     /* ===== PORTFOLIO ===== */
@@ -293,12 +350,14 @@
       align-items: center;
       justify-content: center;
       border: 1px solid rgba(212, 163, 179, 0.08);
-      font-weight: 300;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 500;
       color: #D4A3B3;
       font-size: 0.9rem;
       transition: 0.3s;
       padding: 20px;
       text-align: center;
+      letter-spacing: 0.5px;
     }
     .portfolio-item:hover {
       border-color: #D4A3B3;
@@ -332,14 +391,18 @@
       margin-bottom: 12px;
     }
     .benefit-card h4 {
-      font-family: 'Playfair Display', serif;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
       font-size: 1.2rem;
       margin-bottom: 6px;
+      letter-spacing: -0.3px;
     }
     .benefit-card p {
+      font-family: 'Inter', sans-serif;
       font-weight: 300;
       font-size: 0.9rem;
       color: #d4c5c0;
+      line-height: 1.6;
     }
 
     /* ===== PACOTES ===== */
@@ -363,13 +426,21 @@
       box-shadow: 0 12px 30px rgba(0,0,0,0.3);
     }
     .package-card .price {
-      font-family: 'Playfair Display', serif;
-      font-size: 3rem;
+      font-family: 'Montserrat', sans-serif;
       font-weight: 700;
+      font-size: 3rem;
       color: #D4A3B3;
+      letter-spacing: -1px;
     }
     .package-card .price small {
+      font-family: 'Inter', sans-serif;
       font-size: 1rem;
+      font-weight: 300;
+      color: #d4c5c0;
+      letter-spacing: 0;
+    }
+    .package-card p {
+      font-family: 'Inter', sans-serif;
       font-weight: 300;
       color: #d4c5c0;
     }
@@ -379,6 +450,7 @@
       color: #2C0714;
       padding: 4px 16px;
       border-radius: 40px;
+      font-family: 'Montserrat', sans-serif;
       font-size: 0.65rem;
       font-weight: 700;
       letter-spacing: 0.5px;
@@ -394,12 +466,20 @@
       margin: 24px 0;
       border: 1px solid rgba(212, 163, 179, 0.1);
     }
+    .orderbump-box p {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      color: #D4A3B3;
+      margin-bottom: 8px;
+      letter-spacing: -0.3px;
+    }
     .orderbump-box label {
       display: flex;
       align-items: center;
       gap: 16px;
       padding: 10px 0;
       border-bottom: 1px solid rgba(212, 163, 179, 0.04);
+      font-family: 'Inter', sans-serif;
       font-weight: 300;
       cursor: pointer;
     }
@@ -412,6 +492,7 @@
     .orderbump-box .bump-price {
       margin-left: auto;
       color: #D4A3B3;
+      font-family: 'Montserrat', sans-serif;
       font-weight: 600;
     }
 
@@ -422,7 +503,7 @@
       padding: 14px 20px;
       border-radius: 40px;
       color: #f5edea;
-      font-family: 'Montserrat', sans-serif;
+      font-family: 'Inter', sans-serif;
       width: 100%;
       font-size: 0.95rem;
     }
@@ -448,15 +529,17 @@
       max-width: 200px;
     }
     footer p {
+      font-family: 'Inter', sans-serif;
       font-weight: 300;
       font-size: 0.8rem;
       color: #7a5f5a;
+      letter-spacing: 0.5px;
     }
 
     /* ===== RESPONSIVO ===== */
     @media (max-width: 1024px) {
-      .hero-text h1 { font-size: 3rem; }
-      .hero-text h1 .script { font-size: 3.5rem; }
+      .hero-text h1 { font-size: 3.2rem; }
+      .hero-text h1 .script { font-size: 5rem; }
     }
 
     @media (max-width: 768px) {
@@ -467,12 +550,25 @@
         max-width: 150px;
       }
       
-      .hero-text h1 { font-size: 2.4rem; }
-      .hero-text h1 .script { font-size: 2.8rem; }
-      .hero-text p { font-size: 1rem; }
+      .hero-text h1 { 
+        font-size: 2.6rem; 
+        letter-spacing: -0.3px;
+      }
+      .hero-text h1 .script { 
+        font-size: 4rem; 
+      }
+      .hero-text p { 
+        font-size: 1rem; 
+      }
       .hero-buttons { justify-content: center; }
-      .section-title { font-size: 2.4rem; }
-      .section-title .script { font-size: 2.8rem; }
+      
+      .section-title { 
+        font-size: 2.2rem; 
+      }
+      .section-title .script { 
+        font-size: 3.6rem; 
+      }
+      
       .nav-menu { gap: 16px; }
       .nav-menu a { font-size: 0.75rem; }
       .navbar-content { flex-wrap: wrap; gap: 12px; }
@@ -489,8 +585,17 @@
     @media (max-width: 480px) {
       .package-grid { grid-template-columns: 1fr; }
       .portfolio-grid { grid-template-columns: 1fr 1fr; }
-      .hero-text h1 { font-size: 2rem; }
-      .hero-text h1 .script { font-size: 2.4rem; }
+      
+      .hero-text h1 { 
+        font-size: 2rem; 
+      }
+      .hero-text h1 .script { 
+        font-size: 3rem; 
+      }
+      
+      .section-title .script {
+        font-size: 2.8rem;
+      }
       
       .logo img {
         height: 35px;
@@ -518,7 +623,7 @@
 </head>
 <body>
 
-<!-- ===== NAVBAR COM LOGO EM IMAGEM ===== -->
+<!-- ===== NAVBAR COM LOGO ===== -->
 <nav class="navbar">
   <div class="container navbar-content">
     <a href="index.html" class="logo">
@@ -561,15 +666,14 @@
   <!-- Conteúdo -->
   <div class="container hero-content">
     <div class="hero-text">
-      <!-- ALTERAÇÃO AQUI: 2026 → 2011 -->
       <div class="hero-badge">
         <i class="fas fa-camera"></i> Eternizando emoções desde 2011
       </div>
       <h1>
-        <span class="script">Memórias</span><br>
-        que começam<br>
-        antes do primeiro<br>
-        <span style="color: #D4A3B3;">abraço</span>
+        <span class="script">Memórias</span>
+        que começam
+        antes do primeiro
+        <span class="highlight">abraço</span>
       </h1>
       <p>Registramos sua história com luz, emoção e autenticidade. 
       Momentos que merecem ser lembrados para sempre.</p>
@@ -584,7 +688,10 @@
 
 <!-- ===== PORTFÓLIO ===== -->
 <section class="container section" id="portfolio">
-  <h2 class="section-title"><span class="script">Memórias</span> que começam<br>antes do primeiro abraço</h2>
+  <h2 class="section-title">
+    <span class="script">Memórias</span>
+    que começam antes do primeiro abraço
+  </h2>
   <p class="section-sub">Cada clique guarda um pedaço da sua história. Veja alguns dos nossos trabalhos.</p>
   <div class="portfolio-grid">
     <div class="portfolio-item">🌿 Ensaio externo</div>
@@ -599,8 +706,11 @@
 <!-- ===== INSTITUCIONAL + BENEFÍCIOS ===== -->
 <section class="container section">
   <div style="max-width: 720px;">
-    <h2 class="section-title"><span class="script">Paixão</span> em cada detalhe</h2>
-    <p style="font-size: 1.2rem; font-weight: 300; color: #d4c5c0; line-height: 1.8;">
+    <h2 class="section-title">
+      <span class="script">Paixão</span>
+      em cada detalhe
+    </h2>
+    <p style="font-family: 'Inter', sans-serif; font-size: 1.2rem; font-weight: 300; color: #d4c5c0; line-height: 1.8;">
       Mais do que registrar, eternizamos emoções. Nossa equipe transforma instantes em memórias 
       que aquecem o coração. <span style="color: #D4A3B3; font-style: italic;">“Fotografar é sentir. Não é só registrar.”</span>
     </p>
@@ -626,22 +736,25 @@
 
 <!-- ===== PACOTES PROMOCIONAIS ===== -->
 <section class="container section" id="pacotes">
-  <h2 class="section-title"><span class="script">Escolha</span> seu pacote</h2>
+  <h2 class="section-title">
+    <span class="script">Escolha</span>
+    seu pacote
+  </h2>
   <div class="package-grid">
     <div class="package-card">
       <span class="badge">mais pedido</span>
       <div class="price">R$ 350</div>
-      <p style="font-weight:300;">30 fotos<br><span style="font-size:0.8rem; color:#b09a94;">+ R$ 15/foto extra</span></p>
+      <p>30 fotos<br><span style="font-size:0.8rem; color:#b09a94;">+ R$ 15/foto extra</span></p>
       <button class="btn btn-primary" style="margin-top:16px; width:100%; justify-content:center;">Quero esse</button>
     </div>
     <div class="package-card">
       <div class="price">R$ 400</div>
-      <p style="font-weight:300;">40 fotos<br><span style="font-size:0.8rem; color:#b09a94;">ideal para festas</span></p>
+      <p>40 fotos<br><span style="font-size:0.8rem; color:#b09a94;">ideal para festas</span></p>
       <button class="btn btn-primary" style="margin-top:16px; width:100%; justify-content:center;">Quero esse</button>
     </div>
     <div class="package-card">
       <div class="price">R$ 500</div>
-      <p style="font-weight:300;">50 fotos<br><span style="font-size:0.8rem; color:#b09a94;">completo</span></p>
+      <p>50 fotos<br><span style="font-size:0.8rem; color:#b09a94;">completo</span></p>
       <button class="btn btn-primary" style="margin-top:16px; width:100%; justify-content:center;">Quero esse</button>
     </div>
   </div>
@@ -652,22 +765,25 @@
 
 <!-- ===== PERSONALIZADO + ORDER BUMP ===== -->
 <section class="container section" id="personalizado">
-  <h2 class="section-title"><span class="script">Sob medida</span> para você</h2>
+  <h2 class="section-title">
+    <span class="script">Sob medida</span>
+    para você
+  </h2>
   <div style="background: #1f0510; border-radius: 40px; padding: 32px 28px; border: 1px solid rgba(212,163,179,0.08);">
     <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-end;">
       <div style="flex: 2; min-width: 180px;">
-        <label style="font-weight:300; color:#d4c5c0; display:block; margin-bottom:6px;">Número de fotos (mín. 20) · R$ 18 cada</label>
+        <label style="font-family: 'Inter', sans-serif; font-weight:300; color:#d4c5c0; display:block; margin-bottom:6px;">Número de fotos (mín. 20) · R$ 18 cada</label>
         <input type="number" id="fotoQty" value="30" min="20" step="1" class="input-dark" style="max-width:140px;">
       </div>
       <div style="flex:1; background:#2C0714; border-radius:40px; padding:12px 24px; text-align:center; border:1px solid rgba(212,163,179,0.1);">
-        <span style="font-weight:300; font-size:0.8rem;">Total</span><br>
-        <span style="font-family:'Playfair Display',serif; font-size:2.4rem; color:#D4A3B3;">R$ <span id="fotoTotal">540</span></span>
+        <span style="font-family: 'Inter', sans-serif; font-weight:300; font-size:0.8rem;">Total</span><br>
+        <span style="font-family: 'Montserrat', sans-serif; font-weight:700; font-size:2.4rem; color:#D4A3B3; letter-spacing:-1px;">R$ <span id="fotoTotal">540</span></span>
       </div>
     </div>
 
     <!-- ORDER BUMP -->
     <div class="orderbump-box">
-      <p style="font-weight:600; color:#D4A3B3; margin-bottom:8px;"><i class="fas fa-plus-circle"></i> Turbine seu ensaio</p>
+      <p><i class="fas fa-plus-circle"></i> Turbine seu ensaio</p>
       <label><input type="checkbox" class="bump-check"> Storymaker em tempo real <span class="bump-price">R$ 250</span></label>
       <label><input type="checkbox" class="bump-check"> Imagens com Drone (30s) <span class="bump-price">R$ 550</span></label>
       <label><input type="checkbox" class="bump-check"> Video maker (até 3min) <span class="bump-price">R$ 500</span></label>
@@ -677,11 +793,11 @@
     <button class="btn btn-primary" style="width:100%; justify-content:center; padding:16px;" id="simularCarrinho">
       <i class="fas fa-shopping-cart"></i> Adicionar ao carrinho · simular
     </button>
-    <p style="font-size:0.75rem; color:#7a5f5a; margin-top:10px;">* após seleção, encaminhamos link de pagamento seguro</p>
+    <p style="font-family: 'Inter', sans-serif; font-size:0.75rem; color:#7a5f5a; margin-top:10px;">* após seleção, encaminhamos link de pagamento seguro</p>
   </div>
 </section>
 
-<!-- ===== FOOTER COM LOGO ===== -->
+<!-- ===== FOOTER ===== -->
 <footer>
   <div class="container">
     <div class="footer-logo">
