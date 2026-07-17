@@ -4,10 +4,26 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Studio Rassi · Photo & Video</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="assets/images/favicon/favicon.ico">
+  <link rel="apple-touch-icon" href="assets/images/favicon/apple-touch-icon.png">
+  
+  <!-- OG Image (para compartilhamento em redes sociais) -->
+  <meta property="og:title" content="Studio Rassi · Photo & Video">
+  <meta property="og:description" content="Memórias que começam antes do primeiro abraço">
+  <meta property="og:image" content="https://seudominio.com/assets/images/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:url" content="https://seudominio.com">
+  <meta property="og:type" content="website">
+  
+  <!-- Fontes -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Brittany+Signature&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  
   <style>
     /* ===== RESET ===== */
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -79,7 +95,7 @@
 
     /* ===== NAVBAR ===== */
     .navbar {
-      padding: 20px 0;
+      padding: 16px 0;
       position: absolute;
       top: 0;
       left: 0;
@@ -92,15 +108,25 @@
       justify-content: space-between;
       align-items: center;
     }
+    
+    /* ===== LOGO EM IMAGEM ===== */
     .logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: #f5edea;
+      display: inline-block;
+      line-height: 0;
       text-decoration: none;
-      text-shadow: 0 2px 20px rgba(0,0,0,0.5);
     }
-    .logo span { color: #D4A3B3; }
+    .logo img {
+      display: block;
+      width: auto;
+      height: 60px;
+      max-width: 200px;
+      transition: all 0.3s ease;
+    }
+    .logo img:hover {
+      opacity: 0.85;
+      transform: scale(1.02);
+    }
+
     .nav-menu {
       display: flex;
       gap: 32px;
@@ -128,13 +154,14 @@
       cursor: pointer;
       transition: 0.3s;
       text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+      font-family: 'Montserrat', sans-serif;
     }
     .nav-menu .btn-minhas-fotos:hover {
       background: #D4A3B3;
       color: #2C0714;
     }
 
-    /* ===== HERO COM VÍDEO - CORRIGIDO ===== */
+    /* ===== HERO COM VÍDEO ===== */
     .hero {
       position: relative;
       min-height: 100vh;
@@ -144,7 +171,6 @@
       background: #1f0510;
     }
     
-    /* Vídeo de fundo */
     .hero-video {
       position: absolute;
       top: 0;
@@ -155,7 +181,6 @@
       z-index: 0;
     }
     
-    /* Overlay para escurecer e melhorar legibilidade */
     .hero-overlay {
       position: absolute;
       top: 0;
@@ -174,7 +199,7 @@
       position: relative;
       z-index: 2;
       width: 100%;
-      padding: 120px 0 80px;
+      padding: 140px 0 80px;
       display: flex;
       flex-wrap: wrap;
       align-items: center;
@@ -414,6 +439,14 @@
       border-top: 1px solid rgba(212, 163, 179, 0.05);
       background: #2C0714;
     }
+    footer .footer-logo {
+      margin-bottom: 16px;
+    }
+    footer .footer-logo img {
+      width: auto;
+      height: 60px;
+      max-width: 200px;
+    }
     footer p {
       font-weight: 300;
       font-size: 0.8rem;
@@ -428,6 +461,12 @@
 
     @media (max-width: 768px) {
       .container { padding: 0 20px; }
+      
+      .logo img {
+        height: 45px;
+        max-width: 150px;
+      }
+      
       .hero-text h1 { font-size: 2.4rem; }
       .hero-text h1 .script { font-size: 2.8rem; }
       .hero-text p { font-size: 1rem; }
@@ -439,7 +478,6 @@
       .navbar-content { flex-wrap: wrap; gap: 12px; }
       .btn { padding: 10px 20px; font-size: 0.75rem; }
       
-      /* Ajuste para mobile - mostra apenas vídeo mobile */
       .hero-video-desktop {
         display: none !important;
       }
@@ -453,6 +491,14 @@
       .portfolio-grid { grid-template-columns: 1fr 1fr; }
       .hero-text h1 { font-size: 2rem; }
       .hero-text h1 .script { font-size: 2.4rem; }
+      
+      .logo img {
+        height: 35px;
+        max-width: 120px;
+      }
+      footer .footer-logo img {
+        height: 40px;
+      }
     }
 
     @media (min-width: 769px) {
@@ -472,10 +518,16 @@
 </head>
 <body>
 
-<!-- ===== NAVBAR ===== -->
+<!-- ===== NAVBAR COM LOGO EM IMAGEM ===== -->
 <nav class="navbar">
   <div class="container navbar-content">
-    <a href="#" class="logo">Studio <span>Rassi</span></a>
+    <a href="index.html" class="logo">
+      <img src="assets/images/logo/logo-header.png" 
+           alt="Studio Rassi · Photo & Video" 
+           width="200" 
+           height="60"
+           loading="lazy">
+    </a>
     <div class="nav-menu">
       <a href="#pacotes">Pacotes</a>
       <a href="#personalizado">Personalizado</a>
@@ -487,13 +539,12 @@
   </div>
 </nav>
 
-<!-- ===== HERO COM VÍDEO - CORRIGIDO ===== -->
+<!-- ===== HERO COM VÍDEO ===== -->
 <header class="hero">
   <!-- Vídeo Desktop -->
   <video class="hero-video hero-video-desktop" autoplay loop muted playsinline preload="auto" poster="assets/images/hero-fallback.jpg">
     <source src="assets/videos/header-desktop.mp4" type="video/mp4">
     <source src="assets/videos/header-desktop.webm" type="video/webm">
-    <!-- Fallback: imagem estática -->
     <img src="assets/images/hero-fallback.jpg" alt="Studio Rassi" style="width:100%; height:100%; object-fit:cover;">
   </video>
   
@@ -504,7 +555,7 @@
     <img src="assets/images/hero-fallback-mobile.jpg" alt="Studio Rassi" style="width:100%; height:100%; object-fit:cover;">
   </video>
   
-  <!-- Overlay para legibilidade -->
+  <!-- Overlay -->
   <div class="hero-overlay"></div>
   
   <!-- Conteúdo -->
@@ -629,14 +680,21 @@
   </div>
 </section>
 
-<!-- ===== FOOTER ===== -->
+<!-- ===== FOOTER COM LOGO ===== -->
 <footer>
   <div class="container">
+    <div class="footer-logo">
+      <img src="assets/images/logo/logo-full.png" 
+           alt="Studio Rassi · Photo & Video" 
+           width="200" 
+           height="60"
+           loading="lazy">
+    </div>
     <p>Studio Rassi · Photo & Video · © 2026 · Eternizando emoções</p>
   </div>
 </footer>
 
-<!-- ===== SCRIPT CORRIGIDO ===== -->
+<!-- ===== SCRIPT ===== -->
 <script>
   // Atualiza preço das fotos
   const qtyInput = document.getElementById('fotoQty');
@@ -660,70 +718,15 @@
     alert(`🛒 Simulação de carrinho:\nFotos: ${qty} (R$ ${qty*18})\nOrder bumps: ${bumps.length} itens\nTotal: R$ ${total}\n\n(Em produção: integração com pagamento)`);
   });
 
-  // ===== CORREÇÃO: FORÇAR REPRODUÇÃO DOS VÍDEOS =====
+  // Forçar reprodução dos vídeos
   document.addEventListener('DOMContentLoaded', function() {
     const videos = document.querySelectorAll('.hero-video');
-    
     videos.forEach(video => {
-      // Tenta reproduzir automaticamente
       video.play().catch(function(error) {
         console.log('Autoplay bloqueado:', error);
-        // Adiciona botão de play se necessário
-        const hero = document.querySelector('.hero');
-        const playBtn = document.createElement('button');
-        playBtn.innerHTML = '<i class="fas fa-play"></i>';
-        playBtn.style.cssText = `
-          position: absolute;
-          bottom: 30px;
-          right: 30px;
-          z-index: 10;
-          background: rgba(212, 163, 179, 0.3);
-          backdrop-filter: blur(8px);
-          border: 2px solid #D4A3B3;
-          color: #f5edea;
-          width: 60px;
-          height: 60px;
-          border-radius: 50%;
-          font-size: 1.5rem;
-          cursor: pointer;
-          transition: all 0.3s ease;
-        `;
-        playBtn.onmouseover = () => playBtn.style.background = 'rgba(212, 163, 179, 0.6)';
-        playBtn.onmouseout = () => playBtn.style.background = 'rgba(212, 163, 179, 0.3)';
-        playBtn.onclick = function() {
-          video.play();
-          this.style.display = 'none';
-        };
-        hero.appendChild(playBtn);
-      });
-    });
-
-    // Verifica se os vídeos carregaram
-    videos.forEach(video => {
-      video.addEventListener('loadeddata', function() {
-        console.log('Vídeo carregado:', this.src);
-      });
-      video.addEventListener('error', function(e) {
-        console.log('Erro no vídeo:', this.src, e);
-        // Tenta carregar com caminho relativo diferente
-        const currentSrc = this.querySelector('source[src*=".mp4"]');
-        if (currentSrc) {
-          const newSrc = currentSrc.getAttribute('src').replace('assets/videos/', './videos/');
-          currentSrc.setAttribute('src', newSrc);
-          this.load();
-        }
       });
     });
   });
-
-  // Fallback: tenta carregar vídeos novamente após 2 segundos
-  setTimeout(function() {
-    document.querySelectorAll('.hero-video').forEach(video => {
-      if (video.paused) {
-        video.play().catch(() => {});
-      }
-    });
-  }, 2000);
 </script>
 
 </body>
