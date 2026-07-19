@@ -708,7 +708,7 @@
       border-color: #D4A3B3;
     }
 
-    /* ===== BIOGRAFIA - VERSÃO COM IMAGEM RETANGULAR ===== */
+    /* ===== BIOGRAFIA ===== */
     .biografia-section {
       padding: 80px 0;
       background: linear-gradient(180deg, #1f0510 0%, #2C0714 100%);
@@ -740,7 +740,6 @@
       z-index: 2;
     }
     
-    /* ===== LADO ESQUERDO: IMAGEM RETANGULAR ===== */
     .biografia-image-side {
       flex: 0 0 35%;
       min-height: 480px;
@@ -787,7 +786,6 @@
       opacity: 0.8;
     }
     
-    /* ===== LADO DIREITO: TEXTO ===== */
     .biografia-text-side {
       flex: 1;
       padding: 48px 48px 48px 40px;
@@ -1107,7 +1105,6 @@
         display: flex !important;
       }
       
-      /* ===== BIOGRAFIA MOBILE ===== */
       .biografia-wrapper {
         flex-direction: column;
         border-radius: 20px;
@@ -1176,7 +1173,7 @@
       }
     }
     
-    /* ===== MOBILE: 1 COLUNA ===== */
+    /* ===== MOBILE: CARROSSEL SIMPLIFICADO ===== */
     @media (max-width: 480px) {
       .package-grid { grid-template-columns: 1fr; }
       
@@ -1204,37 +1201,40 @@
         font-size: 0.85rem;
       }
       
-      /* ===== CARROSSEL MOBILE: 1 COLUNA ===== */
+      /* ===== CARROSSEL MOBILE SIMPLIFICADO ===== */
       .carousel-wrapper {
         padding: 8px 0;
-        max-width: 100%;
+        max-width: 320px;
         margin: 0 auto;
         overflow: hidden;
+        border-radius: 20px;
       }
       
       .carousel-track {
         gap: 0;
-        padding: 8px 0;
+        padding: 0;
         justify-content: center;
         display: flex;
         align-items: center;
+        transition: transform 0.5s ease-in-out;
       }
       
+      /* Apenas o item ativo é visível */
       .carousel-item {
         flex: 0 0 0 !important;
         max-height: 420px;
         margin: 0;
-        transform: translateY(0px) scale(0.8);
         opacity: 0 !important;
-        filter: blur(2px) saturate(0);
         pointer-events: none;
-        transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        transition: opacity 0.5s ease, transform 0.5s ease;
         border-color: transparent;
         box-shadow: none;
         width: 0;
         min-width: 0;
         overflow: hidden;
         padding: 0;
+        transform: scale(0.8);
+        filter: blur(2px);
       }
       
       .carousel-item.active {
@@ -1243,23 +1243,19 @@
         min-width: 280px !important;
         max-height: 420px;
         margin: 0 auto;
-        transform: translateY(0px) scale(1);
         opacity: 1 !important;
-        filter: blur(0px) saturate(1);
+        transform: scale(1) !important;
+        filter: blur(0px) !important;
         border-color: rgba(212, 163, 179, 0.3);
         box-shadow: 0 0 50px rgba(212, 163, 179, 0.15), 0 8px 30px rgba(0,0,0,0.5);
         z-index: 3;
         pointer-events: auto;
         overflow: visible;
-        animation: floatMobile 4s ease-in-out infinite;
         padding: 0;
+        border-radius: 18px;
       }
       
-      @keyframes floatMobile {
-        0%, 100% { transform: translateY(0px) scale(1); }
-        50% { transform: translateY(-4px) scale(1.02); }
-      }
-      
+      /* Esconde completamente os itens laterais */
       .carousel-item.prev,
       .carousel-item.next,
       .carousel-item.far {
@@ -1267,12 +1263,13 @@
         width: 0 !important;
         min-width: 0 !important;
         opacity: 0 !important;
-        transform: scale(0.5);
+        transform: scale(0.5) !important;
         pointer-events: none;
         margin: 0;
         padding: 0;
         border: none;
         overflow: hidden;
+        filter: blur(4px) !important;
       }
       
       .carousel-item .overlay {
@@ -1473,11 +1470,10 @@
   </div>
 </section>
 
-<!-- ===== BIOGRAFIA - IMAGEM RETANGULAR ===== -->
+<!-- ===== BIOGRAFIA ===== -->
 <section class="biografia-section" id="biografia">
   <div class="container">
     <div class="biografia-wrapper">
-      <!-- Lado esquerdo: Imagem Retangular -->
       <div class="biografia-image-side">
         <img src="assets/images/ana-paula-rassi.jpg" 
              alt="Ana Paula Rassi - Fotógrafa Studio Rassi" 
@@ -1487,7 +1483,6 @@
         </div>
       </div>
       
-      <!-- Lado direito: Texto -->
       <div class="biografia-text-side">
         <span class="badge-top">📸 Fundadora</span>
         <h2>Ana Paula Rassi</h2>
@@ -1801,7 +1796,7 @@
   function prevSlide() { goToSlide((currentIndex - 1 + totalItems) % totalItems); }
 
   // ============================================================
-  // 5. AUTOPLAY
+  // 5. AUTOPLAY - Desktop
   // ============================================================
   function startAutoSlide() {
     if (autoSlideInterval) clearInterval(autoSlideInterval);
@@ -1942,7 +1937,7 @@
   console.log('📸 Carrossel carregado!');
   console.log(`📊 ${instagramPosts.length} imagens em rotação`);
   console.log('🍔 Menu hambúrguer ativado no mobile');
-  console.log('📖 Biografia com imagem retangular!');
+  console.log('📱 Carrossel mobile simplificado!');
 </script>
 
 </body>
