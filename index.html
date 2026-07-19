@@ -377,7 +377,7 @@
       letter-spacing: 0.5px;
     }
 
-    /* ===== SETA PARA BAIXO COM ANIMAÇÃO ===== */
+    /* ===== SETA PARA BAIXO ===== */
     .scroll-down {
       position: absolute;
       bottom: 30px;
@@ -708,118 +708,166 @@
       border-color: #D4A3B3;
     }
 
-    /* ===== BIOGRAFIA - ANA PAULA RASSI ===== */
+    /* ===== BIOGRAFIA - VERSÃO MELHORADA ===== */
     .biografia-section {
       padding: 80px 0;
-      background: #1f0510;
+      background: linear-gradient(180deg, #1f0510 0%, #2C0714 100%);
       border-bottom: 1px solid rgba(212, 163, 179, 0.06);
       position: relative;
-      overflow: hidden;
     }
     
     .biografia-section::before {
       content: '';
       position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(ellipse at 70% 30%, rgba(212, 163, 179, 0.04) 0%, transparent 60%);
-      animation: rotateGlow 80s linear infinite;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(ellipse at 30% 50%, rgba(212, 163, 179, 0.04) 0%, transparent 70%);
       pointer-events: none;
     }
     
-    .biografia-content {
+    .biografia-wrapper {
       display: flex;
       flex-wrap: wrap;
-      align-items: center;
-      gap: 50px;
+      align-items: stretch;
+      gap: 0;
+      background: rgba(31, 5, 16, 0.5);
+      border-radius: 28px;
+      overflow: hidden;
+      border: 1px solid rgba(212, 163, 179, 0.06);
       position: relative;
       z-index: 2;
     }
     
-    .biografia-image {
-      flex: 0 0 300px;
-      text-align: center;
+    .biografia-image-side {
+      flex: 0 0 35%;
+      min-height: 400px;
+      background: #1a0510;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+      position: relative;
+      overflow: hidden;
     }
     
-    .biografia-image img {
+    .biografia-image-side img {
       width: 100%;
-      max-width: 300px;
+      max-width: 320px;
       height: auto;
       aspect-ratio: 1/1;
-      border-radius: 18px;
+      border-radius: 24px;
       object-fit: cover;
-      border: 3px solid rgba(212, 163, 179, 0.15);
-      box-shadow: 0 0 60px rgba(212, 163, 179, 0.08), 0 20px 40px rgba(0,0,0,0.4);
+      border: 3px solid rgba(212, 163, 179, 0.1);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
       transition: all 0.5s ease;
     }
     
-    .biografia-image img:hover {
+    .biografia-image-side img:hover {
       transform: scale(1.02);
       border-color: rgba(212, 163, 179, 0.3);
-      box-shadow: 0 0 80px rgba(212, 163, 179, 0.15), 0 20px 40px rgba(0,0,0,0.5);
+      box-shadow: 0 20px 60px rgba(212, 163, 179, 0.1);
     }
     
-    .biografia-image .badge {
-      display: inline-block;
-      margin-top: 12px;
-      font-family: 'Inter', sans-serif;
-      font-size: 0.7rem;
-      color: #D4A3B3;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      opacity: 0.6;
-    }
-    
-    .biografia-text {
+    .biografia-text-side {
       flex: 1;
-      min-width: 280px;
+      padding: 48px 48px 48px 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
     
-    .biografia-text h2 {
+    .biografia-text-side .badge-top {
+      display: inline-block;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.65rem;
+      color: #D4A3B3;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      opacity: 0.7;
+    }
+    
+    .biografia-text-side h2 {
       font-family: 'Great Vibes', cursive;
       font-weight: 400;
       color: #D4A3B3;
-      font-size: 3.5rem;
+      font-size: 3.2rem;
       line-height: 1;
-      margin-bottom: 4px;
+      margin-bottom: 2px;
     }
     
-    .biografia-text .subtitle {
+    .biografia-text-side .subtitle {
       font-family: 'Montserrat', sans-serif;
       font-weight: 300;
-      font-size: 0.9rem;
+      font-size: 0.8rem;
       color: #d4c5c0;
       letter-spacing: 3px;
       text-transform: uppercase;
       margin-bottom: 20px;
     }
     
-    .biografia-text p {
+    .biografia-text-side .bio-text {
       font-family: 'Inter', sans-serif;
-      font-size: 1rem;
+      font-size: 0.95rem;
       font-weight: 300;
       color: #d4c5c0;
       line-height: 1.9;
-      margin-bottom: 16px;
+      max-height: 320px;
+      overflow-y: auto;
+      padding-right: 8px;
     }
     
-    .biografia-text p:last-child {
+    .biografia-text-side .bio-text::-webkit-scrollbar {
+      width: 4px;
+    }
+    .biografia-text-side .bio-text::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .biografia-text-side .bio-text::-webkit-scrollbar-thumb {
+      background: #D4A3B3;
+      border-radius: 10px;
+    }
+    
+    .biografia-text-side .bio-text p {
+      margin-bottom: 14px;
+    }
+    
+    .biografia-text-side .bio-text p:last-child {
       margin-bottom: 0;
     }
     
-    .biografia-text .highlight {
+    .biografia-text-side .bio-text .highlight {
       color: #D4A3B3;
       font-weight: 400;
     }
     
-    .biografia-text .assinatura {
-      font-family: 'Great Vibes', cursive;
-      font-size: 2.2rem;
+    .biografia-text-side .bio-text .quote {
+      font-style: italic;
       color: #D4A3B3;
-      margin-top: 8px;
+      padding-left: 16px;
+      border-left: 2px solid rgba(212, 163, 179, 0.2);
+    }
+    
+    .biografia-text-side .assinatura-bottom {
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(212, 163, 179, 0.06);
+    }
+    
+    .biografia-text-side .assinatura-bottom .sign {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2rem;
+      color: #D4A3B3;
       opacity: 0.8;
+    }
+    
+    .biografia-text-side .assinatura-bottom .since {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.7rem;
+      color: #7a5f5a;
+      letter-spacing: 1px;
     }
 
     /* ===== BENEFÍCIOS ===== */
@@ -998,8 +1046,16 @@
         flex: 0 0 calc(25% - 12px);
         max-height: 320px;
       }
-      .biografia-image {
-        flex: 0 0 240px;
+      .biografia-image-side {
+        flex: 0 0 30%;
+        min-height: 300px;
+        padding: 30px;
+      }
+      .biografia-text-side {
+        padding: 32px 32px 32px 28px;
+      }
+      .biografia-text-side h2 {
+        font-size: 2.6rem;
       }
     }
     
@@ -1015,7 +1071,6 @@
       .hero-text h1 .script { font-size: 4rem; }
       .hero-text p { font-size: 1rem; }
       
-      /* Mobile: apenas botão Pacotes */
       .hero-buttons .btn-outline {
         display: none !important;
       }
@@ -1035,37 +1090,43 @@
         display: flex !important;
       }
       
-      .biografia-content {
+      /* ===== BIOGRAFIA MOBILE ===== */
+      .biografia-wrapper {
         flex-direction: column;
-        gap: 30px;
+        border-radius: 20px;
       }
       
-      .biografia-image {
-        flex: 0 0 200px;
+      .biografia-image-side {
+        flex: 0 0 auto;
+        min-height: 200px;
+        padding: 30px;
         width: 100%;
-        display: flex;
-        justify-content: center;
       }
       
-      .biografia-image img {
-        max-width: 200px;
+      .biografia-image-side img {
+        max-width: 180px;
       }
       
-      .biografia-text h2 {
-        font-size: 2.8rem;
+      .biografia-text-side {
+        padding: 28px 24px 32px;
+      }
+      
+      .biografia-text-side h2 {
+        font-size: 2.4rem;
         text-align: center;
       }
       
-      .biografia-text .subtitle {
+      .biografia-text-side .subtitle {
         text-align: center;
       }
       
-      .biografia-text p {
-        font-size: 0.95rem;
-        text-align: left;
+      .biografia-text-side .bio-text {
+        max-height: none;
+        overflow-y: visible;
+        font-size: 0.9rem;
       }
       
-      .biografia-text .assinatura {
+      .biografia-text-side .assinatura-bottom {
         text-align: center;
       }
       
@@ -1111,24 +1172,15 @@
         height: 40px;
       }
       
-      .biografia-image {
-        flex: 0 0 160px;
+      .biografia-image-side img {
+        max-width: 140px;
       }
       
-      .biografia-image img {
-        max-width: 160px;
+      .biografia-text-side h2 {
+        font-size: 2rem;
       }
       
-      .biografia-text h2 {
-        font-size: 2.2rem;
-      }
-      
-      .biografia-text .subtitle {
-        font-size: 0.7rem;
-        letter-spacing: 2px;
-      }
-      
-      .biografia-text p {
+      .biografia-text-side .bio-text {
         font-size: 0.85rem;
       }
       
@@ -1149,11 +1201,11 @@
       }
       
       .carousel-item {
-        flex: 0 0 0;
+        flex: 0 0 0 !important;
         max-height: 420px;
         margin: 0;
         transform: translateY(0px) scale(0.8);
-        opacity: 0;
+        opacity: 0 !important;
         filter: blur(2px) saturate(0);
         pointer-events: none;
         transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -1166,13 +1218,13 @@
       }
       
       .carousel-item.active {
-        flex: 0 0 280px;
-        width: 280px;
-        min-width: 280px;
+        flex: 0 0 280px !important;
+        width: 280px !important;
+        min-width: 280px !important;
         max-height: 420px;
         margin: 0 auto;
         transform: translateY(0px) scale(1);
-        opacity: 1;
+        opacity: 1 !important;
         filter: blur(0px) saturate(1);
         border-color: rgba(212, 163, 179, 0.3);
         box-shadow: 0 0 50px rgba(212, 163, 179, 0.15), 0 8px 30px rgba(0,0,0,0.5);
@@ -1191,10 +1243,10 @@
       .carousel-item.prev,
       .carousel-item.next,
       .carousel-item.far {
-        flex: 0 0 0;
-        width: 0;
-        min-width: 0;
-        opacity: 0;
+        flex: 0 0 0 !important;
+        width: 0 !important;
+        min-width: 0 !important;
+        opacity: 0 !important;
         transform: scale(0.5);
         pointer-events: none;
         margin: 0;
@@ -1401,61 +1453,56 @@
   </div>
 </section>
 
-<!-- ===== BIOGRAFIA - ANA PAULA RASSI ===== -->
+<!-- ===== BIOGRAFIA - ANA PAULA RASSI (MELHORADA) ===== -->
 <section class="biografia-section" id="biografia">
   <div class="container">
-    <div class="biografia-content">
-      <div class="biografia-image">
+    <div class="biografia-wrapper">
+      <!-- Lado esquerdo: Foto -->
+      <div class="biografia-image-side">
         <img src="assets/images/ana-paula-rassi.jpg" 
              alt="Ana Paula Rassi - Fotógrafa Studio Rassi" 
              loading="lazy">
-        <div class="badge">📸 Fundadora</div>
       </div>
-      <div class="biografia-text">
+      
+      <!-- Lado direito: Texto -->
+      <div class="biografia-text-side">
+        <span class="badge-top">📸 Fundadora</span>
         <h2>Ana Paula Rassi</h2>
         <div class="subtitle">Fotógrafa · Studio Rassi</div>
         
-        <p>
-          Desde 2011, o <span class="highlight">Studio Rassi</span> nasceu com um propósito muito especial: 
-          transformar momentos únicos em <span class="highlight">memórias eternas</span>.
-        </p>
+        <div class="bio-text">
+          <p>
+            Desde 2011, o <span class="highlight">Studio Rassi</span> nasceu com um propósito muito especial: 
+            transformar momentos únicos em <span class="highlight">memórias eternas</span>.
+          </p>
+          
+          <p>
+            Ao longo dessa trajetória, tive o privilégio de registrar histórias carregadas de emoção: 
+            a espera delicada de uma gestante, a alegria e espontaneidade da infância, a beleza singular 
+            dos ensaios femininos, os sonhos de uma debutante e a emoção inesquecível de casamentos e 
+            celebrações especiais.
+          </p>
+          
+          <p>
+            Cada pessoa que passa pelo meu olhar traz consigo uma história única. E é essa essência que 
+            busco revelar através da fotografia: os pequenos gestos, os olhares verdadeiros, os detalhes 
+            que muitas vezes passam despercebidos, mas que no futuro se tornam <span class="highlight">lembranças preciosas</span>.
+          </p>
+          
+          <p>
+            Acredito que uma fotografia vai muito além de uma imagem bonita. 
+            Ela guarda sentimentos, eterniza fases da vida e preserva momentos que jamais voltarão.
+          </p>
+          
+          <p class="quote">
+            "Porque para mim, fotografia não é apenas técnica. É conexão, sensibilidade e arte."
+          </p>
+        </div>
         
-        <p>
-          Ao longo dessa trajetória, tive o privilégio de registrar histórias carregadas de emoção: 
-          a espera delicada de uma gestante, a alegria e espontaneidade da infância, a beleza singular 
-          dos ensaios femininos, os sonhos de uma debutante e a emoção inesquecível de casamentos e 
-          celebrações especiais.
-        </p>
-        
-        <p>
-          Cada pessoa que passa pelo meu olhar traz consigo uma história única. E é essa essência que 
-          busco revelar através da fotografia: os pequenos gestos, os olhares verdadeiros, os detalhes 
-          que muitas vezes passam despercebidos, mas que no futuro se tornam <span class="highlight">lembranças preciosas</span>.
-        </p>
-        
-        <p>
-          Acredito que uma fotografia vai muito além de uma imagem bonita. 
-          Ela guarda sentimentos, eterniza fases da vida e preserva momentos que jamais voltarão.
-        </p>
-        
-        <p>
-          No Studio Rassi, cada ensaio é planejado de forma personalizada, com cuidado em cada detalhe, 
-          proporcionando uma experiência leve, acolhedora e marcante.
-        </p>
-        
-        <p>
-          Minha missão é criar fotografias com <span class="highlight">alma, verdade e emoção</span>. 
-          Imagens que contem histórias e que continuem emocionando mesmo com o passar dos anos.
-        </p>
-        
-        <p style="font-style: italic; color: #D4A3B3;">
-          "Porque para mim, fotografia não é apenas técnica. É conexão, sensibilidade e arte."
-        </p>
-        
-        <div class="assinatura">Studio Rassi</div>
-        <p style="font-size: 0.8rem; color: #7a5f5a; margin-top: 4px;">
-          desde 2011 transformando histórias em memórias eternas.
-        </p>
+        <div class="assinatura-bottom">
+          <div class="sign">Studio Rassi</div>
+          <div class="since">desde 2011 transformando histórias em memórias eternas</div>
+        </div>
       </div>
     </div>
   </div>
@@ -1731,12 +1778,11 @@
   function prevSlide() { goToSlide((currentIndex - 1 + totalItems) % totalItems); }
 
   // ============================================================
-  // 5. AUTOPLAY - CORRIGIDO (não afeta o scroll da página)
+  // 5. AUTOPLAY
   // ============================================================
   function startAutoSlide() {
     if (autoSlideInterval) clearInterval(autoSlideInterval);
     autoSlideInterval = setInterval(() => {
-      // Usa requestAnimationFrame para não interferir no scroll
       requestAnimationFrame(() => {
         nextSlide();
       });
@@ -1873,7 +1919,7 @@
   console.log('📸 Carrossel carregado!');
   console.log(`📊 ${instagramPosts.length} imagens em rotação`);
   console.log('🍔 Menu hambúrguer ativado no mobile');
-  console.log('📖 Biografia da Ana Paula Rassi adicionada!');
+  console.log('📖 Biografia da Ana Paula Rassi - Versão melhorada!');
 </script>
 
 </body>
