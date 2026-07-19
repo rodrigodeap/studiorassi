@@ -52,13 +52,21 @@
       gap: 20px;
     }
     .header-left .logo {
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 700;
-      font-size: 1.2rem;
-      color: #f5edea;
+      display: inline-block;
+      line-height: 0;
       text-decoration: none;
     }
-    .header-left .logo span { color: #D4A3B3; }
+    .header-left .logo img {
+      display: block;
+      width: auto;
+      height: 50px;
+      max-width: 160px;
+      transition: all 0.3s ease;
+    }
+    .header-left .logo img:hover {
+      opacity: 0.85;
+      transform: scale(1.02);
+    }
     .header-left .welcome {
       font-size: 0.85rem;
       font-weight: 300;
@@ -74,46 +82,6 @@
       gap: 24px;
       flex-wrap: wrap;
     }
-    .credits-badge {
-      background: rgba(212, 163, 179, 0.12);
-      border: 1px solid rgba(212, 163, 179, 0.15);
-      padding: 6px 18px;
-      border-radius: 40px;
-      font-size: 0.85rem;
-      font-weight: 500;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .credits-badge i {
-      color: #D4A3B3;
-    }
-    .credits-badge strong {
-      color: #D4A3B3;
-      font-size: 1.1rem;
-    }
-    .timer-badge {
-      background: rgba(212, 163, 179, 0.06);
-      border: 1px solid rgba(212, 163, 179, 0.08);
-      padding: 6px 16px;
-      border-radius: 40px;
-      font-size: 0.8rem;
-      font-weight: 400;
-      color: #d4c5c0;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .timer-badge i {
-      color: #D4A3B3;
-    }
-    .timer-badge .timer {
-      font-weight: 600;
-      color: #f5edea;
-      font-variant-numeric: tabular-nums;
-      min-width: 70px;
-      display: inline-block;
-    }
     .btn-logout {
       background: transparent;
       border: 1px solid rgba(212, 163, 179, 0.15);
@@ -128,6 +96,43 @@
     .btn-logout:hover {
       border-color: #D4A3B3;
       color: #f5edea;
+    }
+
+    /* ===== STATUS BAR (Centralizada) ===== */
+    .status-bar {
+      background: rgba(31, 5, 16, 0.4);
+      border-bottom: 1px solid rgba(212, 163, 179, 0.04);
+      padding: 12px 0;
+    }
+    .status-bar .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+    }
+    .status-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.85rem;
+      color: #d4c5c0;
+    }
+    .status-item i {
+      color: #D4A3B3;
+      font-size: 1rem;
+    }
+    .status-item strong {
+      color: #f5edea;
+      font-weight: 600;
+    }
+    .status-item .value {
+      color: #D4A3B3;
+      font-weight: 600;
+      font-size: 1rem;
     }
 
     /* ===== MAIN ===== */
@@ -247,21 +252,45 @@
       -webkit-user-drag: none;
     }
 
-    /* Marca d'água simulada (pseudo-elemento) */
-    .gallery-card .img-wrapper::after {
-      content: '© Studio Rassi';
+    /* ===== MARCA D'ÁGUA COM LOGO ===== */
+    .gallery-card .img-wrapper .watermark {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(-25deg);
+      opacity: 0.12;
+      pointer-events: none;
+      user-select: none;
+      width: 120px;
+      height: auto;
+      filter: brightness(0) invert(1) drop-shadow(0 0 20px rgba(0,0,0,0.3));
+    }
+    
+    .gallery-card .img-wrapper .watermark-text {
       position: absolute;
       bottom: 12px;
       right: 12px;
       font-family: 'Inter', sans-serif;
-      font-size: 0.6rem;
+      font-size: 0.55rem;
       font-weight: 400;
-      color: rgba(255,255,255,0.15);
+      color: rgba(255,255,255,0.12);
       letter-spacing: 1px;
-      background: rgba(0,0,0,0.3);
+      background: rgba(0,0,0,0.25);
       padding: 4px 12px;
       border-radius: 20px;
       backdrop-filter: blur(4px);
+      pointer-events: none;
+      user-select: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    
+    .gallery-card .img-wrapper .watermark-text img {
+      width: 14px;
+      height: 14px;
+      display: inline-block;
+      opacity: 0.6;
       pointer-events: none;
       user-select: none;
     }
@@ -463,31 +492,30 @@
         flex-wrap: wrap;
         gap: 8px;
       }
-      .header-left .logo {
-        font-size: 1rem;
+      .header-left .logo img {
+        height: 40px;
+        max-width: 130px;
       }
       .header-left .welcome {
         font-size: 0.75rem;
       }
       .header-right {
-        justify-content: space-between;
+        justify-content: flex-end;
         gap: 12px;
-      }
-      .credits-badge {
-        font-size: 0.75rem;
-        padding: 4px 14px;
-      }
-      .timer-badge {
-        font-size: 0.7rem;
-        padding: 4px 12px;
-      }
-      .timer-badge .timer {
-        min-width: 60px;
       }
       .btn-logout {
         font-size: 0.7rem;
         padding: 4px 14px;
       }
+
+      .status-bar .container {
+        gap: 16px;
+        padding: 0 16px;
+      }
+      .status-item {
+        font-size: 0.75rem;
+      }
+
       .main-content {
         padding: 20px 16px 60px;
       }
@@ -515,6 +543,21 @@
         font-size: 0.8rem;
         padding: 12px 16px;
       }
+      
+      /* Ajuste da marca d'água mobile */
+      .gallery-card .img-wrapper .watermark {
+        width: 80px;
+      }
+      .gallery-card .img-wrapper .watermark-text {
+        font-size: 0.45rem;
+        padding: 2px 10px;
+        bottom: 8px;
+        right: 8px;
+      }
+      .gallery-card .img-wrapper .watermark-text img {
+        width: 10px;
+        height: 10px;
+      }
     }
     @media (max-width: 480px) {
       .gallery-grid {
@@ -531,14 +574,24 @@
         font-size: 0.5rem;
         padding: 2px 10px;
       }
-      .gallery-card .img-wrapper::after {
-        font-size: 0.5rem;
-        padding: 2px 10px;
-        bottom: 8px;
-        right: 8px;
-      }
       .modal h3 {
         font-size: 1.2rem;
+      }
+      .status-bar .container {
+        flex-direction: column;
+        gap: 8px;
+      }
+      
+      .gallery-card .img-wrapper .watermark {
+        width: 60px;
+      }
+      .gallery-card .img-wrapper .watermark-text {
+        font-size: 0.4rem;
+        padding: 2px 8px;
+      }
+      .gallery-card .img-wrapper .watermark-text img {
+        width: 8px;
+        height: 8px;
       }
     }
   </style>
@@ -549,24 +602,36 @@
 <header class="header-dashboard">
   <div class="container">
     <div class="header-left">
-      <a href="index.html" class="logo">Studio <span>Rassi</span></a>
+      <a href="index.html" class="logo">
+        <img src="assets/images/logo/logo-header.png" 
+             alt="Studio Rassi · Photo & Video" 
+             width="160" 
+             height="50"
+             loading="lazy">
+      </a>
       <span class="welcome">Olá, <strong id="clienteNome">Ana Silva</strong></span>
     </div>
     <div class="header-right">
-      <div class="credits-badge">
-        <i class="fas fa-coins"></i>
-        <span>Créditos: <strong id="creditsDisplay">30</strong></span>
-      </div>
-      <div class="timer-badge">
-        <i class="far fa-clock"></i>
-        <span>Expira em: <span class="timer" id="timerDisplay">71:59:59</span></span>
-      </div>
       <button class="btn-logout" onclick="window.location.href='login.html'">
         <i class="fas fa-sign-out-alt"></i> Sair
       </button>
     </div>
   </div>
 </header>
+
+<!-- ===== STATUS BAR (Centralizada) ===== -->
+<div class="status-bar">
+  <div class="container">
+    <div class="status-item">
+      <i class="fas fa-coins"></i>
+      <span>Créditos disponíveis: <strong class="value" id="creditsDisplay">30</strong></span>
+    </div>
+    <div class="status-item">
+      <i class="far fa-clock"></i>
+      <span>Seu acesso expira em: <strong class="timer" id="timerDisplay">71:59:59</strong></span>
+    </div>
+  </div>
+</div>
 
 <!-- ===== MAIN CONTENT ===== -->
 <main class="main-content">
@@ -672,6 +737,10 @@
       card.innerHTML = `
         <div class="img-wrapper">
           <img src="${item.thumbnail}" alt="${item.label}" loading="lazy" draggable="false">
+          <img src="assets/images/logo/logo-header.png" alt="Studio Rassi" class="watermark" loading="lazy">
+          <div class="watermark-text">
+            <img src="assets/images/logo/logo-header.png" alt="Studio Rassi" loading="lazy"> Studio Rassi
+          </div>
         </div>
         ${isVideo ? `<div class="video-badge"><i class="fas fa-play"></i> Vídeo</div>` : ''}
         <div class="credit-cost">${cost} crédito${cost > 1 ? 's' : ''}</div>
@@ -683,7 +752,6 @@
       `;
 
       card.addEventListener('click', (e) => {
-        // Evita que o clique no botão dispare duas vezes
         if (e.target.closest('.select-btn')) return;
         toggleSelect(item.id);
       });
@@ -691,7 +759,6 @@
       grid.appendChild(card);
     });
 
-    // Adiciona eventos aos botões de seleção
     document.querySelectorAll('.select-btn').forEach(btn => {
       btn.addEventListener('click', (e) => {
         e.stopPropagation();
@@ -725,7 +792,7 @@
     }
 
     updateUI();
-    renderGallery(); // Re-render para atualizar os estados visuais
+    renderGallery();
   }
 
   function selecionarTodos() {
@@ -735,7 +802,6 @@
     });
 
     if (disponiveis.length === 0) {
-      // Verifica se já tem todos selecionados
       if (selected.size === mediaItems.length) {
         alert('✅ Todas as imagens já estão selecionadas!');
         return;
@@ -767,18 +833,12 @@
     }
 
     const total = selected.size;
-    const msg = `📸 Baixando ${total} item(ns) selecionado(s)...\n\n`;
+    let msg = `📸 Baixando ${total} item(ns) selecionado(s):\n\n`;
     const items = mediaItems.filter(m => selected.has(m.id));
     items.forEach((item, i) => {
       msg += `${i+1}. ${item.label} (${item.type})\n`;
     });
     alert(msg + '\n✅ Download iniciado! (Simulação)');
-
-    // Na vida real, aqui você faria o download dos arquivos
-    // Simplesmente limpamos a seleção após o download (opcional)
-    // selected.clear();
-    // updateUI();
-    // renderGallery();
   }
 
   // ============================================================
@@ -814,7 +874,6 @@
     document.body.style.overflow = '';
   }
 
-  // Fecha modal ao clicar fora
   modalOverlay.addEventListener('click', (e) => {
     if (e.target === modalOverlay) fecharModal();
   });
@@ -851,7 +910,6 @@
       downloadBtn.innerHTML = `<i class="fas fa-download"></i> Baixar selecionadas`;
     }
 
-    // Atualiza texto do botão selecionar todos
     if (selected.size === mediaItems.length) {
       selecionarTodosBtn.innerHTML = `<i class="fas fa-times"></i> Desmarcar todas`;
       selecionarTodosBtn.onclick = () => {
@@ -896,7 +954,6 @@
   updateTimer();
   setInterval(updateTimer, 1000);
 
-  // Salva o estado da seleção no console para debug
   console.log('📸 Área do cliente carregada!');
   console.log(`📊 ${mediaItems.length} itens disponíveis (${credits} créditos)`);
   console.log('💡 Clique nas imagens para selecionar e baixar.');
