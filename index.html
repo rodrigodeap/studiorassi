@@ -161,6 +161,105 @@
       color: #2C0714;
     }
 
+    /* ===== MENU HAMBURGUER (MOBILE) ===== */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      z-index: 101;
+      background: none;
+      border: none;
+      padding: 8px;
+    }
+    .hamburger span {
+      display: block;
+      width: 28px;
+      height: 2.5px;
+      background: #f5edea;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+    }
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 75%;
+      max-width: 320px;
+      height: 100vh;
+      background: rgba(44, 7, 20, 0.98);
+      backdrop-filter: blur(20px);
+      padding: 80px 32px 40px;
+      transition: right 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      z-index: 99;
+      border-left: 1px solid rgba(212, 163, 179, 0.08);
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .mobile-menu.open {
+      right: 0;
+    }
+    .mobile-menu a {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: #f5edea;
+      text-decoration: none;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(212, 163, 179, 0.06);
+      transition: 0.3s;
+      letter-spacing: 0.5px;
+    }
+    .mobile-menu a:hover {
+      color: #D4A3B3;
+      padding-left: 8px;
+    }
+    .mobile-menu .btn-minhas-fotos-mobile {
+      margin-top: 16px;
+      background: rgba(212, 163, 179, 0.15);
+      border: 2px solid #D4A3B3;
+      color: #f5edea;
+      padding: 14px 24px;
+      border-radius: 50px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: 0.3s;
+      text-align: center;
+    }
+    .mobile-menu .btn-minhas-fotos-mobile:hover {
+      background: #D4A3B3;
+      color: #2C0714;
+    }
+
+    /* ===== OVERLAY DO MENU ===== */
+    .menu-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.6);
+      z-index: 98;
+    }
+    .menu-overlay.active {
+      display: block;
+    }
+
     /* ===== HERO COM VÍDEO ===== */
     .hero {
       position: relative;
@@ -385,7 +484,7 @@
       color: #f5edea;
     }
 
-    /* ===== CARROSSEL - EFEITO DE PROFUNDIDADE ===== */
+    /* ===== CARROSSEL ===== */
     .carousel-wrapper {
       position: relative;
       max-width: 920px;
@@ -404,10 +503,10 @@
       padding: 8px 0;
     }
     
-    /* ===== ITEM DO CARROSSEL (9:16) ===== */
+    /* ===== ITEM DO CARROSSEL ===== */
     .carousel-item {
       position: relative;
-      flex: 0 0 calc(20% - 13px); /* 5 colunas com gap */
+      flex: 0 0 calc(20% - 13px);
       aspect-ratio: 9 / 16;
       max-height: 380px;
       border-radius: 18px;
@@ -417,35 +516,22 @@
       cursor: pointer;
       
       transform: translateY(0px) scale(0.92);
-      box-shadow: 
-        0 0 20px rgba(212, 163, 179, 0.05),
-        inset 0 0 30px rgba(212, 163, 179, 0.02);
-      
+      box-shadow: 0 0 20px rgba(212, 163, 179, 0.05);
       border: 1px solid rgba(212, 163, 179, 0.08);
       opacity: 0.7;
       filter: blur(1px) saturate(0.5);
     }
     
-    /* ===== EFEITO DE PROFUNDIDADE ===== */
     .carousel-item.active {
       transform: translateY(0px) scale(1);
       opacity: 1;
       filter: blur(0px) saturate(1);
       border-color: rgba(212, 163, 179, 0.2);
-      box-shadow: 
-        0 0 40px rgba(212, 163, 179, 0.12),
-        0 8px 30px rgba(0, 0, 0, 0.4),
-        inset 0 0 30px rgba(212, 163, 179, 0.03);
+      box-shadow: 0 0 40px rgba(212, 163, 179, 0.12), 0 8px 30px rgba(0,0,0,0.4);
       z-index: 3;
     }
     
-    .carousel-item.prev {
-      transform: translateY(8px) scale(0.94);
-      opacity: 0.6;
-      filter: blur(0.5px) saturate(0.3);
-    }
-    
-    .carousel-item.next {
+    .carousel-item.prev, .carousel-item.next {
       transform: translateY(8px) scale(0.94);
       opacity: 0.6;
       filter: blur(0.5px) saturate(0.3);
@@ -457,102 +543,18 @@
       filter: blur(1.5px) saturate(0.1);
     }
     
-    /* ===== FLUTUAÇÃO SUTIL ===== */
-    .carousel-item {
-      animation: floatItem 4s ease-in-out infinite;
-    }
-    
-    .carousel-item:nth-child(1) { animation-delay: 0s; }
-    .carousel-item:nth-child(2) { animation-delay: 0.3s; }
-    .carousel-item:nth-child(3) { animation-delay: 0.6s; }
-    .carousel-item:nth-child(4) { animation-delay: 0.9s; }
-    .carousel-item:nth-child(5) { animation-delay: 1.2s; }
-    
-    @keyframes floatItem {
-      0%, 100% { transform: translateY(0px) scale(0.92); }
-      50% { transform: translateY(-4px) scale(0.93); }
-    }
-    
-    .carousel-item.active {
-      animation: floatActive 4s ease-in-out infinite;
-    }
-    
-    @keyframes floatActive {
-      0%, 100% { transform: translateY(0px) scale(1); }
-      50% { transform: translateY(-6px) scale(1.02); }
-    }
-    
-    /* ===== BRILHO E BORDAS ===== */
-    .carousel-item::before {
-      content: '';
-      position: absolute;
-      inset: -2px;
-      border-radius: 20px;
-      padding: 2px;
-      background: linear-gradient(
-        135deg,
-        rgba(212, 163, 179, 0.15),
-        rgba(212, 163, 179, 0.02),
-        rgba(212, 163, 179, 0.15)
-      );
-      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
-      pointer-events: none;
-      opacity: 0;
-      transition: opacity 0.6s ease;
-    }
-    
-    .carousel-item.active::before {
-      opacity: 1;
-    }
-    
-    .carousel-item::after {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(
-        ellipse at center,
-        rgba(212, 163, 179, 0.06) 0%,
-        transparent 60%
-      );
-      opacity: 0;
-      transition: opacity 0.6s ease;
-      pointer-events: none;
-    }
-    
-    .carousel-item.active::after {
-      opacity: 1;
-    }
-    
-    .carousel-item:hover {
-      transform: translateY(-8px) scale(1.03) !important;
-      border-color: rgba(212, 163, 179, 0.3);
-      box-shadow: 
-        0 0 60px rgba(212, 163, 179, 0.15),
-        0 20px 60px rgba(0, 0, 0, 0.5),
-        inset 0 0 60px rgba(212, 163, 179, 0.05);
-      z-index: 5;
-      opacity: 1 !important;
-      filter: blur(0px) saturate(1) !important;
-    }
-    
     .carousel-item img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
-      transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      transition: transform 0.5s ease;
     }
     
     .carousel-item:hover img {
       transform: scale(1.06);
     }
     
-    /* ===== OVERLAY ===== */
     .carousel-item .overlay {
       position: absolute;
       bottom: 0;
@@ -562,9 +564,6 @@
       background: linear-gradient(transparent, rgba(44, 7, 20, 0.9) 40%, rgba(44, 7, 20, 0.95));
       opacity: 0;
       transition: opacity 0.5s ease;
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
     }
     
     .carousel-item.active .overlay {
@@ -577,11 +576,6 @@
       display: flex;
       align-items: center;
       gap: 6px;
-      font-weight: 400;
-    }
-    
-    .carousel-item .overlay .instagram-icon i {
-      font-size: 0.9rem;
     }
     
     .carousel-item .overlay .caption {
@@ -594,7 +588,6 @@
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
       overflow: hidden;
-      letter-spacing: 0.3px;
     }
 
     /* ===== INDICADORES ===== */
@@ -615,7 +608,6 @@
       border: 1px solid rgba(212, 163, 179, 0.08);
       cursor: pointer;
       transition: all 0.5s ease;
-      position: relative;
     }
     
     .carousel-indicators .dot.active {
@@ -623,11 +615,6 @@
       border-color: #D4A3B3;
       transform: scale(1.4);
       box-shadow: 0 0 30px rgba(212, 163, 179, 0.25);
-    }
-    
-    .carousel-indicators .dot:hover {
-      background: rgba(212, 163, 179, 0.4);
-      transform: scale(1.2);
     }
 
     /* ===== SETAS ===== */
@@ -665,7 +652,6 @@
       background: #D4A3B3;
       color: #2C0714;
       transform: scale(1.1);
-      box-shadow: 0 0 40px rgba(212, 163, 179, 0.2);
     }
 
     /* ===== BADGE INSTAGRAM ===== */
@@ -694,12 +680,6 @@
       background: #D4A3B3;
       color: #2C0714;
       border-color: #D4A3B3;
-      box-shadow: 0 0 40px rgba(212, 163, 179, 0.15);
-      transform: scale(1.05);
-    }
-    
-    .instagram-badge i {
-      font-size: 0.9rem;
     }
 
     /* ===== BENEFÍCIOS ===== */
@@ -732,7 +712,6 @@
       font-weight: 600;
       font-size: 1.2rem;
       margin-bottom: 6px;
-      letter-spacing: -0.3px;
     }
     .benefit-card p {
       font-family: 'Inter', sans-serif;
@@ -774,7 +753,6 @@
       font-size: 1rem;
       font-weight: 300;
       color: #d4c5c0;
-      letter-spacing: 0;
     }
     .package-card p {
       font-family: 'Inter', sans-serif;
@@ -808,7 +786,6 @@
       font-weight: 600;
       color: #D4A3B3;
       margin-bottom: 8px;
-      letter-spacing: -0.3px;
     }
     .orderbump-box label {
       display: flex;
@@ -877,7 +854,6 @@
     @media (max-width: 1024px) {
       .hero-text h1 { font-size: 3.2rem; }
       .hero-text h1 .script { font-size: 5rem; }
-      
       .carousel-item {
         flex: 0 0 calc(25% - 12px);
         max-height: 320px;
@@ -892,40 +868,22 @@
         max-width: 150px;
       }
       
-      .hero-text h1 { 
-        font-size: 2.6rem; 
-        letter-spacing: -0.3px;
-      }
-      .hero-text h1 .script { 
-        font-size: 4rem; 
-      }
-      .hero-text p { 
-        font-size: 1rem; 
-      }
+      .hero-text h1 { font-size: 2.6rem; }
+      .hero-text h1 .script { font-size: 4rem; }
+      .hero-text p { font-size: 1rem; }
       .hero-buttons { justify-content: center; }
       
-      .section-title { 
-        font-size: 2.2rem; 
-      }
-      .section-title .script { 
-        font-size: 3.6rem; 
-      }
+      .section-title { font-size: 2.2rem; }
+      .section-title .script { font-size: 3.6rem; }
       
-      .nav-menu { gap: 16px; }
-      .nav-menu a { font-size: 0.75rem; }
-      .navbar-content { flex-wrap: wrap; gap: 12px; }
-      .btn { padding: 10px 20px; font-size: 0.75rem; }
-      
-      .instagram-section {
-        padding: 60px 0 80px;
+      /* Esconde menu desktop */
+      .nav-menu {
+        display: none !important;
       }
       
-      .instagram-header h2 {
-        font-size: 2rem;
-      }
-      
-      .instagram-header h2 .script {
-        font-size: 3.2rem;
+      /* Mostra hamburguer */
+      .hamburger {
+        display: flex !important;
       }
       
       .carousel-item {
@@ -946,10 +904,6 @@
         right: 10px;
       }
       
-      .carousel-item .overlay .caption {
-        font-size: 0.55rem;
-      }
-      
       .hero-video-desktop {
         display: none !important;
       }
@@ -958,20 +912,13 @@
       }
     }
     
-    /* ===== CORREÇÃO MOBILE: 1 COLUNA CENTRALIZADA E COLORIDA ===== */
+    /* ===== MOBILE: 1 COLUNA CENTRALIZADA E COLORIDA ===== */
     @media (max-width: 480px) {
       .package-grid { grid-template-columns: 1fr; }
       
-      .hero-text h1 { 
-        font-size: 2rem; 
-      }
-      .hero-text h1 .script { 
-        font-size: 3rem; 
-      }
-      
-      .section-title .script {
-        font-size: 2.8rem;
-      }
+      .hero-text h1 { font-size: 2rem; }
+      .hero-text h1 .script { font-size: 3rem; }
+      .section-title .script { font-size: 2.8rem; }
       
       .logo img {
         height: 35px;
@@ -981,7 +928,7 @@
         height: 40px;
       }
       
-      /* ===== CARROSSEL MOBILE: 1 COLUNA CENTRALIZADA ===== */
+      /* ===== CARROSSEL MOBILE: 1 FOTO CENTRALIZADA ===== */
       .carousel-wrapper {
         padding: 8px 0;
         max-width: 320px;
@@ -989,57 +936,36 @@
       }
       
       .carousel-track {
-        gap: 20px;
+        gap: 0;
         padding: 8px 0;
         justify-content: center;
       }
       
+      /* Apenas o item ativo é visível centralizado */
       .carousel-item {
         flex: 0 0 280px;
         max-height: 420px;
         margin: 0 auto;
-        transform: translateY(0px) scale(0.92);
-        opacity: 0.5;
-        filter: blur(1px) saturate(0.2);
+        transform: translateY(0px) scale(0.9);
+        opacity: 0;
+        filter: blur(2px) saturate(0);
+        pointer-events: none;
+        transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        border-color: transparent;
+        box-shadow: none;
       }
       
-      /* Item ATIVO - colorido e centralizado */
+      /* Item ATIVO - ÚNICO VISÍVEL, CENTRALIZADO E COLORIDO */
       .carousel-item.active {
         flex: 0 0 280px;
         transform: translateY(0px) scale(1);
         opacity: 1;
         filter: blur(0px) saturate(1);
         border-color: rgba(212, 163, 179, 0.3);
-        box-shadow: 
-          0 0 50px rgba(212, 163, 179, 0.15),
-          0 8px 30px rgba(0, 0, 0, 0.5),
-          inset 0 0 40px rgba(212, 163, 179, 0.05);
+        box-shadow: 0 0 50px rgba(212, 163, 179, 0.15), 0 8px 30px rgba(0,0,0,0.5);
         z-index: 3;
-      }
-      
-      /* Itens laterais - desbotados */
-      .carousel-item.prev,
-      .carousel-item.next {
-        flex: 0 0 200px;
-        transform: translateY(8px) scale(0.85);
-        opacity: 0.35;
-        filter: blur(1.5px) saturate(0.1);
-      }
-      
-      .carousel-item.far {
-        flex: 0 0 160px;
-        transform: translateY(14px) scale(0.75);
-        opacity: 0.15;
-        filter: blur(2.5px) saturate(0.05);
-      }
-      
-      /* Remove flutuação em mobile para evitar conflitos */
-      .carousel-item {
-        animation: none !important;
-      }
-      
-      .carousel-item.active {
-        animation: floatMobile 4s ease-in-out infinite !important;
+        pointer-events: auto;
+        animation: floatMobile 4s ease-in-out infinite;
       }
       
       @keyframes floatMobile {
@@ -1047,7 +973,23 @@
         50% { transform: translateY(-4px) scale(1.02); }
       }
       
-      /* Ajuste do overlay mobile */
+      /* Esconde completamente os itens laterais no mobile */
+      .carousel-item.prev,
+      .carousel-item.next,
+      .carousel-item.far {
+        flex: 0 0 0;
+        opacity: 0;
+        transform: scale(0.5);
+        pointer-events: none;
+        margin: 0;
+        padding: 0;
+        border: none;
+        overflow: hidden;
+        width: 0;
+        min-width: 0;
+      }
+      
+      /* Overlay mobile */
       .carousel-item .overlay {
         padding: 16px 14px 14px;
       }
@@ -1057,7 +999,7 @@
         -webkit-line-clamp: 3;
       }
       
-      /* Ajuste das setas */
+      /* Setas menores */
       .carousel-arrows button {
         width: 32px;
         height: 32px;
@@ -1067,7 +1009,6 @@
       .instagram-header h2 {
         font-size: 1.6rem;
       }
-      
       .instagram-header h2 .script {
         font-size: 2.6rem;
       }
@@ -1082,7 +1023,6 @@
       }
     }
 
-    /* Scroll */
     ::-webkit-scrollbar { width: 6px; }
     ::-webkit-scrollbar-track { background: #1f0510; }
     ::-webkit-scrollbar-thumb { background: #D4A3B3; border-radius: 10px; }
@@ -1100,6 +1040,8 @@
            height="60"
            loading="lazy">
     </a>
+    
+    <!-- Menu Desktop -->
     <div class="nav-menu">
       <a href="#pacotes">Pacotes</a>
       <a href="#personalizado">Personalizado</a>
@@ -1108,8 +1050,28 @@
         <i class="fas fa-images"></i> Minhas Fotos
       </button>
     </div>
+    
+    <!-- Menu Hamburguer (Mobile) -->
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </div>
 </nav>
+
+<!-- ===== MOBILE MENU OVERLAY ===== -->
+<div class="menu-overlay" id="menuOverlay"></div>
+
+<!-- ===== MOBILE MENU ===== -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#pacotes" onclick="closeMenu()">Pacotes</a>
+  <a href="#personalizado" onclick="closeMenu()">Personalizado</a>
+  <a href="#instagram" onclick="closeMenu()">Portfólio</a>
+  <button class="btn-minhas-fotos-mobile" onclick="window.location.href='login.html'">
+    <i class="fas fa-images"></i> Minhas Fotos
+  </button>
+</div>
 
 <!-- ===== HERO COM VÍDEO ===== -->
 <header class="hero">
@@ -1296,7 +1258,7 @@
 <!-- ===== SCRIPT ===== -->
 <script>
   // ============================================================
-  // 1. DADOS DAS IMAGENS (13 imagens em JPG)
+  // 1. DADOS DAS IMAGENS
   // ============================================================
   const instagramPosts = [
     { id: 'post_01', image: 'assets/images/instagram/instagram-01.jpg', alt: 'Ensaio externo com luz dourada', caption: '✨ Ensaio externo com luz dourada' },
@@ -1365,7 +1327,7 @@
   }
 
   // ============================================================
-  // 4. NAVEGAÇÃO COM EFEITO DE PROFUNDIDADE
+  // 4. NAVEGAÇÃO
   // ============================================================
   function goToSlide(index, animate = true) {
     const items = track.children;
@@ -1418,13 +1380,8 @@
     });
   }
 
-  function nextSlide() { 
-    goToSlide((currentIndex + 1) % totalItems); 
-  }
-  
-  function prevSlide() { 
-    goToSlide((currentIndex - 1 + totalItems) % totalItems); 
-  }
+  function nextSlide() { goToSlide((currentIndex + 1) % totalItems); }
+  function prevSlide() { goToSlide((currentIndex - 1 + totalItems) % totalItems); }
 
   // ============================================================
   // 5. AUTOPLAY
@@ -1447,7 +1404,36 @@
   }
 
   // ============================================================
-  // 6. EVENT LISTENERS
+  // 6. MENU HAMBURGUER
+  // ============================================================
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const menuOverlay = document.getElementById('menuOverlay');
+
+  function toggleMenu() {
+    hamburger.classList.toggle('active');
+    mobileMenu.classList.toggle('open');
+    menuOverlay.classList.toggle('active');
+    document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+  }
+
+  function closeMenu() {
+    hamburger.classList.remove('active');
+    mobileMenu.classList.remove('open');
+    menuOverlay.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  hamburger.addEventListener('click', toggleMenu);
+  menuOverlay.addEventListener('click', closeMenu);
+
+  // Fecha ao clicar em um link
+  document.querySelectorAll('.mobile-menu a, .mobile-menu button').forEach(el => {
+    el.addEventListener('click', closeMenu);
+  });
+
+  // ============================================================
+  // 7. EVENT LISTENERS
   // ============================================================
   document.getElementById('prevSlide').addEventListener('click', () => {
     prevSlide();
@@ -1485,7 +1471,7 @@
   wrapper.addEventListener('mouseleave', startAutoSlide);
 
   // ============================================================
-  // 7. INICIALIZAR
+  // 8. INICIALIZAR
   // ============================================================
   renderCarousel();
   
@@ -1502,7 +1488,7 @@
   });
 
   // ============================================================
-  // 8. SIMULAÇÃO DO CARRINHO
+  // 9. SIMULAÇÃO DO CARRINHO
   // ============================================================
   const qtyInput = document.getElementById('fotoQty');
   const fotoTotal = document.getElementById('fotoTotal');
@@ -1533,10 +1519,9 @@
     });
   });
 
-  console.log('📸 Carrossel com efeito de profundidade carregado!');
-  console.log(`📊 ${instagramPosts.length} imagens em rotação contínua`);
-  console.log(`⏱️ Transição: ${TRANSITION_SPEED}s | Intervalo: ${SLIDE_INTERVAL/1000}s`);
-  console.log('✨ Efeito de profundidade ativado!');
+  console.log('📸 Carrossel carregado!');
+  console.log(`📊 ${instagramPosts.length} imagens em rotação`);
+  console.log('🍔 Menu hambúrguer ativado no mobile');
 </script>
 
 </body>
