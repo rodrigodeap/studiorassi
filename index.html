@@ -27,11 +27,15 @@
   <style>
     /* ===== RESET ===== */
     * { margin: 0; padding: 0; box-sizing: border-box; }
+    html {
+      scroll-behavior: smooth;
+    }
     body {
       background-color: #2C0714;
       color: #f5edea;
       font-family: 'Inter', sans-serif;
       line-height: 1.6;
+      overflow-x: hidden;
     }
     .container {
       max-width: 1200px;
@@ -298,7 +302,7 @@
       position: relative;
       z-index: 2;
       width: 100%;
-      padding: 140px 0 80px;
+      padding: 140px 0 60px;
       display: flex;
       flex-wrap: wrap;
       align-items: center;
@@ -373,6 +377,28 @@
       letter-spacing: 0.5px;
     }
 
+    /* ===== SETA PARA BAIXO COM ANIMAÇÃO ===== */
+    .scroll-down {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 5;
+      color: #D4A3B3;
+      font-size: 2rem;
+      animation: bounceDown 2s ease-in-out infinite;
+      cursor: pointer;
+      text-shadow: 0 0 30px rgba(212, 163, 179, 0.2);
+    }
+    .scroll-down:hover {
+      color: #f5edea;
+    }
+    
+    @keyframes bounceDown {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(12px); }
+    }
+
     /* ===== SEÇÕES ===== */
     .section {
       padding: 80px 0;
@@ -412,124 +438,10 @@
       line-height: 1.8;
     }
 
-    /* ===== BIOGRAFIA - ANA PAULA RASSI ===== */
-    .biografia-section {
-      padding: 80px 0;
-      background: #1f0510;
-      border-bottom: 1px solid rgba(212, 163, 179, 0.06);
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .biografia-section::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(ellipse at 70% 30%, rgba(212, 163, 179, 0.04) 0%, transparent 60%);
-      animation: rotateGlow 80s linear infinite;
-      pointer-events: none;
-    }
-    
-    .biografia-content {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 50px;
-      position: relative;
-      z-index: 2;
-    }
-    
-    .biografia-image {
-      flex: 0 0 280px;
-      text-align: center;
-    }
-    
-    .biografia-image img {
-      width: 100%;
-      max-width: 280px;
-      height: auto;
-      aspect-ratio: 1/1;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 4px solid rgba(212, 163, 179, 0.15);
-      box-shadow: 0 0 60px rgba(212, 163, 179, 0.08), 0 20px 40px rgba(0,0,0,0.4);
-      transition: all 0.5s ease;
-    }
-    
-    .biografia-image img:hover {
-      transform: scale(1.02);
-      border-color: rgba(212, 163, 179, 0.3);
-      box-shadow: 0 0 80px rgba(212, 163, 179, 0.15), 0 20px 40px rgba(0,0,0,0.5);
-    }
-    
-    .biografia-image .badge {
-      display: inline-block;
-      margin-top: 12px;
-      font-family: 'Inter', sans-serif;
-      font-size: 0.7rem;
-      color: #D4A3B3;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      opacity: 0.6;
-    }
-    
-    .biografia-text {
-      flex: 1;
-      min-width: 280px;
-    }
-    
-    .biografia-text h2 {
-      font-family: 'Great Vibes', cursive;
-      font-weight: 400;
-      color: #D4A3B3;
-      font-size: 3.5rem;
-      line-height: 1;
-      margin-bottom: 4px;
-    }
-    
-    .biografia-text .subtitle {
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 300;
-      font-size: 0.9rem;
-      color: #d4c5c0;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      margin-bottom: 20px;
-    }
-    
-    .biografia-text p {
-      font-family: 'Inter', sans-serif;
-      font-size: 1rem;
-      font-weight: 300;
-      color: #d4c5c0;
-      line-height: 1.9;
-      margin-bottom: 16px;
-    }
-    
-    .biografia-text p:last-child {
-      margin-bottom: 0;
-    }
-    
-    .biografia-text .highlight {
-      color: #D4A3B3;
-      font-weight: 400;
-    }
-    
-    .biografia-text .assinatura {
-      font-family: 'Great Vibes', cursive;
-      font-size: 2.2rem;
-      color: #D4A3B3;
-      margin-top: 8px;
-      opacity: 0.8;
-    }
-
     /* ===== CARROSSEL ===== */
     .instagram-section {
       padding: 80px 0 100px;
-      background: #2C0714;
+      background: #1f0510;
       border-bottom: 1px solid rgba(212, 163, 179, 0.06);
       position: relative;
       overflow: hidden;
@@ -796,6 +708,120 @@
       border-color: #D4A3B3;
     }
 
+    /* ===== BIOGRAFIA - ANA PAULA RASSI ===== */
+    .biografia-section {
+      padding: 80px 0;
+      background: #1f0510;
+      border-bottom: 1px solid rgba(212, 163, 179, 0.06);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .biografia-section::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(ellipse at 70% 30%, rgba(212, 163, 179, 0.04) 0%, transparent 60%);
+      animation: rotateGlow 80s linear infinite;
+      pointer-events: none;
+    }
+    
+    .biografia-content {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 50px;
+      position: relative;
+      z-index: 2;
+    }
+    
+    .biografia-image {
+      flex: 0 0 300px;
+      text-align: center;
+    }
+    
+    .biografia-image img {
+      width: 100%;
+      max-width: 300px;
+      height: auto;
+      aspect-ratio: 1/1;
+      border-radius: 18px;
+      object-fit: cover;
+      border: 3px solid rgba(212, 163, 179, 0.15);
+      box-shadow: 0 0 60px rgba(212, 163, 179, 0.08), 0 20px 40px rgba(0,0,0,0.4);
+      transition: all 0.5s ease;
+    }
+    
+    .biografia-image img:hover {
+      transform: scale(1.02);
+      border-color: rgba(212, 163, 179, 0.3);
+      box-shadow: 0 0 80px rgba(212, 163, 179, 0.15), 0 20px 40px rgba(0,0,0,0.5);
+    }
+    
+    .biografia-image .badge {
+      display: inline-block;
+      margin-top: 12px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.7rem;
+      color: #D4A3B3;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      opacity: 0.6;
+    }
+    
+    .biografia-text {
+      flex: 1;
+      min-width: 280px;
+    }
+    
+    .biografia-text h2 {
+      font-family: 'Great Vibes', cursive;
+      font-weight: 400;
+      color: #D4A3B3;
+      font-size: 3.5rem;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    
+    .biografia-text .subtitle {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 300;
+      font-size: 0.9rem;
+      color: #d4c5c0;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    
+    .biografia-text p {
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      font-weight: 300;
+      color: #d4c5c0;
+      line-height: 1.9;
+      margin-bottom: 16px;
+    }
+    
+    .biografia-text p:last-child {
+      margin-bottom: 0;
+    }
+    
+    .biografia-text .highlight {
+      color: #D4A3B3;
+      font-weight: 400;
+    }
+    
+    .biografia-text .assinatura {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.2rem;
+      color: #D4A3B3;
+      margin-top: 8px;
+      opacity: 0.8;
+    }
+
     /* ===== BENEFÍCIOS ===== */
     .benefit-grid {
       display: grid;
@@ -973,7 +999,7 @@
         max-height: 320px;
       }
       .biografia-image {
-        flex: 0 0 220px;
+        flex: 0 0 240px;
       }
     }
     
@@ -988,7 +1014,15 @@
       .hero-text h1 { font-size: 2.6rem; }
       .hero-text h1 .script { font-size: 4rem; }
       .hero-text p { font-size: 1rem; }
-      .hero-buttons { justify-content: center; }
+      
+      /* Mobile: apenas botão Pacotes */
+      .hero-buttons .btn-outline {
+        display: none !important;
+      }
+      .hero-buttons .btn-primary {
+        width: 100%;
+        justify-content: center;
+      }
       
       .section-title { font-size: 2.2rem; }
       .section-title .script { font-size: 3.6rem; }
@@ -1003,12 +1037,14 @@
       
       .biografia-content {
         flex-direction: column;
-        text-align: center;
         gap: 30px;
       }
       
       .biografia-image {
         flex: 0 0 200px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
       }
       
       .biografia-image img {
@@ -1017,11 +1053,20 @@
       
       .biografia-text h2 {
         font-size: 2.8rem;
+        text-align: center;
+      }
+      
+      .biografia-text .subtitle {
+        text-align: center;
       }
       
       .biografia-text p {
         font-size: 0.95rem;
         text-align: left;
+      }
+      
+      .biografia-text .assinatura {
+        text-align: center;
       }
       
       .carousel-item {
@@ -1050,7 +1095,7 @@
       }
     }
     
-    /* ===== MOBILE: 1 COLUNA CENTRALIZADA ===== */
+    /* ===== MOBILE: 1 COLUNA ===== */
     @media (max-width: 480px) {
       .package-grid { grid-template-columns: 1fr; }
       
@@ -1087,6 +1132,7 @@
         font-size: 0.85rem;
       }
       
+      /* ===== CARROSSEL MOBILE: 1 COLUNA ===== */
       .carousel-wrapper {
         padding: 8px 0;
         max-width: 100%;
@@ -1245,7 +1291,7 @@
 </div>
 
 <!-- ===== HERO COM VÍDEO ===== -->
-<header class="hero">
+<header class="hero" id="home">
   <video class="hero-video hero-video-desktop" autoplay loop muted playsinline preload="auto" poster="assets/images/hero-fallback.jpg">
     <source src="assets/videos/header-desktop.mp4" type="video/mp4">
     <source src="assets/videos/header-desktop.webm" type="video/webm">
@@ -1274,12 +1320,17 @@
       <p>Registramos sua história com luz, emoção e autenticidade. 
       Momentos que merecem ser lembrados para sempre.</p>
       <div class="hero-buttons">
-        <a href="#pacotes" class="btn btn-primary"><i class="fas fa-crown"></i> Pacotes</a>
+        <a href="#pacotes" class="btn btn-primary"><i class="fas fa-crown"></i> Pacotes promocionais</a>
         <a href="#personalizado" class="btn btn-outline"><i class="fas fa-sliders-h"></i> Personalizado</a>
         <a href="#instagram" class="btn btn-outline"><i class="fas fa-images"></i> Conheça</a>
       </div>
     </div>
   </div>
+  
+  <!-- Seta para baixo -->
+  <a href="#instagram" class="scroll-down">
+    <i class="fas fa-chevron-down"></i>
+  </a>
 </header>
 
 <!-- ===== SEGUNDA DOBRA: CARROSSEL ===== -->
@@ -1320,13 +1371,13 @@
 </section>
 
 <!-- ===== INSTITUCIONAL + BENEFÍCIOS ===== -->
-<section class="container section">
+<section class="container section" id="institucional">
   <div style="max-width: 720px;">
     <h2 class="section-title">
       <span class="script">Paixão</span>
       em cada detalhe
     </h2>
-    <p style="font-family: 'Inter', sans-serif; font-size: 1.2rem; font-weight: 300; color: #d4c5c0; line-height: 1.8;">
+    <p style="font-family: 'Inter', sans-serif; font-size: 1.2rem; font-weight: 300; color: #d4c5c0; line-height: 1.8; padding-top: 10px;">
       Mais do que registrar, eternizamos emoções. Nossa equipe transforma instantes em memórias 
       que aquecem o coração. <span style="color: #D4A3B3; font-style: italic;">“Fotografar é sentir. Não é só registrar.”</span>
     </p>
@@ -1489,7 +1540,7 @@
 <!-- ===== SCRIPT ===== -->
 <script>
   // ============================================================
-  // 1. DADOS DAS IMAGENS (13 imagens com novas descrições)
+  // 1. DADOS DAS IMAGENS
   // ============================================================
   const instagramPosts = [
     { 
@@ -1680,11 +1731,16 @@
   function prevSlide() { goToSlide((currentIndex - 1 + totalItems) % totalItems); }
 
   // ============================================================
-  // 5. AUTOPLAY
+  // 5. AUTOPLAY - CORRIGIDO (não afeta o scroll da página)
   // ============================================================
   function startAutoSlide() {
     if (autoSlideInterval) clearInterval(autoSlideInterval);
-    autoSlideInterval = setInterval(nextSlide, SLIDE_INTERVAL);
+    autoSlideInterval = setInterval(() => {
+      // Usa requestAnimationFrame para não interferir no scroll
+      requestAnimationFrame(() => {
+        nextSlide();
+      });
+    }, SLIDE_INTERVAL);
   }
 
   function stopAutoSlide() {
