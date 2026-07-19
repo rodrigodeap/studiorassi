@@ -1105,6 +1105,63 @@
       }
       
       /* ==========================================================
+         CORREÇÃO: Centralização das dobras "Paixão" e "Escolha"
+         ========================================================== */
+      
+      /* A dobra "Paixão em cada detalhe" */
+      .section#institucional .section-title {
+        text-align: center !important;
+      }
+      
+      .section#institucional .section-title .script {
+        display: block !important;
+        text-align: center !important;
+      }
+      
+      .section#institucional > div {
+        max-width: 100% !important;
+        padding: 0 10px !important;
+      }
+      
+      .section#institucional p {
+        text-align: center !important;
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+      }
+      
+      /* A dobra "Escolha seu pacote" */
+      .section#pacotes .section-title {
+        text-align: center !important;
+      }
+      
+      .section#pacotes .section-title .script {
+        display: block !important;
+        text-align: center !important;
+      }
+      
+      .section#pacotes .package-grid {
+        padding: 0 10px !important;
+      }
+      
+      .section#pacotes > div:last-child {
+        text-align: center !important;
+      }
+      
+      /* Ajuste também para a dobra "Sob medida" (personalizado) */
+      .section#personalizado .section-title {
+        text-align: center !important;
+      }
+      
+      .section#personalizado .section-title .script {
+        display: block !important;
+        text-align: center !important;
+      }
+      
+      .section#personalizado > div {
+        margin: 0 10px !important;
+      }
+      
+      /* ==========================================================
          CARROSSEL MOBILE - TÉCNICA SCROLL SNAP (ISOLADO)
          ========================================================== */
       
@@ -1112,29 +1169,25 @@
         position: relative;
         max-width: 100%;
         margin: 0;
-        overflow: hidden; /* Mantém oculto para as setas não quebrarem o layout */
+        overflow: hidden;
         border-radius: 0;
         padding: 0;
         z-index: 2;
       }
       
       .carousel-track {
-        /* Mudanças Críticas para CSS Scroll Snap */
         display: flex;
         overflow-x: auto;
         overflow-y: hidden;
         scroll-snap-type: x mandatory;
-        scroll-behavior: smooth; /* Para a rolagem das setas ser suave */
-        -webkit-overflow-scrolling: touch; /* Suporte nativo iOS */
-        gap: 15px; /* Espaçamento real entre as fotos */
-        padding: 20px 10%; /* 10% de margem nas bordas para o primeiro e último item */
-        
-        /* Reseta as propriedades conflitantes do Desktop */
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+        gap: 15px;
+        padding: 20px 10%;
         transform: none !important; 
         transition: none !important;
       }
       
-      /* Oculta a barra de rolagem mas mantém a funcionalidade */
       .carousel-track::-webkit-scrollbar {
         display: none;
       }
@@ -1144,12 +1197,9 @@
       }
       
       .carousel-item {
-        /* Configuração do Peek Effect Nativo */
-        flex: 0 0 80%; /* Cada imagem ocupa 80% da tela */
+        flex: 0 0 80%;
         width: 80%;
-        scroll-snap-align: center; /* Trava no centro! */
-        
-        /* Reseta filtros agressivos do Desktop */
+        scroll-snap-align: center;
         opacity: 1 !important;
         pointer-events: auto !important;
         transform: scale(1) !important;
@@ -1159,7 +1209,6 @@
         box-shadow: 0 8px 30px rgba(0,0,0,0.5);
       }
       
-      /* Resetamos as classes dinâmicas (active, prev, next) no Mobile para não conflitar */
       .carousel-item.active,
       .carousel-item.prev,
       .carousel-item.next,
@@ -1177,7 +1226,6 @@
         object-fit: cover;
       }
       
-      /* O Overlay no Mobile fica sempre visível, já que não temos "hover" real */
       .carousel-item .overlay {
         opacity: 1 !important;
         padding: 16px 14px 14px;
@@ -1520,88 +1568,88 @@
 <!-- ===== SCRIPT ===== -->
 <script>
   // ============================================================
-// 1. DADOS DAS IMAGENS (13 imagens com novas descrições)
-// ============================================================
-const instagramPosts = [
-  { 
-    id: 'post_01', 
-    image: 'assets/images/instagram/instagram-01.jpg', 
-    alt: 'Ensaio externo com luz dourada', 
-    caption: 'Esse é o resultado do seu próximo ensaio ✨' 
-  },
-  { 
-    id: 'post_02', 
-    image: 'assets/images/instagram/instagram-02.jpg', 
-    alt: 'Gestante - momentos de ternura', 
-    caption: 'Um momento para você eternizar 🌸' 
-  },
-  { 
-    id: 'post_03', 
-    image: 'assets/images/instagram/instagram-03.jpg', 
-    alt: 'Festa infantil - sorrisos eternizados', 
-    caption: 'Registro de um momento para sua vida toda 🎉' 
-  },
-  { 
-    id: 'post_04', 
-    image: 'assets/images/instagram/instagram-04.jpg', 
-    alt: 'Ensaio de casal - amor em detalhes', 
-    caption: 'Você é o próximo 💍' 
-  },
-  { 
-    id: 'post_05', 
-    image: 'assets/images/instagram/instagram-05.jpg', 
-    alt: 'Newborn - delicadeza e ternura', 
-    caption: 'Cada detalhe feito com amor 👶' 
-  },
-  { 
-    id: 'post_06', 
-    image: 'assets/images/instagram/instagram-06.jpg', 
-    alt: 'Ensaio externo - natureza e luz', 
-    caption: 'Sua história merece ser contada 🌿' 
-  },
-  { 
-    id: 'post_07', 
-    image: 'assets/images/instagram/instagram-07.jpg', 
-    alt: 'Gestante - silhueta e emoção', 
-    caption: 'Esse momento é só seu 🤰' 
-  },
-  { 
-    id: 'post_08', 
-    image: 'assets/images/instagram/instagram-08.jpg', 
-    alt: 'Festa - decoração elegante', 
-    caption: 'Memórias que duram para sempre 🎈' 
-  },
-  { 
-    id: 'post_09', 
-    image: 'assets/images/instagram/instagram-09.jpg', 
-    alt: 'Casal - ensaio romântico', 
-    caption: 'Você merece ser eternizado 💑' 
-  },
-  { 
-    id: 'post_10', 
-    image: 'assets/images/instagram/instagram-10.jpg', 
-    alt: 'Estúdio - bolo de aniversário', 
-    caption: 'Celebre seus momentos especiais 🎂' 
-  },
-  { 
-    id: 'post_11', 
-    image: 'assets/images/instagram/instagram-11.jpg', 
-    alt: 'Ensaio externo - luz da tarde', 
-    caption: 'A luz perfeita para sua história 🌅' 
-  },
-  { 
-    id: 'post_12', 
-    image: 'assets/images/instagram/instagram-12.jpg', 
-    alt: 'Detalhes - amor em cada foto', 
-    caption: 'Seu amor em cada clique 💕' 
-  },
-  { 
-    id: 'post_13', 
-    image: 'assets/images/instagram/instagram-13.jpg', 
-    alt: 'Família - momentos eternizados', 
-    caption: 'Sua família merece ser lembrada 👨‍👩‍👧‍👦' 
-  }
-];
+  // 1. DADOS DAS IMAGENS (13 imagens com novas descrições)
+  // ============================================================
+  const instagramPosts = [
+    { 
+      id: 'post_01', 
+      image: 'assets/images/instagram/instagram-01.jpg', 
+      alt: 'Ensaio externo com luz dourada', 
+      caption: 'Esse é o resultado do seu próximo ensaio ✨' 
+    },
+    { 
+      id: 'post_02', 
+      image: 'assets/images/instagram/instagram-02.jpg', 
+      alt: 'Gestante - momentos de ternura', 
+      caption: 'Um momento para você eternizar 🌸' 
+    },
+    { 
+      id: 'post_03', 
+      image: 'assets/images/instagram/instagram-03.jpg', 
+      alt: 'Festa infantil - sorrisos eternizados', 
+      caption: 'Registro de um momento para sua vida toda 🎉' 
+    },
+    { 
+      id: 'post_04', 
+      image: 'assets/images/instagram/instagram-04.jpg', 
+      alt: 'Ensaio de casal - amor em detalhes', 
+      caption: 'Você é o próximo 💍' 
+    },
+    { 
+      id: 'post_05', 
+      image: 'assets/images/instagram/instagram-05.jpg', 
+      alt: 'Newborn - delicadeza e ternura', 
+      caption: 'Cada detalhe feito com amor 👶' 
+    },
+    { 
+      id: 'post_06', 
+      image: 'assets/images/instagram/instagram-06.jpg', 
+      alt: 'Ensaio externo - natureza e luz', 
+      caption: 'Sua história merece ser contada 🌿' 
+    },
+    { 
+      id: 'post_07', 
+      image: 'assets/images/instagram/instagram-07.jpg', 
+      alt: 'Gestante - silhueta e emoção', 
+      caption: 'Esse momento é só seu 🤰' 
+    },
+    { 
+      id: 'post_08', 
+      image: 'assets/images/instagram/instagram-08.jpg', 
+      alt: 'Festa - decoração elegante', 
+      caption: 'Memórias que duram para sempre 🎈' 
+    },
+    { 
+      id: 'post_09', 
+      image: 'assets/images/instagram/instagram-09.jpg', 
+      alt: 'Casal - ensaio romântico', 
+      caption: 'Você merece ser eternizado 💑' 
+    },
+    { 
+      id: 'post_10', 
+      image: 'assets/images/instagram/instagram-10.jpg', 
+      alt: 'Estúdio - bolo de aniversário', 
+      caption: 'Celebre seus momentos especiais 🎂' 
+    },
+    { 
+      id: 'post_11', 
+      image: 'assets/images/instagram/instagram-11.jpg', 
+      alt: 'Ensaio externo - luz da tarde', 
+      caption: 'A luz perfeita para sua história 🌅' 
+    },
+    { 
+      id: 'post_12', 
+      image: 'assets/images/instagram/instagram-12.jpg', 
+      alt: 'Detalhes - amor em cada foto', 
+      caption: 'Seu amor em cada clique 💕' 
+    },
+    { 
+      id: 'post_13', 
+      image: 'assets/images/instagram/instagram-13.jpg', 
+      alt: 'Família - momentos eternizados', 
+      caption: 'Sua família merece ser lembrada 👨‍👩‍👧‍👦' 
+    }
+  ];
 
   // ============================================================
   // 2. CONFIGURAÇÕES
@@ -1749,7 +1797,7 @@ const instagramPosts = [
             dot.classList.toggle('active', i === currentIndex);
           });
         }
-      }, 50); // Timeout baixo para feedback rápido no scroll
+      }, 50);
     }
   });
 
