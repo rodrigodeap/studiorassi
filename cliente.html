@@ -24,9 +24,12 @@
 
     /* ===== NAVBAR ===== */
     .navbar {
-      padding: 20px 0;
+      padding: 16px 0;
       border-bottom: 1px solid rgba(212, 163, 179, 0.08);
       background: #2C0714;
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
     .navbar-content {
       display: flex;
@@ -36,13 +39,21 @@
       gap: 16px;
     }
     .logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.6rem;
-      font-weight: 700;
-      color: #f5edea;
+      display: inline-block;
+      line-height: 0;
       text-decoration: none;
     }
-    .logo span { color: #D4A3B3; }
+    .logo img {
+      display: block;
+      width: auto;
+      height: 50px;
+      max-width: 160px;
+      transition: all 0.3s ease;
+    }
+    .logo img:hover {
+      opacity: 0.85;
+      transform: scale(1.02);
+    }
     .nav-info {
       display: flex;
       align-items: center;
@@ -69,44 +80,48 @@
       color: #D4A3B3;
     }
 
-    /* ===== TIMER ===== */
-    .timer-section {
-      background: #1f0510;
-      border-radius: 28px;
-      padding: 24px 32px;
-      margin: 24px 0 32px;
+    /* ===== TIMER E CRÉDITOS - FLUTUANTES ===== */
+    .floating-status {
+      position: sticky;
+      top: 82px;
+      z-index: 99;
+      background: rgba(44, 7, 20, 0.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(212, 163, 179, 0.06);
+      padding: 12px 0;
+      margin-bottom: 24px;
+    }
+    .floating-status .container {
       display: flex;
       flex-wrap: wrap;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
-      border: 1px solid rgba(212, 163, 179, 0.06);
+      gap: 32px;
     }
-    .timer-box {
+    .status-item {
       display: flex;
       align-items: center;
-      gap: 16px;
-    }
-    .timer-box .timer-icon {
-      font-size: 2rem;
-      color: #D4A3B3;
-    }
-    .timer-box .time {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.2rem;
-      color: #D4A3B3;
-    }
-    .timer-box .label {
-      font-weight: 300;
-      font-size: 0.8rem;
+      gap: 12px;
+      font-size: 0.85rem;
       color: #d4c5c0;
     }
-    .credits-box {
-      background: #2C0714;
-      padding: 8px 24px;
-      border-radius: 40px;
-      border: 1px solid rgba(212, 163, 179, 0.1);
+    .status-item i {
+      color: #D4A3B3;
+      font-size: 1.1rem;
     }
-    .credits-box strong { color: #D4A3B3; font-size: 1.4rem; }
+    .status-item .value {
+      color: #D4A3B3;
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+    .status-item .timer {
+      color: #D4A3B3;
+      font-weight: 600;
+      font-size: 1.1rem;
+      font-variant-numeric: tabular-nums;
+      min-width: 80px;
+      display: inline-block;
+    }
 
     /* ===== GALERIA COM MARCA D'ÁGUA ===== */
     .gallery-header {
@@ -137,6 +152,12 @@
       user-select: none;
       pointer-events: none;
       transition: 0.3s;
+      overflow: hidden;
+      min-height: 220px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
     .watermark-item .icon {
       font-size: 2.8rem;
@@ -148,18 +169,48 @@
       color: #b09a94;
       margin-top: 8px;
     }
-    .watermark-item .watermark-text {
+    
+    /* ===== MARCA D'ÁGUA COM LOGO ===== */
+    .watermark-item .watermark-logo {
       position: absolute;
       top: 50%;
       left: 50%;
-      transform: translate(-50%, -50%) rotate(-25deg);
-      color: rgba(212, 163, 179, 0.15);
-      font-family: 'Brittany Signature', cursive;
-      font-size: 1.6rem;
-      letter-spacing: 2px;
+      transform: translate(-50%, -50%) rotate(-20deg);
+      opacity: 0.08;
       pointer-events: none;
-      white-space: nowrap;
+      user-select: none;
+      width: 100px;
+      height: auto;
+      filter: brightness(0) invert(1) drop-shadow(0 0 20px rgba(0,0,0,0.3));
     }
+    .watermark-item .watermark-text {
+      position: absolute;
+      bottom: 12px;
+      right: 12px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.5rem;
+      font-weight: 400;
+      color: rgba(255,255,255,0.10);
+      letter-spacing: 1px;
+      background: rgba(0,0,0,0.25);
+      padding: 3px 10px;
+      border-radius: 20px;
+      backdrop-filter: blur(4px);
+      pointer-events: none;
+      user-select: none;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .watermark-item .watermark-text img {
+      width: 12px;
+      height: 12px;
+      display: inline-block;
+      opacity: 0.5;
+      pointer-events: none;
+      user-select: none;
+    }
+    
     .watermark-item .badge-lock {
       position: absolute;
       top: 8px;
@@ -179,13 +230,15 @@
       cursor: pointer;
       pointer-events: auto;
       transition: 0.3s;
+      position: relative;
+      z-index: 2;
     }
     .watermark-item .btn-download:hover {
       background: #D4A3B3;
       color: #2C0714;
     }
 
-    /* ===== UPSELl ===== */
+    /* ===== UPSELL ===== */
     .upsell-section {
       background: #1f0510;
       border-radius: 28px;
@@ -239,8 +292,66 @@
 
     @media (max-width: 768px) {
       .container { padding: 0 20px; }
-      .timer-section { flex-direction: column; gap: 16px; align-items: stretch; }
-      .watermark-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+      .floating-status .container {
+        gap: 16px;
+        flex-direction: column;
+      }
+      .status-item {
+        font-size: 0.75rem;
+      }
+      .watermark-grid { 
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); 
+      }
+      .watermark-item .watermark-logo {
+        width: 70px;
+      }
+      .navbar-content {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+      }
+      .nav-info {
+        justify-content: space-between;
+      }
+      .logo img {
+        height: 40px;
+        max-width: 130px;
+      }
+      .floating-status {
+        top: 72px;
+      }
+    }
+    @media (max-width: 480px) {
+      .watermark-grid { 
+        grid-template-columns: repeat(2, 1fr); 
+        gap: 12px;
+      }
+      .watermark-item {
+        min-height: 180px;
+        padding: 16px 8px;
+      }
+      .watermark-item .icon {
+        font-size: 2rem;
+      }
+      .watermark-item .watermark-logo {
+        width: 50px;
+      }
+      .watermark-item .watermark-text {
+        font-size: 0.4rem;
+        padding: 2px 8px;
+        bottom: 8px;
+        right: 8px;
+      }
+      .watermark-item .watermark-text img {
+        width: 8px;
+        height: 8px;
+      }
+      .upsell-grid {
+        flex-direction: column;
+      }
+      .upsell-item {
+        justify-content: center;
+      }
     }
   </style>
 </head>
@@ -249,28 +360,33 @@
 <!-- ===== NAVBAR ===== -->
 <nav class="navbar">
   <div class="container navbar-content">
-    <a href="index.html" class="logo">Studio <span>Rassi</span></a>
+    <a href="../index.html" class="logo">
+      <img src="../assets/images/logo/logo-header.png" 
+           alt="Studio Rassi · Photo & Video" 
+           width="160" 
+           height="50"
+           loading="lazy">
+    </a>
     <div class="nav-info">
       <span class="user"><i class="fas fa-user-circle"></i> Olá, Cliente</span>
-      <button class="btn-logout" onclick="window.location.href='index.html'">
+      <button class="btn-logout" onclick="window.location.href='../index.html'">
         <i class="fas fa-sign-out-alt"></i> Sair
       </button>
     </div>
   </div>
 </nav>
 
-<!-- ===== TIMER E CRÉDITOS ===== -->
-<div class="container timer-section">
-  <div class="timer-box">
-    <div class="timer-icon"><i class="far fa-clock"></i></div>
-    <div>
-      <div class="time" id="timerDisplay">72:00:00</div>
-      <div class="label">tempo restante para baixar suas fotos</div>
+<!-- ===== TIMER E CRÉDITOS - FLUTUANTES ===== -->
+<div class="floating-status" id="statusBar">
+  <div class="container">
+    <div class="status-item">
+      <i class="fas fa-coins"></i>
+      <span>Créditos disponíveis: <strong class="value" id="creditsDisplay">30</strong></span>
     </div>
-  </div>
-  <div class="credits-box">
-    <i class="fas fa-coins" style="color:#D4A3B3; margin-right:8px;"></i>
-    Créditos disponíveis: <strong id="creditsDisplay">30</strong>
+    <div class="status-item">
+      <i class="far fa-clock"></i>
+      <span>Seu acesso expira em: <strong class="timer" id="timerDisplay">72:00:00</strong></span>
+    </div>
   </div>
 </div>
 
@@ -343,7 +459,10 @@
       div.innerHTML = `
         <div class="badge-lock"><i class="fas fa-lock"></i></div>
         <div class="icon">${index % 3 === 0 ? '📷' : index % 3 === 1 ? '📸' : '🎥'}</div>
-        <div class="watermark-text">© Studio Rassi</div>
+        <img src="../assets/images/logo/logo-header.png" alt="Studio Rassi" class="watermark-logo" loading="lazy">
+        <div class="watermark-text">
+          <img src="../assets/images/logo/logo-header.png" alt="Studio Rassi" loading="lazy"> Studio Rassi
+        </div>
         <div class="name">${name}</div>
         <button class="btn-download" onclick="downloadPhoto('${name}', ${index})">
           <i class="fas fa-download"></i> Baixar (${credits > 0 ? '1 crédito' : 'sem créditos'})
@@ -360,11 +479,10 @@
       alert('❌ Você não tem créditos suficientes. Adquira mais clicando nas opções acima.');
       return;
     }
-    // Simula o download com watermark
     credits--;
     updateCreditsDisplay();
     alert(`✅ Foto "${name}" baixada com sucesso!\nCréditos restantes: ${credits}`);
-    renderGallery(); // Re-render para atualizar botões
+    renderGallery();
   }
 
   // ===== COMPRAR CRÉDITOS (UPSELL) =====
