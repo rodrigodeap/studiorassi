@@ -915,4 +915,44 @@
       };
     } else {
       selecionarTodosBtn.innerHTML = `<i class="fas fa-check-double"></i> Selecionar todas`;
-      selecionarTodosBtn
+      selecionarTodosBtn.onclick = selecionarTodos;
+    }
+  }
+
+  // ============================================================
+  // 11. PROTEÇÃO CONTRA PRINT/DOWNLOAD
+  // ============================================================
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'PrintScreen' || (e.ctrlKey && e.key === 'p')) {
+      e.preventDefault();
+      alert('🔒 A proteção de imagens está ativa. Prints não são permitidos.');
+    }
+  });
+
+  document.addEventListener('contextmenu', (e) => {
+    if (e.target.closest('.gallery-card')) {
+      e.preventDefault();
+      alert('🔒 Clique direito bloqueado. As imagens são protegidas.');
+    }
+  });
+
+  // ============================================================
+  // 12. EVENT LISTENERS
+  // ============================================================
+  downloadBtn.addEventListener('click', downloadSelected);
+
+  // ============================================================
+  // 13. INICIALIZAR
+  // ============================================================
+  renderGallery();
+  updateCredits();
+  updateTimer();
+  setInterval(updateTimer, 1000);
+
+  console.log('📸 Área do cliente carregada!');
+  console.log(`📊 ${mediaItems.length} itens disponíveis (${credits} créditos)`);
+  console.log('💡 Clique nas imagens para selecionar e baixar.');
+</script>
+
+</body>
+</html>
