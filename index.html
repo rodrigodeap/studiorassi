@@ -313,7 +313,7 @@
       line-height: 1.8;
     }
 
-    /* ===== CARROSSEL CONTÍNUO (SEGUNDA DOBRA) ===== */
+    /* ===== CARROSSEL ===== */
     .instagram-section {
       padding: 80px 0 100px;
       background: #1f0510;
@@ -385,7 +385,7 @@
       color: #f5edea;
     }
 
-    /* ===== CARROSSEL CONTÍNUO ===== */
+    /* ===== CARROSSEL - EFEITO DE PROFUNDIDADE ===== */
     .carousel-wrapper {
       position: relative;
       max-width: 920px;
@@ -401,61 +401,88 @@
       transition: transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
       will-change: transform;
       gap: 16px;
+      padding: 8px 0;
     }
     
-    .carousel-slide {
-      min-width: calc(20% - 13px); /* 5 colunas com gap */
-      display: flex;
-      gap: 16px;
-    }
-    
-    /* ===== ITEM DO CARROSSEL (9:16) COM EFEITO NEON FLUTUANTE ===== */
+    /* ===== ITEM DO CARROSSEL (9:16) ===== */
     .carousel-item {
       position: relative;
-      flex: 0 0 calc(20% - 13px);
+      flex: 0 0 calc(20% - 13px); /* 5 colunas com gap */
       aspect-ratio: 9 / 16;
+      max-height: 380px;
       border-radius: 18px;
       overflow: hidden;
       background: #1a0510;
       transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
       cursor: pointer;
       
-      transform: translateY(0px);
+      transform: translateY(0px) scale(0.92);
       box-shadow: 
         0 0 20px rgba(212, 163, 179, 0.05),
         inset 0 0 30px rgba(212, 163, 179, 0.02);
       
       border: 1px solid rgba(212, 163, 179, 0.08);
+      opacity: 0.7;
+      filter: blur(1px);
+    }
+    
+    /* ===== EFEITO DE PROFUNDIDADE ===== */
+    .carousel-item.active {
+      transform: translateY(0px) scale(1);
+      opacity: 1;
+      filter: blur(0px);
+      border-color: rgba(212, 163, 179, 0.2);
+      box-shadow: 
+        0 0 40px rgba(212, 163, 179, 0.12),
+        0 8px 30px rgba(0, 0, 0, 0.4),
+        inset 0 0 30px rgba(212, 163, 179, 0.03);
+      z-index: 3;
+    }
+    
+    .carousel-item.prev {
+      transform: translateY(8px) scale(0.94);
+      opacity: 0.6;
+      filter: blur(0.5px);
+    }
+    
+    .carousel-item.next {
+      transform: translateY(8px) scale(0.94);
+      opacity: 0.6;
+      filter: blur(0.5px);
+    }
+    
+    .carousel-item.far {
+      transform: translateY(16px) scale(0.88);
+      opacity: 0.4;
+      filter: blur(1.5px);
+    }
+    
+    /* ===== FLUTUAÇÃO SUTIL ===== */
+    .carousel-item {
+      animation: floatItem 4s ease-in-out infinite;
     }
     
     .carousel-item:nth-child(1) { animation-delay: 0s; }
-    .carousel-item:nth-child(2) { animation-delay: 0.4s; }
-    .carousel-item:nth-child(3) { animation-delay: 0.8s; }
-    .carousel-item:nth-child(4) { animation-delay: 1.2s; }
-    .carousel-item:nth-child(5) { animation-delay: 1.6s; }
+    .carousel-item:nth-child(2) { animation-delay: 0.3s; }
+    .carousel-item:nth-child(3) { animation-delay: 0.6s; }
+    .carousel-item:nth-child(4) { animation-delay: 0.9s; }
+    .carousel-item:nth-child(5) { animation-delay: 1.2s; }
     
-    .carousel-item {
-      animation: floatGlow 4s ease-in-out infinite;
+    @keyframes floatItem {
+      0%, 100% { transform: translateY(0px) scale(1); }
+      50% { transform: translateY(-4px) scale(1.01); }
     }
     
-    @keyframes floatGlow {
-      0%, 100% {
-        transform: translateY(0px);
-        box-shadow: 
-          0 0 20px rgba(212, 163, 179, 0.05),
-          0 8px 30px rgba(0, 0, 0, 0.3),
-          inset 0 0 30px rgba(212, 163, 179, 0.02);
-      }
-      50% {
-        transform: translateY(-6px);
-        box-shadow: 
-          0 0 40px rgba(212, 163, 179, 0.12),
-          0 16px 50px rgba(212, 163, 179, 0.08),
-          0 8px 30px rgba(0, 0, 0, 0.4),
-          inset 0 0 40px rgba(212, 163, 179, 0.04);
-      }
+    .carousel-item.active {
+      animation: floatActive 4s ease-in-out infinite;
     }
     
+    @keyframes floatActive {
+      0%, 100% { transform: translateY(0px) scale(1); }
+      50% { transform: translateY(-6px) scale(1.02); }
+    }
+    
+    /* ===== BRILHO E BORDAS ===== */
     .carousel-item::before {
       content: '';
       position: absolute;
@@ -476,7 +503,7 @@
       transition: opacity 0.6s ease;
     }
     
-    .carousel-item:hover::before {
+    .carousel-item.active::before {
       opacity: 1;
     }
     
@@ -497,18 +524,20 @@
       pointer-events: none;
     }
     
-    .carousel-item:hover::after {
+    .carousel-item.active::after {
       opacity: 1;
     }
     
     .carousel-item:hover {
-      transform: translateY(-10px) scale(1.02);
-      border-color: rgba(212, 163, 179, 0.2);
+      transform: translateY(-8px) scale(1.03) !important;
+      border-color: rgba(212, 163, 179, 0.3);
       box-shadow: 
         0 0 60px rgba(212, 163, 179, 0.15),
         0 20px 60px rgba(0, 0, 0, 0.5),
         inset 0 0 60px rgba(212, 163, 179, 0.05);
-      z-index: 3;
+      z-index: 5;
+      opacity: 1 !important;
+      filter: blur(0px) !important;
     }
     
     .carousel-item img {
@@ -523,6 +552,7 @@
       transform: scale(1.06);
     }
     
+    /* ===== OVERLAY ===== */
     .carousel-item .overlay {
       position: absolute;
       bottom: 0;
@@ -537,7 +567,7 @@
       gap: 4px;
     }
     
-    .carousel-item:hover .overlay {
+    .carousel-item.active .overlay {
       opacity: 1;
     }
     
@@ -850,9 +880,7 @@
       
       .carousel-item {
         flex: 0 0 calc(25% - 12px);
-      }
-      .carousel-slide {
-        min-width: calc(25% - 12px);
+        max-height: 320px;
       }
     }
     
@@ -900,12 +928,9 @@
         font-size: 3.2rem;
       }
       
-      /* ===== MOBILE: 1 FOTO POR VEZ ===== */
       .carousel-item {
-        flex: 0 0 calc(50% - 8px);
-      }
-      .carousel-slide {
-        min-width: calc(50% - 8px);
+        flex: 0 0 calc(33.33% - 11px);
+        max-height: 280px;
       }
       
       .carousel-arrows button {
@@ -955,12 +980,9 @@
         height: 40px;
       }
       
-      /* ===== MOBILE PEQUENO: 1 FOTO POR VEZ ===== */
       .carousel-item {
-        flex: 0 0 100%;
-      }
-      .carousel-slide {
-        min-width: 100%;
+        flex: 0 0 calc(50% - 8px);
+        max-height: 240px;
       }
       
       .carousel-wrapper {
@@ -1066,7 +1088,7 @@
   </div>
 </header>
 
-<!-- ===== SEGUNDA DOBRA: CARROSSEL CONTÍNUO ===== -->
+<!-- ===== SEGUNDA DOBRA: CARROSSEL ===== -->
 <section class="instagram-section" id="instagram">
   <div class="container">
     <div class="instagram-header">
@@ -1210,7 +1232,7 @@
   </div>
 </footer>
 
-<!-- ===== SCRIPT COMPLETO ===== -->
+<!-- ===== SCRIPT ===== -->
 <script>
   // ============================================================
   // 1. DADOS DAS IMAGENS (13 imagens em JPG)
@@ -1234,29 +1256,29 @@
   // ============================================================
   // 2. CONFIGURAÇÕES
   // ============================================================
-  const ITEMS_PER_SLIDE = 5;
-  const TOTAL_SLIDES = Math.ceil(instagramPosts.length / ITEMS_PER_SLIDE);
   let currentIndex = 0;
   let autoSlideInterval = null;
-  const SLIDE_INTERVAL = 4000;
+  const SLIDE_INTERVAL = 3000;
+  const ITEMS_PER_SLIDE = 5;
 
   const track = document.getElementById('carouselTrack');
   const indicators = document.getElementById('carouselIndicators');
+  let totalItems = instagramPosts.length;
 
   // ============================================================
-  // 3. RENDERIZAR (UMA LINHA CONTÍNUA)
+  // 3. RENDERIZAR
   // ============================================================
   function renderCarousel() {
     track.innerHTML = '';
     indicators.innerHTML = '';
 
-    // Duplica os posts para criar efeito de loop infinito
-    const allPosts = [...instagramPosts, ...instagramPosts];
+    // Duplica para loop infinito
+    const allPosts = [...instagramPosts, ...instagramPosts, ...instagramPosts];
     
-    // Cria os items em uma única linha
     allPosts.forEach((post, index) => {
       const item = document.createElement('div');
       item.className = 'carousel-item';
+      item.dataset.index = index;
       item.innerHTML = `
         <img src="${post.image}" alt="${post.alt}" loading="${index < 13 ? 'lazy' : 'eager'}">
         <div class="overlay">
@@ -1267,8 +1289,8 @@
       track.appendChild(item);
     });
 
-    // Indicadores (baseados no número real de posts)
-    for (let s = 0; s < TOTAL_SLIDES; s++) {
+    // Indicadores
+    for (let s = 0; s < totalItems; s++) {
       const dot = document.createElement('div');
       dot.className = `dot ${s === 0 ? 'active' : ''}`;
       dot.dataset.index = s;
@@ -1276,38 +1298,69 @@
       indicators.appendChild(dot);
     }
 
-    // Ajusta a largura do track para mostrar todos os itens
-    const itemWidth = track.children[0]?.offsetWidth || 0;
-    const gap = 16;
-    const totalWidth = (itemWidth + gap) * allPosts.length;
-    track.style.width = `${totalWidth}px`;
+    // Ajusta para posição inicial (meio do array duplicado)
+    const startIndex = totalItems;
+    goToSlide(startIndex, false);
   }
 
   // ============================================================
-  // 4. NAVEGAÇÃO CONTÍNUA (DESLIZA 1 ITEM POR VEZ)
+  // 4. NAVEGAÇÃO COM EFEITO DE PROFUNDIDADE
   // ============================================================
-  function goToSlide(index) {
-    if (index < 0) index = TOTAL_SLIDES - 1;
-    if (index >= TOTAL_SLIDES) index = 0;
+  function goToSlide(index, animate = true) {
+    const items = track.children;
+    const total = items.length;
+    const half = Math.floor(total / 3);
     
-    currentIndex = index;
-    const itemWidth = track.children[0]?.offsetWidth || 0;
+    // Garante que index esteja dentro do range
+    if (index < 0) index = totalItems - 1;
+    if (index >= totalItems) index = 0;
+    
+    // Ajusta para a posição correta no array duplicado
+    const targetIndex = index + half;
+    
+    // Atualiza o transform
+    const itemWidth = items[0]?.offsetWidth || 0;
     const gap = 16;
-    const offset = index * (itemWidth + gap);
+    const offset = targetIndex * (itemWidth + gap) - (itemWidth + gap) * 2;
     
+    track.style.transition = animate ? 'transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94)' : 'none';
     track.style.transform = `translateX(-${offset}px)`;
     
+    // Atualiza classes de profundidade
+    const halfVisible = Math.floor(ITEMS_PER_SLIDE / 2);
+    const visibleCount = ITEMS_PER_SLIDE;
+    
+    Array.from(items).forEach((item, i) => {
+      const position = i - targetIndex;
+      item.classList.remove('active', 'prev', 'next', 'far');
+      
+      if (Math.abs(position) <= 2) {
+        if (position === 0) {
+          item.classList.add('active');
+        } else if (position === -1 || position === 1) {
+          item.classList.add(position === -1 ? 'prev' : 'next');
+        } else if (position === -2 || position === 2) {
+          item.classList.add('far');
+        }
+      } else {
+        item.classList.add('far');
+      }
+    });
+    
+    currentIndex = index;
+    
+    // Atualiza indicadores
     document.querySelectorAll('.dot').forEach((dot, i) => {
       dot.classList.toggle('active', i === index);
     });
   }
 
   function nextSlide() { 
-    goToSlide(currentIndex + 1); 
+    goToSlide((currentIndex + 1) % totalItems); 
   }
   
   function prevSlide() { 
-    goToSlide(currentIndex - 1); 
+    goToSlide((currentIndex - 1 + totalItems) % totalItems); 
   }
 
   // ============================================================
@@ -1373,11 +1426,9 @@
   // ============================================================
   renderCarousel();
   
-  // Ajusta o slide inicial após o render
   setTimeout(() => {
-    goToSlide(0);
     startAutoSlide();
-  }, 300);
+  }, 500);
 
   // Recalcula ao redimensionar
   let resizeTimeout;
@@ -1421,9 +1472,9 @@
     });
   });
 
-  console.log('📸 Carrossel contínuo carregado!');
+  console.log('📸 Carrossel com efeito de profundidade carregado!');
   console.log(`📊 ${instagramPosts.length} imagens em rotação contínua`);
-  console.log('✨ Efeito neon flutuante ativado!');
+  console.log('✨ Efeito de profundidade ativado!');
 </script>
 
 </body>
