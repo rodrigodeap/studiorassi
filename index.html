@@ -928,7 +928,6 @@
         font-size: 3.2rem;
       }
       
-      /* ===== MOBILE: 1 COLUNA COM EFEITO DE PROFUNDIDADE ===== */
       .carousel-item {
         flex: 0 0 calc(50% - 8px);
         max-height: 320px;
@@ -959,6 +958,7 @@
       }
     }
     
+    /* ===== CORREÇÃO MOBILE: 1 COLUNA CENTRALIZADA E COLORIDA ===== */
     @media (max-width: 480px) {
       .package-grid { grid-template-columns: 1fr; }
       
@@ -981,30 +981,73 @@
         height: 40px;
       }
       
-      /* ===== MOBILE PEQUENO: 1 COLUNA CENTRALIZADA ===== */
-      .carousel-item {
-        flex: 0 0 100%;
-        max-height: 420px;
+      /* ===== CARROSSEL MOBILE: 1 COLUNA CENTRALIZADA ===== */
+      .carousel-wrapper {
+        padding: 8px 0;
+        max-width: 320px;
         margin: 0 auto;
       }
       
       .carousel-track {
         gap: 20px;
         padding: 8px 0;
+        justify-content: center;
       }
       
-      .carousel-wrapper {
-        padding: 8px 0;
-        max-width: 340px;
+      .carousel-item {
+        flex: 0 0 280px;
+        max-height: 420px;
         margin: 0 auto;
+        transform: translateY(0px) scale(0.92);
+        opacity: 0.5;
+        filter: blur(1px) saturate(0.2);
       }
       
-      .carousel-arrows button {
-        width: 32px;
-        height: 32px;
-        font-size: 0.8rem;
+      /* Item ATIVO - colorido e centralizado */
+      .carousel-item.active {
+        flex: 0 0 280px;
+        transform: translateY(0px) scale(1);
+        opacity: 1;
+        filter: blur(0px) saturate(1);
+        border-color: rgba(212, 163, 179, 0.3);
+        box-shadow: 
+          0 0 50px rgba(212, 163, 179, 0.15),
+          0 8px 30px rgba(0, 0, 0, 0.5),
+          inset 0 0 40px rgba(212, 163, 179, 0.05);
+        z-index: 3;
       }
       
+      /* Itens laterais - desbotados */
+      .carousel-item.prev,
+      .carousel-item.next {
+        flex: 0 0 200px;
+        transform: translateY(8px) scale(0.85);
+        opacity: 0.35;
+        filter: blur(1.5px) saturate(0.1);
+      }
+      
+      .carousel-item.far {
+        flex: 0 0 160px;
+        transform: translateY(14px) scale(0.75);
+        opacity: 0.15;
+        filter: blur(2.5px) saturate(0.05);
+      }
+      
+      /* Remove flutuação em mobile para evitar conflitos */
+      .carousel-item {
+        animation: none !important;
+      }
+      
+      .carousel-item.active {
+        animation: floatMobile 4s ease-in-out infinite !important;
+      }
+      
+      @keyframes floatMobile {
+        0%, 100% { transform: translateY(0px) scale(1); }
+        50% { transform: translateY(-4px) scale(1.02); }
+      }
+      
+      /* Ajuste do overlay mobile */
       .carousel-item .overlay {
         padding: 16px 14px 14px;
       }
@@ -1014,34 +1057,19 @@
         -webkit-line-clamp: 3;
       }
       
+      /* Ajuste das setas */
+      .carousel-arrows button {
+        width: 32px;
+        height: 32px;
+        font-size: 0.8rem;
+      }
+      
       .instagram-header h2 {
         font-size: 1.6rem;
       }
       
       .instagram-header h2 .script {
         font-size: 2.6rem;
-      }
-      
-      /* Ajuste de escala para mobile */
-      .carousel-item {
-        transform: translateY(0px) scale(0.95);
-      }
-      
-      .carousel-item.active {
-        transform: translateY(0px) scale(1);
-      }
-      
-      .carousel-item.prev,
-      .carousel-item.next {
-        transform: translateY(6px) scale(0.92);
-        opacity: 0.5;
-        filter: blur(1px) saturate(0.2);
-      }
-      
-      .carousel-item.far {
-        transform: translateY(12px) scale(0.85);
-        opacity: 0.2;
-        filter: blur(2px) saturate(0.1);
       }
     }
 
@@ -1291,9 +1319,9 @@
   // ============================================================
   let currentIndex = 0;
   let autoSlideInterval = null;
-  const SLIDE_INTERVAL = 3000; // 3 segundos entre cada transição
+  const SLIDE_INTERVAL = 3000;
   const ITEMS_PER_SLIDE = 5;
-  const TRANSITION_SPEED = 0.5; // 0.5 segundos
+  const TRANSITION_SPEED = 0.5;
 
   const track = document.getElementById('carouselTrack');
   const indicators = document.getElementById('carouselIndicators');
@@ -1306,7 +1334,6 @@
     track.innerHTML = '';
     indicators.innerHTML = '';
 
-    // Duplica para loop infinito (3x para garantir)
     const allPosts = [...instagramPosts, ...instagramPosts, ...instagramPosts];
     
     allPosts.forEach((post, index) => {
@@ -1323,7 +1350,6 @@
       track.appendChild(item);
     });
 
-    // Indicadores
     for (let s = 0; s < totalItems; s++) {
       const dot = document.createElement('div');
       dot.className = `dot ${s === 0 ? 'active' : ''}`;
@@ -1332,10 +1358,8 @@
       indicators.appendChild(dot);
     }
 
-    // Ajusta a transição para 0.5s
     track.style.transition = `transform ${TRANSITION_SPEED}s cubic-bezier(0.25, 0.46, 0.45, 0.94)`;
 
-    // Ajusta para posição inicial (meio do array duplicado)
     const startIndex = totalItems;
     goToSlide(startIndex, false);
   }
@@ -1348,14 +1372,11 @@
     const total = items.length;
     const half = Math.floor(total / 3);
     
-    // Garante que index esteja dentro do range
     if (index < 0) index = totalItems - 1;
     if (index >= totalItems) index = 0;
     
-    // Ajusta para a posição correta no array duplicado
     const targetIndex = index + half;
     
-    // Atualiza o transform
     const itemWidth = items[0]?.offsetWidth || 0;
     const gap = 16;
     const offset = targetIndex * (itemWidth + gap) - (itemWidth + gap) * 2;
@@ -1368,14 +1389,10 @@
     
     track.style.transform = `translateX(-${offset}px)`;
     
-    // Força reflow para garantir que a transição funcione
     if (!animate) {
       track.offsetHeight;
       track.style.transition = `transform ${TRANSITION_SPEED}s cubic-bezier(0.25, 0.46, 0.45, 0.94)`;
     }
-    
-    // Atualiza classes de profundidade
-    const halfVisible = Math.floor(ITEMS_PER_SLIDE / 2);
     
     Array.from(items).forEach((item, i) => {
       const position = i - targetIndex;
@@ -1396,7 +1413,6 @@
     
     currentIndex = index;
     
-    // Atualiza indicadores
     document.querySelectorAll('.dot').forEach((dot, i) => {
       dot.classList.toggle('active', i === index);
     });
@@ -1411,7 +1427,7 @@
   }
 
   // ============================================================
-  // 5. AUTOPLAY (3 segundos entre cada transição)
+  // 5. AUTOPLAY
   // ============================================================
   function startAutoSlide() {
     if (autoSlideInterval) clearInterval(autoSlideInterval);
@@ -1477,7 +1493,6 @@
     startAutoSlide();
   }, 500);
 
-  // Recalcula ao redimensionar
   let resizeTimeout;
   window.addEventListener('resize', () => {
     clearTimeout(resizeTimeout);
@@ -1509,7 +1524,6 @@
     alert(`🛒 Simulação de carrinho:\nFotos: ${qty} (R$ ${qty*18})\nOrder bumps: ${bumps.length} itens\nTotal: R$ ${total}\n\n(Em produção: integração com pagamento)`);
   });
 
-  // Forçar reprodução dos vídeos
   document.addEventListener('DOMContentLoaded', function() {
     const videos = document.querySelectorAll('.hero-video');
     videos.forEach(video => {
