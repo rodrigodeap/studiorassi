@@ -708,7 +708,7 @@
       border-color: #D4A3B3;
     }
 
-    /* ===== BIOGRAFIA - VERSÃO MELHORADA ===== */
+    /* ===== BIOGRAFIA - VERSÃO COM IMAGEM RETANGULAR ===== */
     .biografia-section {
       padding: 80px 0;
       background: linear-gradient(180deg, #1f0510 0%, #2C0714 100%);
@@ -740,36 +740,54 @@
       z-index: 2;
     }
     
+    /* ===== LADO ESQUERDO: IMAGEM RETANGULAR ===== */
     .biografia-image-side {
       flex: 0 0 35%;
-      min-height: 400px;
+      min-height: 480px;
       background: #1a0510;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 40px;
+      padding: 0;
       position: relative;
       overflow: hidden;
     }
     
     .biografia-image-side img {
       width: 100%;
-      max-width: 320px;
-      height: auto;
-      aspect-ratio: 1/1;
-      border-radius: 24px;
+      height: 100%;
       object-fit: cover;
-      border: 3px solid rgba(212, 163, 179, 0.1);
-      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+      border: none;
+      border-radius: 0;
+      box-shadow: none;
       transition: all 0.5s ease;
+      display: block;
     }
     
     .biografia-image-side img:hover {
       transform: scale(1.02);
-      border-color: rgba(212, 163, 179, 0.3);
-      box-shadow: 0 20px 60px rgba(212, 163, 179, 0.1);
     }
     
+    .biografia-image-side .image-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 30px 24px 20px;
+      background: linear-gradient(transparent, rgba(44, 7, 20, 0.7));
+      pointer-events: none;
+    }
+    
+    .biografia-image-side .image-overlay .badge {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.65rem;
+      color: #D4A3B3;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      opacity: 0.8;
+    }
+    
+    /* ===== LADO DIREITO: TEXTO ===== */
     .biografia-text-side {
       flex: 1;
       padding: 48px 48px 48px 40px;
@@ -1048,8 +1066,7 @@
       }
       .biografia-image-side {
         flex: 0 0 30%;
-        min-height: 300px;
-        padding: 30px;
+        min-height: 380px;
       }
       .biografia-text-side {
         padding: 32px 32px 32px 28px;
@@ -1098,13 +1115,16 @@
       
       .biografia-image-side {
         flex: 0 0 auto;
-        min-height: 200px;
-        padding: 30px;
+        min-height: 220px;
+        padding: 0;
         width: 100%;
+        aspect-ratio: 1/1;
       }
       
       .biografia-image-side img {
-        max-width: 180px;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
       }
       
       .biografia-text-side {
@@ -1172,8 +1192,8 @@
         height: 40px;
       }
       
-      .biografia-image-side img {
-        max-width: 140px;
+      .biografia-image-side {
+        min-height: 180px;
       }
       
       .biografia-text-side h2 {
@@ -1453,15 +1473,18 @@
   </div>
 </section>
 
-<!-- ===== BIOGRAFIA - ANA PAULA RASSI (MELHORADA) ===== -->
+<!-- ===== BIOGRAFIA - IMAGEM RETANGULAR ===== -->
 <section class="biografia-section" id="biografia">
   <div class="container">
     <div class="biografia-wrapper">
-      <!-- Lado esquerdo: Foto -->
+      <!-- Lado esquerdo: Imagem Retangular -->
       <div class="biografia-image-side">
         <img src="assets/images/ana-paula-rassi.jpg" 
              alt="Ana Paula Rassi - Fotógrafa Studio Rassi" 
              loading="lazy">
+        <div class="image-overlay">
+          <span class="badge">📸 Fundadora · Studio Rassi</span>
+        </div>
       </div>
       
       <!-- Lado direito: Texto -->
@@ -1919,7 +1942,7 @@
   console.log('📸 Carrossel carregado!');
   console.log(`📊 ${instagramPosts.length} imagens em rotação`);
   console.log('🍔 Menu hambúrguer ativado no mobile');
-  console.log('📖 Biografia da Ana Paula Rassi - Versão melhorada!');
+  console.log('📖 Biografia com imagem retangular!');
 </script>
 
 </body>
