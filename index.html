@@ -5,19 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Studio Rassi · Photo & Video</title>
   
-  <!-- Favicon -->
-  <link rel="icon" type="image/x-icon" href="assets/images/favicon/favicon.ico">
-  <link rel="apple-touch-icon" href="assets/images/favicon/apple-touch-icon.png">
-  
-  <!-- OG Image -->
-  <meta property="og:title" content="Studio Rassi · Photo & Video">
-  <meta property="og:description" content="Memórias que começam antes do primeiro abraço">
-  <meta property="og:image" content="https://seudominio.com/assets/images/og-image.png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:url" content="https://seudominio.com">
-  <meta property="og:type" content="website">
-  
   <!-- Fontes -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,9 +14,7 @@
   <style>
     /* ===== RESET ===== */
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
     body {
       background-color: #2C0714;
       color: #f5edea;
@@ -212,9 +197,7 @@
       flex-direction: column;
       gap: 24px;
     }
-    .mobile-menu.open {
-      right: 0;
-    }
+    .mobile-menu.open { right: 0; }
     .mobile-menu a {
       font-family: 'Montserrat', sans-serif;
       font-size: 1.2rem;
@@ -260,9 +243,7 @@
       background: rgba(0,0,0,0.6);
       z-index: 98;
     }
-    .menu-overlay.active {
-      display: block;
-    }
+    .menu-overlay.active { display: block; }
 
     /* ===== HERO COM VÍDEO ===== */
     .hero {
@@ -273,7 +254,6 @@
       overflow: hidden;
       background: #1f0510;
     }
-    
     .hero-video {
       position: absolute;
       top: 0;
@@ -283,7 +263,6 @@
       object-fit: cover;
       z-index: 0;
     }
-    
     .hero-overlay {
       position: absolute;
       top: 0;
@@ -297,7 +276,6 @@
       );
       z-index: 1;
     }
-    
     .hero-content {
       position: relative;
       z-index: 2;
@@ -309,11 +287,9 @@
       justify-content: space-between;
       gap: 40px;
     }
-    
     .hero-text {
       flex: 1 1 400px;
     }
-    
     .hero-text h1 {
       font-family: 'Montserrat', sans-serif;
       font-weight: 700;
@@ -324,7 +300,6 @@
       letter-spacing: -0.5px;
       text-transform: uppercase;
     }
-    
     .hero-text h1 .script {
       font-family: 'Great Vibes', cursive;
       font-weight: 400;
@@ -337,13 +312,11 @@
       line-height: 1.1;
       margin-bottom: -0.1em;
     }
-    
     .hero-text h1 .highlight {
       color: #D4A3B3;
       font-weight: 700;
       letter-spacing: -0.5px;
     }
-    
     .hero-text p {
       font-family: 'Inter', sans-serif;
       font-size: 1.2rem;
@@ -354,13 +327,11 @@
       margin-bottom: 24px;
       line-height: 1.8;
     }
-    
     .hero-buttons {
       display: flex;
       flex-wrap: wrap;
       gap: 14px;
     }
-    
     .hero-badge {
       display: inline-block;
       background: rgba(212, 163, 179, 0.15);
@@ -390,10 +361,7 @@
       cursor: pointer;
       text-shadow: 0 0 30px rgba(212, 163, 179, 0.2);
     }
-    .scroll-down:hover {
-      color: #f5edea;
-    }
-    
+    .scroll-down:hover { color: #f5edea; }
     @keyframes bounceDown {
       0%, 100% { transform: translateX(-50%) translateY(0); }
       50% { transform: translateX(-50%) translateY(12px); }
@@ -405,7 +373,6 @@
       border-bottom: 1px solid rgba(212, 163, 179, 0.06);
       background: #2C0714;
     }
-    
     .section-title {
       font-family: 'Montserrat', sans-serif;
       font-weight: 700;
@@ -415,7 +382,6 @@
       letter-spacing: -0.5px;
       text-transform: uppercase;
     }
-    
     .section-title .script {
       font-family: 'Great Vibes', cursive;
       font-weight: 400;
@@ -428,7 +394,6 @@
       margin-bottom: -0.05em;
       text-shadow: 0 2px 20px rgba(212, 163, 179, 0.15);
     }
-    
     .section-sub {
       font-family: 'Inter', sans-serif;
       font-size: 1.1rem;
@@ -446,7 +411,6 @@
       position: relative;
       overflow: hidden;
     }
-    
     .instagram-section::before {
       content: '';
       position: absolute;
@@ -458,19 +422,16 @@
       animation: rotateGlow 60s linear infinite;
       pointer-events: none;
     }
-    
     @keyframes rotateGlow {
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
     }
-    
     .instagram-header {
       text-align: center;
       margin-bottom: 48px;
       position: relative;
       z-index: 2;
     }
-    
     .instagram-header h2 {
       font-family: 'Montserrat', sans-serif;
       font-weight: 700;
@@ -479,7 +440,6 @@
       text-transform: uppercase;
       color: #f5edea;
     }
-    
     .instagram-header h2 .script {
       font-family: 'Great Vibes', cursive;
       font-weight: 400;
@@ -490,7 +450,6 @@
       line-height: 1;
       margin-bottom: -0.05em;
     }
-    
     .instagram-header .subtitle {
       font-family: 'Inter', sans-serif;
       font-size: 1rem;
@@ -498,14 +457,12 @@
       color: #d4c5c0;
       margin-top: 8px;
     }
-    
     .instagram-header .subtitle a {
       color: #D4A3B3;
       text-decoration: none;
       font-weight: 500;
       transition: 0.3s;
     }
-    
     .instagram-header .subtitle a:hover {
       color: #f5edea;
     }
@@ -520,7 +477,6 @@
       padding: 12px 0;
       z-index: 2;
     }
-    
     .carousel-track {
       display: flex;
       transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -528,7 +484,6 @@
       gap: 16px;
       padding: 8px 0;
     }
-    
     .carousel-item {
       position: relative;
       flex: 0 0 calc(20% - 13px);
@@ -545,7 +500,6 @@
       opacity: 0.7;
       filter: blur(1px) saturate(0.5);
     }
-    
     .carousel-item.active {
       transform: translateY(0px) scale(1);
       opacity: 1;
@@ -554,19 +508,16 @@
       box-shadow: 0 0 40px rgba(212, 163, 179, 0.12), 0 8px 30px rgba(0,0,0,0.4);
       z-index: 3;
     }
-    
     .carousel-item.prev, .carousel-item.next {
       transform: translateY(8px) scale(0.94);
       opacity: 0.6;
       filter: blur(0.5px) saturate(0.3);
     }
-    
     .carousel-item.far {
       transform: translateY(16px) scale(0.88);
       opacity: 0.3;
       filter: blur(1.5px) saturate(0.1);
     }
-    
     .carousel-item img {
       width: 100%;
       height: 100%;
@@ -574,11 +525,9 @@
       display: block;
       transition: transform 0.5s ease;
     }
-    
     .carousel-item:hover img {
       transform: scale(1.06);
     }
-    
     .carousel-item .overlay {
       position: absolute;
       bottom: 0;
@@ -589,11 +538,9 @@
       opacity: 0;
       transition: opacity 0.5s ease;
     }
-    
     .carousel-item.active .overlay {
       opacity: 1;
     }
-    
     .carousel-item .overlay .instagram-icon {
       color: #D4A3B3;
       font-size: 0.65rem;
@@ -601,7 +548,6 @@
       align-items: center;
       gap: 6px;
     }
-    
     .carousel-item .overlay .caption {
       font-family: 'Inter', sans-serif;
       font-size: 0.65rem;
@@ -625,7 +571,6 @@
       position: relative;
       z-index: 2;
     }
-    
     .carousel-indicators .dot {
       width: 10px;
       height: 10px;
@@ -635,7 +580,6 @@
       cursor: pointer;
       transition: all 0.5s ease;
     }
-    
     .carousel-indicators .dot.active {
       background: #D4A3B3;
       border-color: #D4A3B3;
@@ -655,7 +599,6 @@
       pointer-events: none;
       z-index: 10;
     }
-    
     .carousel-arrows button {
       pointer-events: auto;
       background: rgba(44, 7, 20, 0.6);
@@ -673,7 +616,6 @@
       font-size: 1.2rem;
       box-shadow: 0 4px 20px rgba(0,0,0,0.3);
     }
-    
     .carousel-arrows button:hover {
       background: #D4A3B3;
       color: #2C0714;
@@ -701,7 +643,6 @@
       transition: all 0.4s ease;
       box-shadow: 0 4px 20px rgba(0,0,0,0.2);
     }
-    
     .instagram-badge:hover {
       background: #D4A3B3;
       color: #2C0714;
@@ -715,7 +656,6 @@
       border-bottom: 1px solid rgba(212, 163, 179, 0.06);
       position: relative;
     }
-    
     .biografia-section::before {
       content: '';
       position: absolute;
@@ -726,7 +666,6 @@
       background: radial-gradient(ellipse at 30% 50%, rgba(212, 163, 179, 0.04) 0%, transparent 70%);
       pointer-events: none;
     }
-    
     .biografia-wrapper {
       display: flex;
       flex-wrap: wrap;
@@ -739,7 +678,6 @@
       position: relative;
       z-index: 2;
     }
-    
     .biografia-image-side {
       flex: 0 0 35%;
       min-height: 480px;
@@ -751,7 +689,6 @@
       position: relative;
       overflow: hidden;
     }
-    
     .biografia-image-side img {
       width: 100%;
       height: 100%;
@@ -762,11 +699,9 @@
       transition: all 0.5s ease;
       display: block;
     }
-    
     .biografia-image-side img:hover {
       transform: scale(1.02);
     }
-    
     .biografia-image-side .image-overlay {
       position: absolute;
       bottom: 0;
@@ -776,7 +711,6 @@
       background: linear-gradient(transparent, rgba(44, 7, 20, 0.7));
       pointer-events: none;
     }
-    
     .biografia-image-side .image-overlay .badge {
       font-family: 'Inter', sans-serif;
       font-size: 0.65rem;
@@ -785,7 +719,6 @@
       text-transform: uppercase;
       opacity: 0.8;
     }
-    
     .biografia-text-side {
       flex: 1;
       padding: 48px 48px 48px 40px;
@@ -793,7 +726,6 @@
       flex-direction: column;
       justify-content: center;
     }
-    
     .biografia-text-side h2 {
       font-family: 'Great Vibes', cursive;
       font-weight: 400;
@@ -802,7 +734,6 @@
       line-height: 1;
       margin-bottom: 2px;
     }
-    
     .biografia-text-side .subtitle {
       font-family: 'Montserrat', sans-serif;
       font-weight: 300;
@@ -812,7 +743,6 @@
       text-transform: uppercase;
       margin-bottom: 20px;
     }
-    
     .biografia-text-side .bio-text {
       font-family: 'Inter', sans-serif;
       font-size: 0.95rem;
@@ -823,7 +753,6 @@
       overflow-y: auto;
       padding-right: 8px;
     }
-    
     .biografia-text-side .bio-text::-webkit-scrollbar {
       width: 4px;
     }
@@ -834,40 +763,33 @@
       background: #D4A3B3;
       border-radius: 10px;
     }
-    
     .biografia-text-side .bio-text p {
       margin-bottom: 14px;
     }
-    
     .biografia-text-side .bio-text p:last-child {
       margin-bottom: 0;
     }
-    
     .biografia-text-side .bio-text .highlight {
       color: #D4A3B3;
       font-weight: 400;
     }
-    
     .biografia-text-side .bio-text .quote {
       font-style: italic;
       color: #D4A3B3;
       padding-left: 16px;
       border-left: 2px solid rgba(212, 163, 179, 0.2);
     }
-    
     .biografia-text-side .assinatura-bottom {
       margin-top: 16px;
       padding-top: 16px;
       border-top: 1px solid rgba(212, 163, 179, 0.06);
     }
-    
     .biografia-text-side .assinatura-bottom .sign {
       font-family: 'Great Vibes', cursive;
       font-size: 2rem;
       color: #D4A3B3;
       opacity: 0.8;
     }
-    
     .biografia-text-side .assinatura-bottom .since {
       font-family: 'Inter', sans-serif;
       font-size: 0.7rem;
@@ -1043,7 +965,9 @@
       letter-spacing: 0.5px;
     }
 
-    /* ===== RESPONSIVO ===== */
+    /* ============================================================
+       RESPONSIVO - CORREÇÃO DO CARROSSEL MOBILE
+    ============================================================ */
     @media (max-width: 1024px) {
       .hero-text h1 { font-size: 3.2rem; }
       .hero-text h1 .script { font-size: 5rem; }
@@ -1145,45 +1069,199 @@
         text-align: center;
       }
       
+      /* ==========================================================
+         CORREÇÃO DO CARROSSEL MOBILE COM PEEK EFFECT
+      ========================================================== */
+      .carousel-wrapper {
+        padding: 8px 0;
+        max-width: 100%;
+        margin: 0 auto;
+        overflow: hidden;
+        border-radius: 0;
+      }
+      
+      .carousel-track {
+        gap: 0;
+        padding: 8px 0;
+        display: flex;
+        align-items: center;
+        transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        will-change: transform;
+        /* Removemos o padding extra que causava deslocamento */
+      }
+      
+      /* Reset dos estilos desktop para mobile */
       .carousel-item {
-        flex: 0 0 calc(50% - 8px);
-        max-height: 320px;
+        flex: 0 0 0 !important;
+        max-height: 420px;
+        margin: 0;
+        opacity: 0 !important;
+        pointer-events: none;
+        transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        width: 0;
+        min-width: 0;
+        overflow: hidden;
+        padding: 0;
+        border: none;
+        box-shadow: none;
+        transform: none !important;
+        filter: none !important;
+        border-radius: 0;
+        aspect-ratio: auto;
+      }
+      
+      /* ===== ITEM ATIVO CENTRALIZADO ===== */
+      .carousel-item.active {
+        flex: 0 0 75% !important;
+        width: 75% !important;
+        min-width: 75% !important;
+        max-height: 420px;
+        margin: 0 0 0 12.5% !important; /* Centraliza com peek nas laterais */
+        opacity: 1 !important;
+        pointer-events: auto;
+        overflow: visible;
+        padding: 0;
+        border-radius: 18px;
+        border: 2px solid rgba(212, 163, 179, 0.2);
+        box-shadow: 0 0 50px rgba(212, 163, 179, 0.15), 0 8px 30px rgba(0,0,0,0.5);
+        transform: none !important;
+        filter: none !important;
+        z-index: 3;
+        aspect-ratio: 9 / 16;
+        transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+      
+      /* ===== PEEK EFFECT - ITENS LATERAIS ===== */
+      /* Item anterior - aparece na lateral esquerda */
+      .carousel-item.prev {
+        flex: 0 0 15% !important;
+        width: 15% !important;
+        min-width: 15% !important;
+        max-height: 380px;
+        margin: 0 0 0 0% !important;
+        opacity: 0.35 !important;
+        pointer-events: none;
+        overflow: hidden;
+        padding: 0;
+        border-radius: 14px 0 0 14px;
+        border: 1px solid rgba(212, 163, 179, 0.05);
+        box-shadow: none;
+        transform: none !important;
+        filter: blur(0.5px) saturate(0.2) !important;
+        z-index: 1;
+        aspect-ratio: 9 / 16;
+        transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        /* Remove o gap para ficar colado ao ativo */
+        margin-right: -2px !important;
+      }
+      
+      /* Item próximo - aparece na lateral direita */
+      .carousel-item.next {
+        flex: 0 0 15% !important;
+        width: 15% !important;
+        min-width: 15% !important;
+        max-height: 380px;
+        margin: 0 0% 0 0 !important;
+        opacity: 0.35 !important;
+        pointer-events: none;
+        overflow: hidden;
+        padding: 0;
+        border-radius: 0 14px 14px 0;
+        border: 1px solid rgba(212, 163, 179, 0.05);
+        box-shadow: none;
+        transform: none !important;
+        filter: blur(0.5px) saturate(0.2) !important;
+        z-index: 1;
+        aspect-ratio: 9 / 16;
+        transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        /* Remove o gap para ficar colado ao ativo */
+        margin-left: -2px !important;
+      }
+      
+      /* Itens distantes - totalmente ocultos */
+      .carousel-item.far,
+      .carousel-item.prev.far,
+      .carousel-item.next.far {
+        flex: 0 0 0 !important;
+        width: 0 !important;
+        min-width: 0 !important;
+        opacity: 0 !important;
+        pointer-events: none;
+        margin: 0;
+        padding: 0;
+        border: none;
+        overflow: hidden;
+        filter: blur(4px) !important;
+      }
+      
+      /* ===== OVERLAY MOBILE ===== */
+      .carousel-item .overlay {
+        padding: 16px 14px 14px;
+      }
+      
+      .carousel-item .overlay .caption {
+        font-size: 0.6rem;
+        -webkit-line-clamp: 3;
+      }
+      
+      .carousel-item.active .overlay {
+        opacity: 1;
+      }
+      
+      .carousel-item.prev .overlay,
+      .carousel-item.next .overlay {
+        opacity: 0 !important;
+      }
+      
+      /* ===== SETAS ===== */
+      .carousel-arrows button {
+        width: 32px;
+        height: 32px;
+        font-size: 0.8rem;
+        background: rgba(44, 7, 20, 0.7);
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(212, 163, 179, 0.1);
+      }
+      
+      /* ===== INDICADORES ===== */
+      .carousel-indicators {
+        margin-top: 24px;
+        gap: 10px;
+      }
+      
+      .carousel-indicators .dot {
+        width: 8px;
+        height: 8px;
+      }
+      
+      .carousel-indicators .dot.active {
+        transform: scale(1.5);
+      }
+      
+      .instagram-header h2 {
+        font-size: 1.6rem;
+      }
+      .instagram-header h2 .script {
+        font-size: 2.6rem;
+      }
+      
+      .carousel-wrapper {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
       }
       
       .carousel-arrows button {
-        width: 38px;
-        height: 38px;
-        font-size: 1rem;
+        width: 36px;
+        height: 36px;
+        font-size: 0.9rem;
       }
       
-      .instagram-badge {
-        font-size: 0.6rem;
-        padding: 4px 12px;
-        top: 10px;
-        right: 10px;
-      }
-      
-      .hero-video-desktop {
-        display: none !important;
-      }
-      .hero-video-mobile {
-        display: block !important;
-      }
-      
-      .section {
-        padding: 60px 0;
-      }
-      
-      .instagram-section {
-        padding: 60px 0 80px;
-      }
-      
-      .biografia-section {
-        padding: 60px 0;
+      .carousel-arrows {
+        padding: 0 8px;
       }
     }
     
-    /* ===== MOBILE: CARROSSEL SIMPLES CENTRALIZADO ===== */
+    /* ===== AJUSTES FINOS PARA MOBILE PEQUENO ===== */
     @media (max-width: 480px) {
       .package-grid { grid-template-columns: 1fr; }
       
@@ -1218,83 +1296,27 @@
         font-size: 0.85rem;
       }
       
-      /* ===== CARROSSEL MOBILE SIMPLES ===== */
-      .carousel-wrapper {
-        padding: 8px 0;
-        max-width: 100%;
-        margin: 0 auto;
-        overflow: hidden;
-      }
-      
-      .carousel-track {
-        gap: 0;
-        padding: 8px 0;
-        display: flex;
-        align-items: center;
-        transition: transform 0.5s ease-in-out;
-      }
-      
-      /* Esconde todos os itens */
-      .carousel-item {
-        flex: 0 0 0 !important;
-        max-height: 420px;
-        margin: 0;
-        opacity: 0 !important;
-        pointer-events: none;
-        transition: opacity 0.5s ease;
-        width: 0;
-        min-width: 0;
-        overflow: hidden;
-        padding: 0;
-        border: none;
-        box-shadow: none;
-        transform: none !important;
-        filter: none !important;
-      }
-      
-      /* Apenas o item ativo é visível e centralizado */
+      /* Ajuste do peek effect para telas muito pequenas */
       .carousel-item.active {
-        flex: 0 0 280px !important;
-        width: 280px !important;
-        min-width: 280px !important;
-        max-height: 420px;
-        margin: 0 auto;
-        opacity: 1 !important;
-        pointer-events: auto;
-        overflow: visible;
-        padding: 0;
-        border-radius: 18px;
-        border: 1px solid rgba(212, 163, 179, 0.2);
-        box-shadow: 0 0 50px rgba(212, 163, 179, 0.15), 0 8px 30px rgba(0,0,0,0.5);
-        transform: none !important;
-        filter: none !important;
+        flex: 0 0 78% !important;
+        width: 78% !important;
+        min-width: 78% !important;
+        margin: 0 0 0 11% !important;
+        max-height: 380px;
       }
       
-      .carousel-item .overlay {
-        padding: 16px 14px 14px;
-      }
-      
-      .carousel-item .overlay .caption {
-        font-size: 0.6rem;
-        -webkit-line-clamp: 3;
+      .carousel-item.prev,
+      .carousel-item.next {
+        flex: 0 0 10% !important;
+        width: 10% !important;
+        min-width: 10% !important;
+        max-height: 340px;
       }
       
       .carousel-arrows button {
-        width: 32px;
-        height: 32px;
-        font-size: 0.8rem;
-      }
-      
-      .instagram-header h2 {
-        font-size: 1.6rem;
-      }
-      .instagram-header h2 .script {
-        font-size: 2.6rem;
-      }
-      
-      .carousel-wrapper {
-        padding-left: 0 !important;
-        padding-right: 0 !important;
+        width: 30px;
+        height: 30px;
+        font-size: 0.7rem;
       }
     }
 
