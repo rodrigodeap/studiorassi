@@ -1183,7 +1183,7 @@
       }
     }
     
-    /* ===== MOBILE: CARROSSEL DISTRIBUÍDO EM COLUNAS ===== */
+    /* ===== MOBILE: CARROSSEL SIMPLES CENTRALIZADO ===== */
     @media (max-width: 480px) {
       .package-grid { grid-template-columns: 1fr; }
       
@@ -1218,7 +1218,7 @@
         font-size: 0.85rem;
       }
       
-      /* ===== CARROSSEL MOBILE - DISTRIBUÍDO ===== */
+      /* ===== CARROSSEL MOBILE SIMPLES ===== */
       .carousel-wrapper {
         padding: 8px 0;
         max-width: 100%;
@@ -1234,93 +1234,55 @@
         transition: transform 0.5s ease-in-out;
       }
       
-      /* Todos os itens ficam visíveis com tamanho reduzido */
+      /* Esconde todos os itens */
       .carousel-item {
-        flex: 0 0 60px !important;
-        max-height: 100px;
-        margin: 0 2px;
-        opacity: 0.5 !important;
+        flex: 0 0 0 !important;
+        max-height: 420px;
+        margin: 0;
+        opacity: 0 !important;
         pointer-events: none;
-        transition: all 0.5s ease;
-        width: auto !important;
-        min-width: 0 !important;
+        transition: opacity 0.5s ease;
+        width: 0;
+        min-width: 0;
         overflow: hidden;
         padding: 0;
-        border: 1px solid rgba(212, 163, 179, 0.05);
-        border-radius: 8px;
+        border: none;
         box-shadow: none;
-        transform: scale(0.8) !important;
-        filter: blur(0.5px) saturate(0.3);
+        transform: none !important;
+        filter: none !important;
       }
       
-      /* Item ativo - maior e colorido */
+      /* Apenas o item ativo é visível e centralizado */
       .carousel-item.active {
-        flex: 0 0 160px !important;
-        max-height: 280px;
-        margin: 0 4px;
+        flex: 0 0 280px !important;
+        width: 280px !important;
+        min-width: 280px !important;
+        max-height: 420px;
+        margin: 0 auto;
         opacity: 1 !important;
         pointer-events: auto;
         overflow: visible;
         padding: 0;
-        border-radius: 14px;
-        border: 2px solid rgba(212, 163, 179, 0.3);
-        box-shadow: 0 0 40px rgba(212, 163, 179, 0.15), 0 8px 30px rgba(0,0,0,0.5);
-        transform: scale(1) !important;
-        filter: blur(0px) saturate(1);
-        z-index: 3;
-      }
-      
-      /* Itens próximos ao ativo - um pouco maiores */
-      .carousel-item.prev,
-      .carousel-item.next {
-        flex: 0 0 80px !important;
-        max-height: 140px;
-        opacity: 0.7 !important;
-        transform: scale(0.9) !important;
-        filter: blur(0.3px) saturate(0.6);
-        pointer-events: none;
-      }
-      
-      /* Itens mais distantes - menores */
-      .carousel-item.far {
-        flex: 0 0 50px !important;
-        max-height: 85px;
-        opacity: 0.25 !important;
-        transform: scale(0.7) !important;
-        filter: blur(1px) saturate(0.15);
-        pointer-events: none;
+        border-radius: 18px;
+        border: 1px solid rgba(212, 163, 179, 0.2);
+        box-shadow: 0 0 50px rgba(212, 163, 179, 0.15), 0 8px 30px rgba(0,0,0,0.5);
+        transform: none !important;
+        filter: none !important;
       }
       
       .carousel-item .overlay {
-        padding: 8px 8px 6px;
-      }
-      
-      .carousel-item .overlay .instagram-icon {
-        font-size: 0.45rem;
+        padding: 16px 14px 14px;
       }
       
       .carousel-item .overlay .caption {
-        font-size: 0.4rem;
-        -webkit-line-clamp: 1;
-      }
-      
-      .carousel-item.active .overlay {
-        padding: 12px 12px 10px;
-      }
-      
-      .carousel-item.active .overlay .instagram-icon {
         font-size: 0.6rem;
-      }
-      
-      .carousel-item.active .overlay .caption {
-        font-size: 0.55rem;
-        -webkit-line-clamp: 2;
+        -webkit-line-clamp: 3;
       }
       
       .carousel-arrows button {
-        width: 28px;
-        height: 28px;
-        font-size: 0.7rem;
+        width: 32px;
+        height: 32px;
+        font-size: 0.8rem;
       }
       
       .instagram-header h2 {
