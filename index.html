@@ -480,7 +480,7 @@
       color: #f5edea;
     }
 
-    /* ===== CARROSSEL ===== */
+    /* ===== CARROSSEL (DESKTOP DEFAULT) ===== */
     .carousel-wrapper {
       position: relative;
       max-width: 920px;
@@ -979,7 +979,7 @@
     }
 
     /* ============================================================
-       RESPONSIVO
+       RESPONSIVO (Desktop para Tablet)
     ============================================================ */
     @media (max-width: 1024px) {
       .hero-text h1 { font-size: 3.2rem; }
@@ -1000,6 +1000,9 @@
       }
     }
     
+    /* ============================================================
+       RESPONSIVO (Mobile - Onde as Mágicas Acontecem)
+    ============================================================ */
     @media (max-width: 768px) {
       .container { padding: 0 20px; }
       
@@ -1102,217 +1105,100 @@
       }
       
       /* ==========================================================
-         CARROSSEL MOBILE - CONSTRUÍDO DO ZERO
+         CARROSSEL MOBILE - TÉCNICA SCROLL SNAP (ISOLADO)
          ========================================================== */
       
       .carousel-wrapper {
         position: relative;
         max-width: 100%;
-        margin: 0 auto;
-        overflow: visible;
-        padding: 8px 0;
-        z-index: 2;
+        margin: 0;
+        overflow: hidden; /* Mantém oculto para as setas não quebrarem o layout */
         border-radius: 0;
+        padding: 0;
+        z-index: 2;
       }
       
       .carousel-track {
+        /* Mudanças Críticas para CSS Scroll Snap */
         display: flex;
-        gap: 0;
-        padding: 8px 0;
-        transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        will-change: transform;
-        padding-left: 10%;
-        padding-right: 10%;
+        overflow-x: auto;
+        overflow-y: hidden;
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth; /* Para a rolagem das setas ser suave */
+        -webkit-overflow-scrolling: touch; /* Suporte nativo iOS */
+        gap: 15px; /* Espaçamento real entre as fotos */
+        padding: 20px 10%; /* 10% de margem nas bordas para o primeiro e último item */
+        
+        /* Reseta as propriedades conflitantes do Desktop */
+        transform: none !important; 
+        transition: none !important;
+      }
+      
+      /* Oculta a barra de rolagem mas mantém a funcionalidade */
+      .carousel-track::-webkit-scrollbar {
+        display: none;
+      }
+      .carousel-track {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
       }
       
       .carousel-item {
-        flex: 0 0 80%;
-        max-height: 420px;
-        margin: 0 2%;
-        opacity: 0;
-        pointer-events: none;
-        transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        /* Configuração do Peek Effect Nativo */
+        flex: 0 0 80%; /* Cada imagem ocupa 80% da tela */
+        width: 80%;
+        scroll-snap-align: center; /* Trava no centro! */
+        
+        /* Reseta filtros agressivos do Desktop */
+        opacity: 1 !important;
+        pointer-events: auto !important;
+        transform: scale(1) !important;
+        filter: none !important;
         border-radius: 18px;
-        overflow: hidden;
-        border: 1px solid rgba(212, 163, 179, 0.05);
-        box-shadow: none;
-        transform: scale(0.92);
-        filter: blur(2px) saturate(0.1);
-        aspect-ratio: 9 / 16;
-        position: relative;
-        max-width: 100%;
+        margin: 0; 
+        box-shadow: 0 8px 30px rgba(0,0,0,0.5);
       }
       
-      .carousel-item.active {
-        flex: 0 0 80%;
-        opacity: 1;
-        pointer-events: auto;
-        transform: scale(1);
-        filter: blur(0px) saturate(1);
-        border-color: rgba(212, 163, 179, 0.25);
-        box-shadow: 0 0 50px rgba(212, 163, 179, 0.15), 0 8px 30px rgba(0,0,0,0.5);
-        z-index: 3;
-        border-width: 2px;
-      }
-      
-      .carousel-item.prev {
-        flex: 0 0 12%;
-        opacity: 0.4;
-        pointer-events: none;
-        transform: scale(0.85);
-        filter: blur(1px) saturate(0.15);
-        border-color: rgba(212, 163, 179, 0.05);
-        box-shadow: none;
-        z-index: 1;
-        border-radius: 14px 0 0 14px;
-        margin-right: -4%;
-      }
-      
-      .carousel-item.next {
-        flex: 0 0 12%;
-        opacity: 0.4;
-        pointer-events: none;
-        transform: scale(0.85);
-        filter: blur(1px) saturate(0.15);
-        border-color: rgba(212, 163, 179, 0.05);
-        box-shadow: none;
-        z-index: 1;
-        border-radius: 0 14px 14px 0;
-        margin-left: -4%;
-      }
-      
-      .carousel-item.far,
-      .carousel-item.prev.far,
-      .carousel-item.next.far {
-        flex: 0 0 0 !important;
-        opacity: 0 !important;
-        pointer-events: none;
-        margin: 0;
-        padding: 0;
-        border: none;
-        overflow: hidden;
-        width: 0;
-        min-width: 0;
-        filter: blur(4px) !important;
+      /* Resetamos as classes dinâmicas (active, prev, next) no Mobile para não conflitar */
+      .carousel-item.active,
+      .carousel-item.prev,
+      .carousel-item.next,
+      .carousel-item.far {
+         flex: 0 0 80% !important;
+         opacity: 1 !important;
+         transform: scale(1) !important;
+         filter: none !important;
+         margin: 0 !important;
       }
       
       .carousel-item img {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        display: block;
-        transition: transform 0.5s ease;
       }
       
-      .carousel-item.active img {
-        transform: scale(1);
-      }
-      
-      .carousel-item.prev img,
-      .carousel-item.next img {
-        transform: scale(1.1);
-      }
-      
+      /* O Overlay no Mobile fica sempre visível, já que não temos "hover" real */
       .carousel-item .overlay {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
+        opacity: 1 !important;
         padding: 16px 14px 14px;
-        background: linear-gradient(transparent, rgba(44, 7, 20, 0.9) 40%, rgba(44, 7, 20, 0.95));
-        opacity: 0;
-        transition: opacity 0.5s ease;
-      }
-      
-      .carousel-item.active .overlay {
-        opacity: 1;
-      }
-      
-      .carousel-item .overlay .instagram-icon {
-        color: #D4A3B3;
-        font-size: 0.6rem;
-        display: flex;
-        align-items: center;
-        gap: 6px;
       }
       
       .carousel-item .overlay .caption {
-        font-family: 'Inter', sans-serif;
-        font-size: 0.6rem;
-        font-weight: 300;
-        color: #f5edea;
-        line-height: 1.4;
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-        letter-spacing: 0.3px;
+        font-size: 0.8rem;
       }
       
       .carousel-arrows {
-        position: absolute;
-        top: 50%;
-        width: 100%;
-        transform: translateY(-50%);
-        display: flex;
-        justify-content: space-between;
-        padding: 0 8px;
-        pointer-events: none;
-        z-index: 10;
+        padding: 0 10px;
       }
       
       .carousel-arrows button {
-        pointer-events: auto;
-        background: rgba(44, 7, 20, 0.6);
-        backdrop-filter: blur(12px);
-        border: 1px solid rgba(212, 163, 179, 0.1);
-        color: #D4A3B3;
-        width: 36px;
-        height: 36px;
-        border-radius: 50%;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        width: 40px;
+        height: 40px;
         font-size: 1rem;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-      }
-      
-      .carousel-arrows button:hover {
-        background: #D4A3B3;
-        color: #2C0714;
-        transform: scale(1.1);
       }
       
       .carousel-indicators {
-        display: flex;
-        justify-content: center;
-        gap: 10px;
-        margin-top: 24px;
-        position: relative;
-        z-index: 2;
-      }
-      
-      .carousel-indicators .dot {
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        background: rgba(212, 163, 179, 0.15);
-        border: 1px solid rgba(212, 163, 179, 0.08);
-        cursor: pointer;
-        transition: all 0.4s ease;
-      }
-      
-      .carousel-indicators .dot.active {
-        background: #D4A3B3;
-        border-color: #D4A3B3;
-        transform: scale(1.5);
-        box-shadow: 0 0 20px rgba(212, 163, 179, 0.2);
-      }
-      
-      .carousel-indicators .dot:hover {
-        background: rgba(212, 163, 179, 0.4);
+        margin-top: 15px;
       }
       
       .instagram-badge {
@@ -1327,35 +1213,6 @@
       }
       .instagram-header h2 .script {
         font-size: 2.6rem;
-      }
-      
-      /* ===== AJUSTE PARA TELAS MUITO PEQUENAS ===== */
-      @media (max-width: 480px) {
-        .carousel-item {
-          flex: 0 0 82%;
-          margin: 0 2%;
-        }
-        
-        .carousel-item.active {
-          flex: 0 0 82%;
-        }
-        
-        .carousel-item.prev,
-        .carousel-item.next {
-          flex: 0 0 8%;
-          margin: 0 0;
-        }
-        
-        .carousel-track {
-          padding-left: 8%;
-          padding-right: 8%;
-        }
-        
-        .carousel-arrows button {
-          width: 30px;
-          height: 30px;
-          font-size: 0.8rem;
-        }
       }
     }
 
@@ -1666,84 +1523,19 @@
   // 1. DADOS DAS IMAGENS
   // ============================================================
   const instagramPosts = [
-    { 
-      id: 'post_01', 
-      image: 'assets/images/instagram/instagram-01.jpg', 
-      alt: 'Ensaio externo com luz dourada', 
-      caption: '✨ Ensaio externo' 
-    },
-    { 
-      id: 'post_02', 
-      image: 'assets/images/instagram/instagram-02.jpg', 
-      alt: 'Gestante - momentos de ternura', 
-      caption: '🌸 Gestante' 
-    },
-    { 
-      id: 'post_03', 
-      image: 'assets/images/instagram/instagram-03.jpg', 
-      alt: 'Festa infantil - sorrisos eternizados', 
-      caption: '🎉 Festa infantil' 
-    },
-    { 
-      id: 'post_04', 
-      image: 'assets/images/instagram/instagram-04.jpg', 
-      alt: 'Ensaio de casal - amor em detalhes', 
-      caption: '💍 Casal' 
-    },
-    { 
-      id: 'post_05', 
-      image: 'assets/images/instagram/instagram-05.jpg', 
-      alt: 'Newborn - delicadeza e ternura', 
-      caption: '👶 Newborn' 
-    },
-    { 
-      id: 'post_06', 
-      image: 'assets/images/instagram/instagram-06.jpg', 
-      alt: 'Ensaio externo - natureza e luz', 
-      caption: '🌿 Natureza' 
-    },
-    { 
-      id: 'post_07', 
-      image: 'assets/images/instagram/instagram-07.jpg', 
-      alt: 'Gestante - silhueta e emoção', 
-      caption: '🤰 Silhueta' 
-    },
-    { 
-      id: 'post_08', 
-      image: 'assets/images/instagram/instagram-08.jpg', 
-      alt: 'Festa - decoração elegante', 
-      caption: '🎈 Decoração' 
-    },
-    { 
-      id: 'post_09', 
-      image: 'assets/images/instagram/instagram-09.jpg', 
-      alt: 'Casal - ensaio romântico', 
-      caption: '💑 Romântico' 
-    },
-    { 
-      id: 'post_10', 
-      image: 'assets/images/instagram/instagram-10.jpg', 
-      alt: 'Estúdio - bolo de aniversário', 
-      caption: '🎂 Aniversário' 
-    },
-    { 
-      id: 'post_11', 
-      image: 'assets/images/instagram/instagram-11.jpg', 
-      alt: 'Ensaio externo - luz da tarde', 
-      caption: '🌅 Luz da tarde' 
-    },
-    { 
-      id: 'post_12', 
-      image: 'assets/images/instagram/instagram-12.jpg', 
-      alt: 'Detalhes - amor em cada foto', 
-      caption: '💕 Detalhes' 
-    },
-    { 
-      id: 'post_13', 
-      image: 'assets/images/instagram/instagram-13.jpg', 
-      alt: 'Família - momentos eternizados', 
-      caption: '👨‍👩‍👧‍👦 Família' 
-    }
+    { id: 'post_01', image: 'assets/images/instagram/instagram-01.jpg', alt: 'Ensaio externo com luz dourada', caption: '✨ Ensaio externo' },
+    { id: 'post_02', image: 'assets/images/instagram/instagram-02.jpg', alt: 'Gestante - momentos de ternura', caption: '🌸 Gestante' },
+    { id: 'post_03', image: 'assets/images/instagram/instagram-03.jpg', alt: 'Festa infantil - sorrisos eternizados', caption: '🎉 Festa infantil' },
+    { id: 'post_04', image: 'assets/images/instagram/instagram-04.jpg', alt: 'Ensaio de casal - amor em detalhes', caption: '💍 Casal' },
+    { id: 'post_05', image: 'assets/images/instagram/instagram-05.jpg', alt: 'Newborn - delicadeza e ternura', caption: '👶 Newborn' },
+    { id: 'post_06', image: 'assets/images/instagram/instagram-06.jpg', alt: 'Ensaio externo - natureza e luz', caption: '🌿 Natureza' },
+    { id: 'post_07', image: 'assets/images/instagram/instagram-07.jpg', alt: 'Gestante - silhueta e emoção', caption: '🤰 Silhueta' },
+    { id: 'post_08', image: 'assets/images/instagram/instagram-08.jpg', alt: 'Festa - decoração elegante', caption: '🎈 Decoração' },
+    { id: 'post_09', image: 'assets/images/instagram/instagram-09.jpg', alt: 'Casal - ensaio romântico', caption: '💑 Romântico' },
+    { id: 'post_10', image: 'assets/images/instagram/instagram-10.jpg', alt: 'Estúdio - bolo de aniversário', caption: '🎂 Aniversário' },
+    { id: 'post_11', image: 'assets/images/instagram/instagram-11.jpg', alt: 'Ensaio externo - luz da tarde', caption: '🌅 Luz da tarde' },
+    { id: 'post_12', image: 'assets/images/instagram/instagram-12.jpg', alt: 'Detalhes - amor em cada foto', caption: '💕 Detalhes' },
+    { id: 'post_13', image: 'assets/images/instagram/instagram-13.jpg', alt: 'Família - momentos eternizados', caption: '👨‍👩‍👧‍👦 Família' }
   ];
 
   // ============================================================
@@ -1752,12 +1544,14 @@
   let currentIndex = 0;
   let autoSlideInterval = null;
   const SLIDE_INTERVAL = 3000;
-  const ITEMS_PER_SLIDE = 5;
   const TRANSITION_SPEED = 0.5;
 
   const track = document.getElementById('carouselTrack');
   const indicators = document.getElementById('carouselIndicators');
   let totalItems = instagramPosts.length;
+  
+  // Função auxiliar para checar se é Mobile
+  const isMobile = () => window.innerWidth <= 768;
 
   // ============================================================
   // 3. RENDERIZAR
@@ -1766,7 +1560,9 @@
     track.innerHTML = '';
     indicators.innerHTML = '';
 
-    const allPosts = [...instagramPosts, ...instagramPosts, ...instagramPosts];
+    // Clonamos as imagens apenas no Desktop para fazer o loop infinito via JS
+    // No Mobile, renderizamos apenas 1 conjunto (o CSS scroll snap nativo não gosta de loops infinitos sem hacks complexos)
+    const allPosts = isMobile() ? instagramPosts : [...instagramPosts, ...instagramPosts, ...instagramPosts];
     
     allPosts.forEach((post, index) => {
       const item = document.createElement('div');
@@ -1790,68 +1586,107 @@
       indicators.appendChild(dot);
     }
 
-    track.style.transition = `transform ${TRANSITION_SPEED}s cubic-bezier(0.25, 0.46, 0.45, 0.94)`;
-
-    const startIndex = totalItems;
-    goToSlide(startIndex, false);
+    if (!isMobile()) {
+      track.style.transition = `transform ${TRANSITION_SPEED}s cubic-bezier(0.25, 0.46, 0.45, 0.94)`;
+      const startIndex = totalItems;
+      goToSlide(startIndex, false);
+    }
   }
 
   // ============================================================
-  // 4. NAVEGAÇÃO
+  // 4. NAVEGAÇÃO HÍBRIDA (DESKTOP JS vs MOBILE NATIVO)
   // ============================================================
   function goToSlide(index, animate = true) {
     const items = track.children;
     const total = items.length;
-    const half = Math.floor(total / 3);
     
-    if (index < 0) index = totalItems - 1;
-    if (index >= totalItems) index = 0;
-    
-    const targetIndex = index + half;
-    
-    const itemWidth = items[0]?.offsetWidth || 0;
-    const gap = 16;
-    const offset = targetIndex * (itemWidth + gap) - (itemWidth + gap) * 2;
-    
-    if (!animate) {
-      track.style.transition = 'none';
-    } else {
-      track.style.transition = `transform ${TRANSITION_SPEED}s cubic-bezier(0.25, 0.46, 0.45, 0.94)`;
-    }
-    
-    track.style.transform = `translateX(-${offset}px)`;
-    
-    if (!animate) {
-      track.offsetHeight;
-      track.style.transition = `transform ${TRANSITION_SPEED}s cubic-bezier(0.25, 0.46, 0.45, 0.94)`;
-    }
-    
-    Array.from(items).forEach((item, i) => {
-      const position = i - targetIndex;
-      item.classList.remove('active', 'prev', 'next', 'far');
+    if (isMobile()) {
+      // ===== LÓGICA MOBILE (SCROLL SNAP) =====
+      if (index < 0) index = totalItems - 1;
+      if (index >= totalItems) index = 0;
+      currentIndex = index;
       
-      if (Math.abs(position) <= 2) {
-        if (position === 0) {
-          item.classList.add('active');
-        } else if (position === -1 || position === 1) {
-          item.classList.add(position === -1 ? 'prev' : 'next');
-        } else if (position === -2 || position === 2) {
+      const itemToScroll = items[currentIndex];
+      if (itemToScroll) {
+        track.scrollTo({
+          left: itemToScroll.offsetLeft - track.offsetLeft - (track.clientWidth - itemToScroll.clientWidth) / 2,
+          behavior: animate ? 'smooth' : 'auto'
+        });
+      }
+    } else {
+      // ===== LÓGICA DESKTOP (TRANSLATEX E CLASSES) =====
+      const half = Math.floor(total / 3);
+      if (index < 0) index = totalItems - 1;
+      if (index >= totalItems) index = 0;
+      const targetIndex = index + half;
+      
+      const itemWidth = items[0]?.offsetWidth || 0;
+      const gap = 16;
+      const offset = targetIndex * (itemWidth + gap) - (itemWidth + gap) * 2;
+      
+      if (!animate) {
+        track.style.transition = 'none';
+      } else {
+        track.style.transition = `transform ${TRANSITION_SPEED}s cubic-bezier(0.25, 0.46, 0.45, 0.94)`;
+      }
+      
+      track.style.transform = `translateX(-${offset}px)`;
+      
+      if (!animate) {
+        track.offsetHeight;
+        track.style.transition = `transform ${TRANSITION_SPEED}s cubic-bezier(0.25, 0.46, 0.45, 0.94)`;
+      }
+      
+      Array.from(items).forEach((item, i) => {
+        const position = i - targetIndex;
+        item.classList.remove('active', 'prev', 'next', 'far');
+        
+        if (Math.abs(position) <= 2) {
+          if (position === 0) item.classList.add('active');
+          else if (position === -1 || position === 1) item.classList.add(position === -1 ? 'prev' : 'next');
+          else if (position === -2 || position === 2) item.classList.add('far');
+        } else {
           item.classList.add('far');
         }
-      } else {
-        item.classList.add('far');
-      }
-    });
+      });
+      currentIndex = index;
+    }
     
-    currentIndex = index;
-    
+    // Atualiza os Dots em ambas as versões
     document.querySelectorAll('.dot').forEach((dot, i) => {
-      dot.classList.toggle('active', i === index);
+      dot.classList.toggle('active', i === currentIndex);
     });
   }
 
   function nextSlide() { goToSlide((currentIndex + 1) % totalItems); }
   function prevSlide() { goToSlide((currentIndex - 1 + totalItems) % totalItems); }
+
+  // Sincroniza o Scroll Manual no Mobile com os Dots
+  track.addEventListener('scroll', () => {
+    if (isMobile()) {
+      clearTimeout(track.scrollTimeout);
+      track.scrollTimeout = setTimeout(() => {
+        const items = Array.from(track.children);
+        let closestIndex = 0;
+        let minDistance = Infinity;
+        
+        items.forEach((item, index) => {
+          const distance = Math.abs((item.offsetLeft + item.clientWidth / 2) - (track.scrollLeft + track.clientWidth / 2));
+          if (distance < minDistance) {
+            minDistance = distance;
+            closestIndex = index;
+          }
+        });
+        
+        if (closestIndex !== currentIndex) {
+          currentIndex = closestIndex;
+          document.querySelectorAll('.dot').forEach((dot, i) => {
+            dot.classList.toggle('active', i === currentIndex);
+          });
+        }
+      }, 50); // Timeout baixo para feedback rápido no scroll
+    }
+  });
 
   // ============================================================
   // 5. AUTOPLAY
@@ -1923,20 +1758,23 @@
     if (e.key === 'ArrowRight') { nextSlide(); pauseAutoplay(); }
   });
 
+  // Removemos o Touch Swipe customizado no Mobile, pois o CSS nativo (Scroll Snap) já faz isso de forma perfeita
   let touchStartX = 0;
   let touchEndX = 0;
   const wrapper = document.querySelector('.carousel-wrapper');
   
   wrapper.addEventListener('touchstart', (e) => {
-    touchStartX = e.changedTouches[0].screenX;
+    if (!isMobile()) touchStartX = e.changedTouches[0].screenX;
   }, { passive: true });
   
   wrapper.addEventListener('touchend', (e) => {
-    touchEndX = e.changedTouches[0].screenX;
-    const diff = touchStartX - touchEndX;
-    if (Math.abs(diff) > 40) {
-      if (diff > 0) { nextSlide(); } else { prevSlide(); }
-      pauseAutoplay();
+    if (!isMobile()) {
+      touchEndX = e.changedTouches[0].screenX;
+      const diff = touchStartX - touchEndX;
+      if (Math.abs(diff) > 40) {
+        if (diff > 0) { nextSlide(); } else { prevSlide(); }
+        pauseAutoplay();
+      }
     }
   }, { passive: true });
 
@@ -1956,7 +1794,8 @@
   window.addEventListener('resize', () => {
     clearTimeout(resizeTimeout);
     resizeTimeout = setTimeout(() => {
-      goToSlide(currentIndex);
+      // Se a tela mudar de tamanho (virar o celular, por ex), recria a estrutura adequada (Mobile vs Desktop)
+      renderCarousel();
     }, 200);
   });
 
@@ -1992,9 +1831,6 @@
     });
   });
 
-  console.log('📸 Carrossel carregado!');
-  console.log(`📊 ${instagramPosts.length} imagens em rotação`);
-  console.log('🍔 Menu hambúrguer ativado no mobile');
 </script>
 
 </body>
